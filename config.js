@@ -22,3 +22,15 @@ window.CLUB_CONFIG = {
   // Official club contact email.
   CONTACT_EMAIL: "claudebuilder.aou@gmail.com"
 };
+
+/*
+  Progressive UI polish.
+  This stylesheet is intentionally loaded separately so the recruitment logic,
+  form fields and submission transport stay independent from presentation changes.
+*/
+(() => {
+  const polish = document.createElement("link");
+  polish.rel = "stylesheet";
+  polish.href = "./polish.css?v=20261011";
+  document.head.appendChild(polish);
+})();
