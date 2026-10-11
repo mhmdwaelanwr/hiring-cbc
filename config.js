@@ -24,13 +24,18 @@ window.CLUB_CONFIG = {
 };
 
 /*
-  Progressive UI polish.
-  This stylesheet is intentionally loaded separately so the recruitment logic,
-  form fields and submission transport stay independent from presentation changes.
+  Progressive UI layers.
+  They are kept independent from recruitment logic so presentation fixes can be
+  rolled back without touching form fields or submission transport.
 */
 (() => {
-  const polish = document.createElement("link");
-  polish.rel = "stylesheet";
-  polish.href = "./polish.css?v=20261011";
-  document.head.appendChild(polish);
+  [
+    "./polish.css?v=20261011",
+    "./hotfix.css?v=20261011b"
+  ].forEach(href => {
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = href;
+    document.head.appendChild(stylesheet);
+  });
 })();
