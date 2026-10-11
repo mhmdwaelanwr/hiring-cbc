@@ -1,0 +1,53 @@
+/* Claude Builder Club brand mark */
+.brand::before{
+  content:"";
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
+  border-radius:0;
+  background-color:transparent;
+  background-image:url("./claude-spark.svg");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:30px 30px;
+  box-shadow:none;
+}
+
+html[data-theme="dark"] .brand::before{
+  background-color:transparent;
+  background-image:url("./claude-spark.svg");
+}
+
+.hero-club-name{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.hero-club-name::before{
+  content:"";
+  width:24px;
+  height:24px;
+  flex:0 0 24px;
+  background:url("./claude-spark.svg") center/22px 22px no-repeat;
+}
+
+@media(max-width:620px){
+  .brand::before{
+    width:28px;
+    height:28px;
+    flex-basis:28px;
+    background-size:26px 26px;
+  }
+
+  .hero-club-name{
+    gap:8px;
+  }
+
+  .hero-club-name::before{
+    width:21px;
+    height:21px;
+    flex-basis:21px;
+    background-size:20px 20px;
+  }
+}
