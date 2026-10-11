@@ -31,13 +31,23 @@ window.CLUB_CONFIG = {
 (() => {
   [
     "./polish.css?v=20261011",
-    "./hotfix.css?v=20261011b"
+    "./hotfix.css?v=20261011b",
+    "./brand.css?v=20261011c"
   ].forEach(href => {
     const stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
     stylesheet.href = href;
     document.head.appendChild(stylesheet);
   });
+
+  if (!document.querySelector('link[data-cbc-favicon]')) {
+    const favicon = document.createElement("link");
+    favicon.rel = "icon";
+    favicon.type = "image/svg+xml";
+    favicon.href = "./claude-spark.svg?v=20261011c";
+    favicon.dataset.cbcFavicon = "true";
+    document.head.appendChild(favicon);
+  }
 
   const loadSubmissionHotfix = () => {
     if (document.querySelector('script[data-cbc-submission-hotfix]')) return;
