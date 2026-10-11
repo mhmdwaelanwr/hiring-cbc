@@ -1,20 +1,20 @@
 /* Claude Builder Club brand mark */
 .brand::before{
   content:"";
-  width:32px;
-  height:32px;
-  flex:0 0 32px;
-  border-radius:0;
-  background-color:transparent;
+  width:54px;
+  height:54px;
+  flex:0 0 54px;
+  border-radius:18px;
+  background-color:#D97757;
   background-image:url("./claude-spark.svg");
   background-repeat:no-repeat;
   background-position:center;
-  background-size:30px 30px;
-  box-shadow:none;
+  background-size:28px 28px;
+  box-shadow:0 8px 24px rgba(217,119,87,.16);
 }
 
 html[data-theme="dark"] .brand::before{
-  background-color:transparent;
+  background-color:#D97757;
   background-image:url("./claude-spark.svg");
 }
 
@@ -34,10 +34,11 @@ html[data-theme="dark"] .brand::before{
 
 @media(max-width:620px){
   .brand::before{
-    width:28px;
-    height:28px;
-    flex-basis:28px;
-    background-size:26px 26px;
+    width:46px;
+    height:46px;
+    flex-basis:46px;
+    border-radius:15px;
+    background-size:24px 24px;
   }
 
   .hero-club-name{
