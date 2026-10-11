@@ -22,3 +22,45 @@ window.CLUB_CONFIG = {
   // Official club contact email.
   CONTACT_EMAIL: "claudebuilder.aou@gmail.com"
 };
+
+/*
+  Progressive UI layers.
+  They are kept independent from recruitment logic so presentation fixes can be
+  rolled back without touching form fields or the original application flow.
+*/
+(() => {
+  [
+    "./polish.css?v=20261011",
+    "./hotfix.css?v=20261011b",
+    "./brand.css?v=20261011d"
+  ].forEach(href => {
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = href;
+    document.head.appendChild(stylesheet);
+  });
+
+  if (!document.querySelector('link[data-cbc-favicon]')) {
+    const favicon = document.createElement("link");
+    favicon.rel = "icon";
+    favicon.type = "image/svg+xml";
+    favicon.href = "./claude-favicon.svg?v=20261011d";
+    favicon.dataset.cbcFavicon = "true";
+    document.head.appendChild(favicon);
+  }
+
+  const loadSubmissionHotfix = () => {
+    if (document.querySelector('script[data-cbc-submission-hotfix]')) return;
+    const script = document.createElement("script");
+    script.src = "./submission-hotfix.js?v=20261011b";
+    script.async = false;
+    script.dataset.cbcSubmissionHotfix = "true";
+    document.body.appendChild(script);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadSubmissionHotfix, { once: true });
+  } else {
+    loadSubmissionHotfix();
+  }
+})();
