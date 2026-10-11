@@ -1,1 +1,0 @@
-Claude Builder Club visual identity uses the local claude-spark.svg asset for the navigation mark, hero mark, and browser favicon.
