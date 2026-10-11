@@ -26,7 +26,7 @@ window.CLUB_CONFIG = {
 /*
   Progressive UI layers.
   They are kept independent from recruitment logic so presentation fixes can be
-  rolled back without touching form fields or submission transport.
+  rolled back without touching form fields or the original application flow.
 */
 (() => {
   [
@@ -38,4 +38,19 @@ window.CLUB_CONFIG = {
     stylesheet.href = href;
     document.head.appendChild(stylesheet);
   });
+
+  const loadSubmissionHotfix = () => {
+    if (document.querySelector('script[data-cbc-submission-hotfix]')) return;
+    const script = document.createElement("script");
+    script.src = "./submission-hotfix.js?v=20261011b";
+    script.async = false;
+    script.dataset.cbcSubmissionHotfix = "true";
+    document.body.appendChild(script);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadSubmissionHotfix, { once: true });
+  } else {
+    loadSubmissionHotfix();
+  }
 })();
