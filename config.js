@@ -32,7 +32,7 @@ window.CLUB_CONFIG = {
   [
     "./polish.css?v=20261011",
     "./hotfix.css?v=20261011b",
-    "./brand.css?v=20261011c"
+    "./brand.css?v=20261011d"
   ].forEach(href => {
     const stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
@@ -44,7 +44,7 @@ window.CLUB_CONFIG = {
     const favicon = document.createElement("link");
     favicon.rel = "icon";
     favicon.type = "image/svg+xml";
-    favicon.href = "./claude-spark.svg?v=20261011c";
+    favicon.href = "./claude-favicon.svg?v=20261011d";
     favicon.dataset.cbcFavicon = "true";
     document.head.appendChild(favicon);
   }
