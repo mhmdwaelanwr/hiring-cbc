@@ -32,7 +32,8 @@ window.CLUB_CONFIG = {
   [
     "./polish.css?v=20261011",
     "./hotfix.css?v=20261011b",
-    "./brand.css?v=20261011d"
+    "./brand.css?v=20261011d",
+    "./community.css?v=20261012a"
   ].forEach(href => {
     const stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
@@ -49,18 +50,23 @@ window.CLUB_CONFIG = {
     document.head.appendChild(favicon);
   }
 
-  const loadSubmissionHotfix = () => {
-    if (document.querySelector('script[data-cbc-submission-hotfix]')) return;
+  const loadScriptOnce = (src, marker) => {
+    if (document.querySelector(`script[data-${marker}]`)) return;
     const script = document.createElement("script");
-    script.src = "./submission-hotfix.js?v=20261012";
+    script.src = src;
     script.async = false;
-    script.dataset.cbcSubmissionHotfix = "true";
+    script.dataset[marker.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = "true";
     document.body.appendChild(script);
   };
 
+  const loadEnhancements = () => {
+    loadScriptOnce("./submission-hotfix.js?v=20261012", "cbc-submission-hotfix");
+    loadScriptOnce("./community.js?v=20261012a", "cbc-community");
+  };
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", loadSubmissionHotfix, { once: true });
+    document.addEventListener("DOMContentLoaded", loadEnhancements, { once: true });
   } else {
-    loadSubmissionHotfix();
+    loadEnhancements();
   }
 })();
