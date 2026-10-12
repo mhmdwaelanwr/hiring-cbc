@@ -3,36 +3,65 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#F7F4ED" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#171716" media="(prefers-color-scheme: dark)" />
   <script>
     (() => {
-      const pref = localStorage.getItem("cbc-theme") || "system";
+      let pref = "system";
+      try { pref = localStorage.getItem("cbc-theme") || "system"; } catch (_) {}
       const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.dataset.themePreference = pref;
       document.documentElement.dataset.theme =
         pref === "system" ? (systemDark ? "dark" : "light") : pref;
     })();
   </script>
-  <title>Hiring | Claude Builder Club — AOU Egypt</title>
-  <meta name="description" content="Hiring the founding team for Claude Builder Club — AOU Egypt." />
-  <meta property="og:title" content="Hiring | Claude Builder Club — AOU Egypt" />
-  <meta property="og:description" content="Apply to join the founding team of Claude Builder Club — AOU Egypt." />
-  <link rel="stylesheet" href="./styles.css" />
+
+  <title>Join the Founding Team | Claude Builder Club — AOU Egypt</title>
+  <meta name="description" content="Apply to join the founding team of Claude Builder Club — AOU Egypt. Explore technical, operations, media, community, partnerships and project roles." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://mhmdwaelanwr.github.io/hiring-cbc/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Claude Builder Club — AOU Egypt" />
+  <meta property="og:title" content="Join the Founding Team | Claude Builder Club — AOU Egypt" />
+  <meta property="og:description" content="Build workshops, projects, hackathons and a serious AI builder community at AOU Egypt." />
+  <meta property="og:url" content="https://mhmdwaelanwr.github.io/hiring-cbc/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Claude Builder Club — AOU Egypt | Founding Team" />
+  <meta name="twitter:description" content="Applications are open for the founding team." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="./claude-favicon.svg?v=20261012" />
+
+  <link rel="stylesheet" href="./styles.css?v=20261012r2" />
+  <link rel="stylesheet" href="./polish.css?v=20261012r2" />
+  <link rel="stylesheet" href="./hotfix.css?v=20261012r2" />
+  <link rel="stylesheet" href="./brand.css?v=20261012r2" />
+  <link rel="stylesheet" href="./community.css?v=20261012r2" />
+  <link rel="stylesheet" href="./revamp.css?v=20261012r2" />
 </head>
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top" aria-label="Home">
+      <a class="brand" href="#top" aria-label="Claude Builder Club — AOU Egypt home">
         <span class="brand-copy">
           <strong>Claude Builder Club</strong>
           <small>AOU Egypt · Founding Team</small>
         </span>
       </a>
-      <nav class="nav-links" aria-label="Primary">
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
         <a href="#teams">Teams</a>
         <a href="#process">Process</a>
-        <a class="nav-whatsapp" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer">WhatsApp updates</a>
+        <a href="#community">Community</a>
+        <a class="nav-facebook" href="https://www.facebook.com/claudeaouclub" target="_blank" rel="noopener noreferrer" aria-label="Claude Builder Club — AOU Egypt on Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.6 22v-9h3l.45-3.5H13.6V7.27c0-1.01.28-1.7 1.74-1.7H17.2V2.44A24.8 24.8 0 0 0 14.5 2c-2.67 0-4.5 1.63-4.5 4.62V9.5H7V13h3v9h3.6Z"/></svg>
+          <span>Facebook</span>
+        </a>
+        <a class="nav-whatsapp" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Change color theme" title="Theme: System">
           <span class="theme-icon" aria-hidden="true">◐</span>
           <span class="theme-label">System</span>
@@ -44,41 +73,93 @@
   </header>
 
   <main id="top">
-    <section class="hero wrap">
+    <section class="hero wrap" aria-labelledby="heroTitle">
       <div class="hero-copy">
         <div class="hero-status" id="heroStatus">Applications opening soon</div>
-        <div class="eyebrow">FOUNDING TEAM RECRUITMENT</div>
-        <h1>Join the founding team.</h1>
+        <div class="eyebrow">FOUNDING TEAM · 2026</div>
+        <h1 id="heroTitle">Build the club from day one.</h1>
         <p class="hero-club-name">Claude Builder Club — AOU Egypt</p>
         <p class="lead">
-          We’re recruiting students who can build, organize, design, market and lead.
-          Help create technical workshops, community programs, projects and high-quality
-          AI experiences for students at AOU Egypt.
+          Join the founding team shaping technical workshops, projects, hackathons,
+          partnerships and a serious AI builder community for students at AOU Egypt.
         </p>
         <div class="hero-actions">
           <button class="btn btn-primary js-apply" data-open-label="Start application">Start application</button>
           <a class="btn btn-ghost" href="#teams">Explore teams</a>
-          <a class="btn btn-whatsapp-outline" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer">Follow updates on WhatsApp ↗</a>
+          <a class="btn btn-ghost hero-facebook" href="https://www.facebook.com/claudeaouclub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.6 22v-9h3l.45-3.5H13.6V7.27c0-1.01.28-1.7 1.74-1.7H17.2V2.44A24.8 24.8 0 0 0 14.5 2c-2.67 0-4.5 1.63-4.5 4.62V9.5H7V13h3v9h3.6Z"/></svg>
+            <span>Follow on Facebook</span>
+          </a>
+        </div>
+        <div class="community-proof" aria-label="Recruitment highlights">
+          <span><i class="proof-dot" aria-hidden="true"></i>AOU Egypt students</span>
+          <span>11 teams</span>
+          <span>Draft autosave</span>
         </div>
       </div>
 
-      <aside class="hero-panel">
-        <div class="panel-kicker">WHAT YOU’LL HELP BUILD</div>
-        <h2>A focused student team with real ownership.</h2>
+      <aside class="hero-panel hero-brief" aria-label="Founding team mission">
+        <div class="brief-top">
+          <div class="brief-mark"><img src="./claude-spark.svg" alt="" /></div>
+          <div>
+            <span>Claude Builder Club</span>
+            <strong>AOU Egypt · Founding Team</strong>
+          </div>
+        </div>
+        <div class="panel-kicker">YOUR MANDATE</div>
+        <h2>Own a function. Ship real work.</h2>
         <ul>
           <li>Run technical workshops, build nights, hackathons and demos.</li>
           <li>Create a credible AI builder community inside AOU Egypt.</li>
-          <li>Work with speakers, clubs, technical communities and industry partners.</li>
+          <li>Work with speakers, communities, sponsors and collaborators.</li>
           <li>Turn student ideas into projects, portfolios and measurable outcomes.</li>
         </ul>
+        <div class="brief-foot">Ownership · Consistency · Collaboration</div>
       </aside>
     </section>
 
-    <section class="stats wrap">
+    <section class="stats wrap" aria-label="Recruitment overview">
       <div><strong>11</strong><span>Core teams</span></div>
       <div><strong>50+</strong><span>Role paths</span></div>
-      <div><strong>1</strong><span>Founding cohort</span></div>
-      <div><strong>100%</strong><span>Student-led</span></div>
+      <div><strong>5</strong><span>Application steps</span></div>
+      <div><strong>Local</strong><span>Draft autosave</span></div>
+    </section>
+
+    <section id="about" class="values-section">
+      <div class="wrap">
+        <div class="values-head">
+          <div>
+            <div class="eyebrow">WHAT WE VALUE</div>
+            <h2>We are hiring builders, not titles.</h2>
+          </div>
+          <p>
+            You do not need the biggest CV in the room. We care about how you think,
+            whether you follow through, and what you can contribute to a team that is still being built.
+          </p>
+        </div>
+        <div class="values-grid">
+          <article class="value-card">
+            <span class="value-index">01</span>
+            <h3>Ownership</h3>
+            <p>Take responsibility, communicate early and move work forward without waiting to be chased.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-index">02</span>
+            <h3>Evidence</h3>
+            <p>Show what you have built, organized, designed, written, led or improved — even if it started small.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-index">03</span>
+            <h3>Reliability</h3>
+            <p>Founding teams depend on consistency. Clear commitments matter more than impressive promises.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-index">04</span>
+            <h3>Collaboration</h3>
+            <p>Strong work should make the whole club better, not just one person or one team look good.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
     <section id="teams" class="section">
@@ -88,8 +169,23 @@
             <div class="eyebrow">OPEN TEAMS</div>
             <h2>Find where you can make impact.</h2>
           </div>
-          <p>Choose the role that fits your real strengths, ownership level and ability to execute.</p>
+          <p>Search by skill or explore by function. You will choose a first and second preference in the application.</p>
         </div>
+
+        <div class="team-tools" aria-label="Team filters">
+          <label class="team-search-wrap" aria-label="Search teams and skills">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="teamSearch" type="search" placeholder="Search teams, skills or roles…" autocomplete="off" />
+          </label>
+          <div class="team-filters" role="group" aria-label="Filter teams by area">
+            <button class="team-filter active" type="button" data-team-filter="all" aria-pressed="true">All teams</button>
+            <button class="team-filter" type="button" data-team-filter="technical" aria-pressed="false">Technical & Build</button>
+            <button class="team-filter" type="button" data-team-filter="operations" aria-pressed="false">Leadership & Ops</button>
+            <button class="team-filter" type="button" data-team-filter="brand" aria-pressed="false">Brand & External</button>
+            <button class="team-filter" type="button" data-team-filter="people" aria-pressed="false">Community & People</button>
+          </div>
+        </div>
+        <p class="team-result-meta" id="teamResultCount" aria-live="polite">11 teams shown</p>
         <div class="roles" id="rolesGrid"></div>
       </div>
     </section>
@@ -104,11 +200,65 @@
           <p>We value evidence, initiative, communication and consistency more than titles.</p>
         </div>
         <div class="steps">
-          <div><b>01</b><h3>Apply</h3><p>Choose your team and submit evidence of your work.</p></div>
-          <div><b>02</b><h3>Review</h3><p>Applications are screened for fit and clarity.</p></div>
-          <div><b>03</b><h3>Interview</h3><p>Short role-focused discussion and scenarios.</p></div>
-          <div><b>04</b><h3>Selection</h3><p>Board and founding team decisions are finalized.</p></div>
-          <div><b>05</b><h3>Onboarding</h3><p>Responsibilities, KPIs and launch sprint begin.</p></div>
+          <div><b>01</b><h3>Apply</h3><p>Choose your teams and submit evidence of your work.</p></div>
+          <div><b>02</b><h3>Review</h3><p>Applications are screened for clarity, effort and role fit.</p></div>
+          <div><b>03</b><h3>Interview</h3><p>A short role-focused discussion around how you think and execute.</p></div>
+          <div><b>04</b><h3>Selection</h3><p>Founding team decisions are finalized based on the whole application.</p></div>
+          <div><b>05</b><h3>Onboarding</h3><p>Responsibilities, working rhythm and the first launch sprint begin.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faqTitle">
+      <div class="wrap faq-layout">
+        <div class="faq-intro">
+          <div class="eyebrow">BEFORE YOU APPLY</div>
+          <h2 id="faqTitle">A few useful answers.</h2>
+          <p>The application is designed to understand fit, commitment and evidence — not to reward fancy titles.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Do I need previous club experience?</summary>
+            <p>No. Relevant experience helps, but projects, volunteering, freelance work, coursework and things you independently shipped can all demonstrate ability.</p>
+          </details>
+          <details>
+            <summary>Can I apply to more than one team?</summary>
+            <p>Yes. The application asks for a first and second team preference, with a preferred role for each.</p>
+          </details>
+          <details>
+            <summary>Are these only leadership positions?</summary>
+            <p>No. The recruitment includes leads, coordinators, specialists, members and volunteer paths across technical and non-technical teams.</p>
+          </details>
+          <details>
+            <summary>Will I lose my application if I close the page?</summary>
+            <p>Your draft is saved locally in your browser while you type. You can return on the same device and continue before submitting.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="community-section">
+      <div class="wrap">
+        <div class="community-card">
+          <div class="community-copy">
+            <div class="community-kicker">Stay connected</div>
+            <h2>Build with the community, not alone.</h2>
+            <p>Follow Claude Builder Club — AOU Egypt for recruitment updates, workshops, build sessions, announcements and upcoming opportunities.</p>
+          </div>
+          <div class="community-actions" aria-label="Community channels">
+            <a class="community-link facebook" href="https://www.facebook.com/claudeaouclub" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.6 22v-9h3l.45-3.5H13.6V7.27c0-1.01.28-1.7 1.74-1.7H17.2V2.44A24.8 24.8 0 0 0 14.5 2c-2.67 0-4.5 1.63-4.5 4.62V9.5H7V13h3v9h3.6Z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <a class="community-link whatsapp" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z"/></svg>
+              <span>WhatsApp updates</span>
+            </a>
+            <a class="community-link email" href="mailto:claudebuilder.aou@gmail.com">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span>Email us</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -117,8 +267,9 @@
       <div class="wrap">
         <div class="cta">
           <div>
+            <div class="cta-copy-eyebrow">FOUNDING TEAM RECRUITMENT</div>
             <h2>Ready to build?</h2>
-            <p>Apply for the founding team and show us what you can own.</p>
+            <p>Pick the role where you can contribute, then show us what you can own.</p>
           </div>
           <button class="btn btn-orange js-apply" data-open-label="Apply now">Apply now</button>
         </div>
@@ -134,7 +285,19 @@
   <footer class="footer wrap">
     <div>
       <strong>Claude Builder Club — AOU Egypt</strong>
-      <span id="footerMeta">Founding Team Recruitment</span>
+      <div class="footer-meta-line">
+        <span id="footerMeta">Founding Team Recruitment</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>© <span id="footerYear">2026</span></span>
+      </div>
+    </div>
+    <div class="footer-social" aria-label="Club links">
+      <a href="https://www.facebook.com/claudeaouclub" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.6 22v-9h3l.45-3.5H13.6V7.27c0-1.01.28-1.7 1.74-1.7H17.2V2.44A24.8 24.8 0 0 0 14.5 2c-2.67 0-4.5 1.63-4.5 4.62V9.5H7V13h3v9h3.6Z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span></a>
+      <a href="mailto:claudebuilder.aou@gmail.com"><span>claudebuilder.aou@gmail.com</span></a>
     </div>
   </footer>
 
@@ -144,10 +307,14 @@
         <div>
           <small>FOUNDING TEAM APPLICATION</small>
           <h2 id="formTitle">Claude Builder Club — AOU Egypt</h2>
-          <div class="step-meta"><span id="stepCounter">Step 1 of 5</span><strong id="stepLabel">Profile</strong></div>
+          <div class="step-meta">
+            <span id="stepCounter">Step 1 of 5</span>
+            <strong id="stepLabel">Profile</strong>
+            <span class="draft-status" id="draftStatus">Draft saved on this device</span>
+          </div>
         </div>
-        <button class="icon-btn" id="closeModal" aria-label="Close">×</button>
-        <div class="progress"><span id="progress"></span></div>
+        <button class="icon-btn" id="closeModal" aria-label="Close application">×</button>
+        <div class="progress" aria-hidden="true"><span id="progress"></span></div>
       </div>
 
       <form id="applicationForm" novalidate>
@@ -156,11 +323,11 @@
           <h3>Start with the basics.</h3>
           <p>Tell us who you are and how we can reach you.</p>
           <div class="grid2">
-            <label>Full name *<input name="full_name" required /></label>
+            <label>Full name *<input name="full_name" autocomplete="name" required /></label>
             <label>AOU Student ID *<input name="student_id" required /></label>
             <label>Personal email *<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required /></label>
             <label>AOU university email *<input type="email" name="university_email" autocomplete="email" placeholder="SXXXXXXXXEG@std.aou.edu.eg" pattern=".+@std\.aou\.edu\.eg$" title="Use your AOU student email ending with @std.aou.edu.eg" required /></label>
-            <label>Phone / WhatsApp *<input name="phone" required /></label>
+            <label>Phone / WhatsApp *<input name="phone" autocomplete="tel" required /></label>
             <label>Faculty *
               <select name="faculty" id="facultySelect" required>
                 <option value="">Select your faculty</option>
@@ -183,7 +350,7 @@
 
         <section class="form-page" data-page="2">
           <h3>Where do you want to contribute?</h3>
-          <p>Choose a first and second preference. Pick based on real interest, not title.</p>
+          <p>Choose a first and second preference. Pick based on real interest and what you can execute — not the title.</p>
           <div class="preference-card">
             <div class="preference-number">01</div>
             <div class="grid2">
@@ -243,7 +410,7 @@
 
         <section class="form-page" data-page="4">
           <h3>Think like an owner.</h3>
-          <p>There are no perfect answers. We want to see how you think.</p>
+          <p>There are no perfect answers. We want to see how you think and prioritize.</p>
           <label>Why do you want to join the founding team? *
             <textarea name="motivation" required></textarea>
           </label>
@@ -299,9 +466,20 @@
         <div class="whatsapp-follow">
           <div>
             <strong>Follow the latest recruitment updates</strong>
-            <span>Join the official WhatsApp group to follow the latest changes and announcements.</span>
+            <span>Join the WhatsApp group to follow recruitment changes and announcements.</span>
           </div>
           <a class="btn btn-whatsapp" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer">Join WhatsApp updates ↗</a>
+        </div>
+
+        <div class="social-after-submit">
+          <div>
+            <strong>Follow the club on Facebook</strong>
+            <span>See announcements, events and community updates from Claude Builder Club — AOU Egypt.</span>
+          </div>
+          <a href="https://www.facebook.com/claudeaouclub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.6 22v-9h3l.45-3.5H13.6V7.27c0-1.01.28-1.7 1.74-1.7H17.2V2.44A24.8 24.8 0 0 0 14.5 2c-2.67 0-4.5 1.63-4.5 4.62V9.5H7V13h3v9h3.6Z"/></svg>
+            <span>Follow page</span>
+          </a>
         </div>
 
         <div class="success-actions">
@@ -312,7 +490,9 @@
     </div>
   </div>
 
-  <script src="./config.js"></script>
-  <script src="./app.js"></script>
+  <script src="./config.js?v=20261012r2"></script>
+  <script src="./app.js?v=20261012r2"></script>
+  <script src="./submission-hotfix.js?v=20261012r2"></script>
+  <script src="./revamp.js?v=20261012r2"></script>
 </body>
 </html>
