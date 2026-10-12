@@ -1,273 +1,285 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
-
 /*
-  Claude Builder Club — Anthropic-inspired identity layer
-  Palette and typography follow Anthropic's published brand guidance:
-  Dark #141413 · Light #faf9f5 · Mid Gray #b0aea5 · Light Gray #e8e6dc
-  Orange #d97757 · Blue #6a9bcc · Green #788c5d
+  Claude Builder Club — claude.ai product-inspired UI layer
+
+  This layer follows the current Claude app's product language rather than the
+  broader Anthropic marketing system: warm ivory canvas, sand side surfaces,
+  charcoal controls, terracotta used sparingly, soft borders, low elevation.
 */
 
 :root{
-  --bg:#faf9f5;
-  --paper:#f7f5ef;
-  --surface:#fffefa;
-  --surface-2:#e8e6dc;
+  --bg:#f8f8f6;
+  --paper:#f5f4ed;
+  --surface:#fbfbf9;
+  --surface-2:#f0eee6;
+  --surface-3:#e8e6dc;
   --ink:#141413;
-  --muted:#747169;
-  --line:#dedbd1;
-  --accent:#d97757;
-  --accent-dark:#b75f45;
-  --accent-soft:#f2ded5;
+  --muted:#6f6e69;
+  --line:rgba(20,20,19,.10);
+  --line-strong:rgba(20,20,19,.16);
+  --accent:#c15f3c;
+  --accent-dark:#a94f31;
+  --accent-soft:#ead8cf;
   --dark:#141413;
   --green:#788c5d;
   --blue:#6a9bcc;
-  --focus:rgba(217,119,87,.20);
-  --shadow:0 18px 55px rgba(20,20,19,.08);
-  --claude-orange:#d97757;
-  --claude-blue:#6a9bcc;
-  --claude-green:#788c5d;
+  --focus:rgba(193,95,60,.16);
+  --shadow:0 1px 2px rgba(20,20,19,.05),0 8px 24px rgba(20,20,19,.035);
+  --claude-orange:#c15f3c;
   --claude-dark:#141413;
-  --claude-light:#faf9f5;
-  --claude-mid:#b0aea5;
-  --claude-soft:#e8e6dc;
+  --claude-ivory:#f8f8f6;
+  --claude-sand:#f0eee6;
+  --claude-stone:#e8e6dc;
 }
 
 html[data-theme="dark"]{
-  --bg:#141413;
-  --paper:#191816;
-  --surface:#201f1c;
-  --surface-2:#2b2925;
-  --ink:#faf9f5;
-  --muted:#b0aea5;
-  --line:#3b3933;
-  --accent:#d97757;
-  --accent-dark:#eca085;
-  --accent-soft:#3b2923;
-  --dark:#faf9f5;
+  --bg:#26221e;
+  --paper:#2c2620;
+  --surface:#302a24;
+  --surface-2:#373029;
+  --surface-3:#40382f;
+  --ink:#f8f8f6;
+  --muted:#b9b3aa;
+  --line:rgba(248,248,246,.10);
+  --line-strong:rgba(248,248,246,.16);
+  --accent:#d37a58;
+  --accent-dark:#e49a7c;
+  --accent-soft:#4b3329;
+  --dark:#f8f8f6;
   --green:#91a873;
-  --blue:#86afd6;
-  --focus:rgba(217,119,87,.26);
-  --shadow:0 22px 65px rgba(0,0,0,.30);
+  --blue:#87acd0;
+  --focus:rgba(211,122,88,.20);
+  --shadow:0 1px 2px rgba(0,0,0,.16),0 12px 30px rgba(0,0,0,.12);
 }
 
 body{
-  font-family:"Lora",Georgia,serif;
-  background:
-    radial-gradient(circle at 82% -8%,rgba(217,119,87,.10),transparent 32rem),
-    radial-gradient(circle at 2% 36%,rgba(106,155,204,.055),transparent 28rem),
-    var(--bg)!important;
-  color:var(--ink);
+  background:var(--bg)!important;
+  color:var(--ink)!important;
 }
 
-button,input,select,textarea,
-.nav,.brand,.hero-status,.eyebrow,.panel-kicker,.brief-top,
-.stats,.role small,.role h3,.team-filter,.team-result-meta,
-.value-index,.value-card h3,.steps,.faq-list summary,
-.community-kicker,.community-link,.footer,.modal-head,
-.form-page h3,label,.draft-status,.preference-number,
-.success-kicker,.success-summary,.success-next strong,
-.btn,.mobile-menu-shell{
-  font-family:"Poppins",Arial,sans-serif;
-}
+::selection{background:rgba(193,95,60,.20)!important;color:var(--ink)!important}
 
-h1,.hero-club-name,.section-head h2,.values-head h2,
-.hero-panel h2,.faq-intro h2,.community-card h2,.cta h2,.success h3{
-  font-family:"Poppins",Arial,sans-serif!important;
-  font-weight:700!important;
-  letter-spacing:-.045em;
-}
-
-.lead,.value-card p,.role p,.section-head p,.values-head p,
-.steps p,.faq-list details p,.community-card p,.cta p,
-.success-lead,.success-next p,.whatsapp-follow span{
-  font-family:"Lora",Georgia,serif;
-}
-
-/* Claude's warm, editorial surface language */
+/* ---------- Product chrome ---------- */
 .nav{
-  background:color-mix(in srgb,var(--bg) 94%,transparent)!important;
-  border-bottom-color:color-mix(in srgb,var(--line) 86%,transparent)!important;
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+  border-bottom:1px solid var(--line)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
 }
-.nav.scrolled{
-  box-shadow:0 8px 28px rgba(20,20,19,.07)!important;
-}
+.nav.scrolled{box-shadow:0 1px 0 var(--line)!important}
 .brand::before,.mobile-menu-mark,.brief-mark{
   background-color:var(--claude-orange)!important;
+  box-shadow:none!important;
 }
-.brand-copy strong{font-weight:700}
+.brand-copy strong{color:var(--ink)!important}
 .brand-copy small{color:var(--muted)!important}
+.nav-links>a{color:var(--muted)!important}
+.nav-links>a:hover,.nav-links>a.is-active{color:var(--ink)!important}
+.nav-links>a.is-active::after{background:var(--accent)!important}
 
-/* Primary action is unmistakably Claude orange */
-.btn-primary,.nav-apply,.dock-apply,.mobile-menu-apply{
-  background:var(--claude-orange)!important;
-  color:var(--claude-dark)!important;
-  border-color:transparent!important;
-  box-shadow:0 9px 24px rgba(217,119,87,.20)!important;
+/* Claude app actions: dark utility controls, terracotta as identity accent. */
+.btn-primary,.nav-apply,.dock-apply,.mobile-menu-apply,.btn-dark{
+  background:var(--ink)!important;
+  color:var(--bg)!important;
+  border:1px solid var(--ink)!important;
+  box-shadow:none!important;
 }
 .btn-primary:hover:not(:disabled),.nav-apply:hover:not(:disabled),
-.dock-apply:hover,.mobile-menu-apply:hover{
-  background:#e18464!important;
-  box-shadow:0 12px 30px rgba(217,119,87,.27)!important;
+.dock-apply:hover,.mobile-menu-apply:hover,.btn-dark:hover:not(:disabled){
+  background:color-mix(in srgb,var(--ink) 86%,var(--accent))!important;
+  transform:translateY(-1px);
 }
-.btn-dark{
-  background:var(--claude-dark)!important;
-  color:var(--claude-light)!important;
-}
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .nav-apply,
+html[data-theme="dark"] .dock-apply,
+html[data-theme="dark"] .mobile-menu-apply,
 html[data-theme="dark"] .btn-dark{
-  background:var(--claude-light)!important;
-  color:var(--claude-dark)!important;
+  background:var(--ink)!important;
+  color:#26221e!important;
+  border-color:var(--ink)!important;
 }
 .btn-orange{
-  background:var(--claude-orange)!important;
-  color:var(--claude-dark)!important;
+  background:var(--accent)!important;
+  color:#141413!important;
+  box-shadow:none!important;
 }
 .btn-ghost{
-  background:color-mix(in srgb,var(--surface) 96%,transparent)!important;
-  border-color:var(--line)!important;
+  background:transparent!important;
+  border:1px solid var(--line-strong)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
 }
 .btn-ghost:hover{background:var(--surface-2)!important}
 
-/* Brand accents */
-.eyebrow,.panel-kicker,.role small,.community-kicker,
-.success-kicker,.cta-copy-eyebrow{
-  color:var(--claude-orange)!important;
-}
-.hero-club-name{color:var(--claude-orange)!important}
-.nav-links>a.is-active::after{background:var(--claude-orange)!important}
-.proof-dot{background:var(--claude-orange)!important;box-shadow:0 0 0 4px rgba(217,119,87,.13)!important}
-
-.hero-panel.hero-brief,.hero-panel,.cta{
-  background:
-    radial-gradient(circle at 90% 0%,rgba(217,119,87,.20),transparent 17rem),
-    var(--claude-dark)!important;
-  color:var(--claude-light)!important;
-  border-color:rgba(250,249,245,.08)!important;
-}
-html[data-theme="dark"] .hero-panel.hero-brief,
-html[data-theme="dark"] .hero-panel,
-html[data-theme="dark"] .cta{
-  background:
-    radial-gradient(circle at 90% 0%,rgba(217,119,87,.18),transparent 17rem),
-    #0d0d0c!important;
-}
-.hero-panel.hero-brief li::before{background:var(--claude-orange)!important}
-.brief-top span,.brief-foot{color:var(--claude-mid)!important}
-
-/* Cards and sections */
-.stats div,.value-card,.role,.steps>div,.faq-list details,
-.community-card,.preference-card,.success-summary>div{
-  border-color:var(--line)!important;
-  background:color-mix(in srgb,var(--surface) 97%,var(--bg))!important;
+.theme-toggle,.mobile-menu-toggle,.mobile-menu-close,.mobile-menu-theme{
+  background:transparent!important;
+  border-color:var(--line-strong)!important;
+  color:var(--ink)!important;
   box-shadow:none!important;
 }
-.value-card:hover,.role:hover,.steps>div:hover{
-  border-color:color-mix(in srgb,var(--claude-orange) 32%,var(--line))!important;
-  box-shadow:0 14px 34px rgba(20,20,19,.065)!important;
+.theme-toggle:hover,.mobile-menu-toggle:hover,.mobile-menu-close:hover,.mobile-menu-theme:hover{
+  background:var(--surface-2)!important;
+}
+.theme-icon{background:var(--surface-2)!important}
+
+/* ---------- Hero ---------- */
+.hero::before{display:none!important}
+.hero-status{
+  background:var(--surface-2)!important;
+  border-color:transparent!important;
+  color:var(--muted)!important;
+  box-shadow:none!important;
+}
+.hero-status.live{color:var(--green)!important}
+.hero-status.live::before{background:var(--green)!important;box-shadow:none!important}
+.hero-club-name{color:var(--accent)!important}
+.proof-dot{background:var(--accent)!important;box-shadow:none!important}
+.community-proof span,.community-proof a{
+  background:transparent!important;
+  border-color:var(--line)!important;
+  color:var(--muted)!important;
+  box-shadow:none!important;
+}
+
+.hero-panel.hero-brief,.hero-panel{
+  background:var(--surface-2)!important;
+  color:var(--ink)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none!important;
+}
+.hero-panel.hero-brief::before{
+  border-color:var(--line)!important;
+  opacity:.6;
+}
+.hero-panel.hero-brief::after{color:color-mix(in srgb,var(--ink) 22%,transparent)!important}
+.hero-panel.hero-brief h2,.hero-panel.hero-brief li,.brief-top strong{color:var(--ink)!important}
+.brief-top{border-bottom-color:var(--line)!important}
+.brief-top span,.brief-foot{color:var(--muted)!important}
+.hero-panel.hero-brief li::before{background:var(--accent)!important}
+
+/* ---------- Flat Claude surfaces ---------- */
+.stats div,.value-card,.role,.steps>div,.faq-list details,
+.community-card,.preference-card,.preference-card-secondary,
+.success-summary>div,.check{
+  background:var(--surface)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none!important;
+}
+.value-card:hover,.role:hover,.steps>div:hover,.faq-list details:hover{
+  border-color:var(--line-strong)!important;
+  box-shadow:none!important;
+  transform:translateY(-1px)!important;
 }
 .section-soft{
-  background:color-mix(in srgb,var(--claude-soft) 38%,var(--bg))!important;
+  background:var(--surface-2)!important;
+  border-color:var(--line)!important;
 }
 .value-index,.steps b,.preference-number{
-  background:color-mix(in srgb,var(--claude-orange) 15%,var(--surface))!important;
-  color:var(--accent-dark)!important;
+  background:var(--surface-2)!important;
+  color:var(--accent)!important;
 }
 .role li{
-  background:color-mix(in srgb,var(--claude-soft) 60%,var(--surface))!important;
-  border-color:color-mix(in srgb,var(--line) 80%,transparent)!important;
-}
-html[data-theme="dark"] .role li{
-  background:color-mix(in srgb,var(--surface-2) 88%,transparent)!important;
+  background:var(--surface-2)!important;
+  border-color:transparent!important;
+  color:var(--muted)!important;
 }
 .role-apply{
-  background:color-mix(in srgb,var(--claude-orange) 7%,var(--surface))!important;
-  border-color:color-mix(in srgb,var(--claude-orange) 24%,var(--line))!important;
+  background:transparent!important;
+  border-color:var(--line-strong)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
 }
 .role-apply:hover{
-  background:color-mix(in srgb,var(--claude-orange) 12%,var(--surface))!important;
-  border-color:color-mix(in srgb,var(--claude-orange) 42%,var(--line))!important;
+  background:var(--surface-2)!important;
+  border-color:var(--line-strong)!important;
 }
 
-/* Search/filter language */
-#teamSearch,input,select,textarea,.check,.theme-toggle,.mobile-menu-toggle,
-.mobile-menu-close,.mobile-menu-theme{
+/* Claude-like quiet stats rather than decorative marketing bars. */
+.stats div{border-top:1px solid var(--line)!important}
+.stats strong{color:var(--ink)!important}
+.stats span{color:var(--muted)!important}
+
+/* ---------- Search, filters, forms ---------- */
+#teamSearch,input,select,textarea{
   background:var(--surface)!important;
-  border-color:var(--line)!important;
+  border:1px solid var(--line-strong)!important;
   color:var(--ink)!important;
+  box-shadow:none!important;
 }
-input:focus,select:focus,textarea:focus,#teamSearch:focus{
-  border-color:var(--claude-orange)!important;
+#teamSearch::placeholder,input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--muted) 78%,transparent)!important}
+#teamSearch:focus,input:focus,select:focus,textarea:focus{
+  border-color:color-mix(in srgb,var(--accent) 60%,var(--line-strong))!important;
   box-shadow:0 0 0 3px var(--focus)!important;
+  outline:none!important;
 }
+.team-filter{
+  background:transparent!important;
+  border-color:var(--line-strong)!important;
+  color:var(--muted)!important;
+  box-shadow:none!important;
+}
+.team-filter:hover{background:var(--surface-2)!important;color:var(--ink)!important;transform:none!important}
 .team-filter.active{
-  background:var(--claude-dark)!important;
-  border-color:var(--claude-dark)!important;
-  color:var(--claude-light)!important;
+  background:var(--ink)!important;
+  border-color:var(--ink)!important;
+  color:var(--bg)!important;
 }
-html[data-theme="dark"] .team-filter.active{
-  background:var(--claude-light)!important;
-  border-color:var(--claude-light)!important;
-  color:var(--claude-dark)!important;
+html[data-theme="dark"] .team-filter.active{background:var(--ink)!important;color:#26221e!important}
+
+/* ---------- Community and CTA ---------- */
+.community-card{background:var(--surface-2)!important}
+.community-link.email{background:var(--surface)!important}
+.cta{
+  background:var(--surface-2)!important;
+  color:var(--ink)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none!important;
 }
+.cta h2,.cta p{color:var(--ink)!important}
+.cta-copy-eyebrow,.eyebrow,.panel-kicker,.role small,.community-kicker,.success-kicker{color:var(--accent)!important}
 
-/* Status uses Anthropic green rather than generic UI green */
-.hero-status.live,.mobile-menu-status.live{color:var(--claude-green)!important}
-.hero-status.live::before,.mobile-menu-status.live::before{
-  background:var(--claude-green)!important;
-  box-shadow:0 0 0 5px color-mix(in srgb,var(--claude-green) 15%,transparent)!important;
+/* ---------- Modal / application ---------- */
+.modal{background:rgba(20,20,19,.38)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.modal-card{
+  background:var(--bg)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:0 24px 80px rgba(20,20,19,.16)!important;
 }
-
-/* Social colors stay service-specific, but supporting UI remains Claude */
-.nav-facebook,.hero-facebook{color:var(--claude-blue)!important}
-html[data-theme="dark"] .nav-facebook,
-html[data-theme="dark"] .hero-facebook{color:#8cb6dc!important}
-.community-link.email{background:var(--surface-2)!important}
-
-/* Modal / application */
-.modal{background:rgba(20,20,19,.68)!important}
-.modal-card{background:var(--surface)!important}
 .modal-head{
-  background:color-mix(in srgb,var(--surface) 97%,var(--bg))!important;
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
   border-color:var(--line)!important;
 }
-.progress{background:var(--surface-2)!important}
-.progress span{background:var(--claude-orange)!important}
-.form-nav{background:color-mix(in srgb,var(--surface) 96%,transparent)!important}
-.check:hover{border-color:color-mix(in srgb,var(--claude-orange) 38%,var(--line))!important}
-.success-icon{
-  background:color-mix(in srgb,var(--claude-green) 16%,var(--surface))!important;
-  color:var(--claude-green)!important;
+.progress{background:var(--surface-3)!important}
+.progress span{background:var(--accent)!important}
+.form-nav{
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+  border-top-color:var(--line)!important;
 }
-.success-next{
-  border-left-color:var(--claude-orange)!important;
-  background:color-mix(in srgb,var(--claude-orange) 7%,var(--surface))!important;
-}
+.check:hover{border-color:var(--line-strong)!important;background:var(--surface-2)!important}
+.success-icon{background:var(--surface-2)!important;color:var(--green)!important}
+.success-next{border-left-color:var(--accent)!important;background:var(--surface-2)!important}
 
-/* Mobile drawer becomes a compact Claude sheet */
+/* ---------- Mobile drawer / dock ---------- */
 .mobile-menu-panel{
-  background:color-mix(in srgb,var(--surface) 98%,var(--bg))!important;
-  border-left-color:var(--line)!important;
+  background:var(--surface-2)!important;
+  border-left:1px solid var(--line)!important;
+  box-shadow:-12px 0 36px rgba(20,20,19,.10)!important;
 }
-.mobile-menu-nav a:hover,.mobile-menu-nav a:focus-visible{
-  background:color-mix(in srgb,var(--claude-orange) 8%,var(--surface))!important;
+.mobile-menu-backdrop{background:rgba(20,20,19,.32)!important}
+.mobile-menu-status{background:var(--surface)!important;border-color:var(--line)!important}
+.mobile-menu-nav a{color:var(--ink)!important}
+.mobile-menu-nav a:hover,.mobile-menu-nav a:focus-visible{background:var(--surface)!important}
+.mobile-menu-divider,.mobile-menu-head{border-color:var(--line)!important;background-color:transparent!important}
+.mobile-dock{
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+  border-color:var(--line)!important;
+  box-shadow:0 8px 28px rgba(20,20,19,.08)!important;
 }
-.mobile-menu-status{background:color-mix(in srgb,var(--claude-soft) 48%,var(--surface))!important}
 
-/* Small decorative Anthropic accent trio */
-.stats div:nth-child(1){border-top:3px solid var(--claude-orange)!important}
-.stats div:nth-child(2){border-top:3px solid var(--claude-blue)!important}
-.stats div:nth-child(3){border-top:3px solid var(--claude-green)!important}
-.stats div:nth-child(4){border-top:3px solid var(--claude-mid)!important}
-
-::selection{
-  background:rgba(217,119,87,.24)!important;
-  color:var(--ink)!important;
-}
+/* Service-specific colors stay service-specific. */
+.nav-facebook,.hero-facebook{color:#5f7595!important}
+.community-link.facebook{box-shadow:none!important}
 
 @media(max-width:620px){
-  .hero h1{font-weight:700!important}
-  .hero-club-name{font-weight:600!important}
-  .mobile-dock{
-    background:color-mix(in srgb,var(--surface) 96%,transparent)!important;
-    border-color:var(--line)!important;
-  }
+  .hero-panel.hero-brief{background:var(--surface-2)!important}
+  .stats div,.role,.value-card,.steps>div,.faq-list details{border-radius:14px!important}
 }
