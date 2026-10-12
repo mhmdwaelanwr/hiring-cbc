@@ -1,0 +1,136 @@
+/*
+  Final official Anthropic brand layer.
+  Keeps the site aligned with anthropics/skills brand-guidelines:
+  exact palette, Poppins/Lora hierarchy, smart contrast, and rotating
+  orange/blue/green accents on non-text shapes.
+*/
+
+:root{
+  --brand-dark:#141413;
+  --brand-light:#faf9f5;
+  --brand-mid:#b0aea5;
+  --brand-light-gray:#e8e6dc;
+  --brand-orange:#d97757;
+  --brand-blue:#6a9bcc;
+  --brand-green:#788c5d;
+}
+
+/* Exact brand foundations. */
+body{background:var(--brand-light)!important;color:var(--brand-dark)!important}
+html[data-theme="dark"] body{background:var(--brand-dark)!important;color:var(--brand-light)!important}
+
+/* Poppins = headings / UI emphasis, Lora = reading copy. */
+h1,h2,h3,h4,h5,h6,.hero-club-name,.btn,.nav,.brand,.team-filter,
+.role-apply,.community-link,label,input,select,textarea,summary{
+  font-family:"Poppins",Arial,sans-serif!important;
+}
+p,.lead,.value-card p,.role p,.section-head p,.values-head p,.steps p,
+.faq-list details p,.community-card p,.cta p,.success-lead,.success-next p,
+.form-page>p,.hero-panel li,.brief-foot{
+  font-family:"Lora",Georgia,serif!important;
+}
+
+/* Smart contrast. */
+.cta,.btn-dark{background:var(--brand-dark)!important;color:var(--brand-light)!important}
+.cta h2,.cta p,.btn-dark{color:var(--brand-light)!important}
+html[data-theme="dark"] .btn-dark{background:var(--brand-light)!important;color:var(--brand-dark)!important}
+.btn-primary,.nav-apply,.dock-apply,.mobile-menu-apply,.btn-orange{
+  background:var(--brand-orange)!important;
+  border-color:var(--brand-orange)!important;
+  color:var(--brand-dark)!important;
+}
+
+/* Official primary identity accent. */
+.brand::before,.mobile-menu-mark,.brief-mark,.progress span,
+.nav-links>a.is-active::after{background-color:var(--brand-orange)!important}
+.hero-club-name,.eyebrow,.panel-kicker,.community-kicker,.success-kicker,
+.cta-copy-eyebrow{color:var(--brand-orange)!important}
+
+/* Rotate official accents on shapes, never arbitrary colors. */
+.value-card:nth-child(3n+1) .value-index,
+.steps>div:nth-child(3n+1) b,
+.stats>div:nth-child(3n+1)::before{background:var(--brand-orange)!important}
+.value-card:nth-child(3n+2) .value-index,
+.steps>div:nth-child(3n+2) b,
+.stats>div:nth-child(3n+2)::before{background:var(--brand-blue)!important}
+.value-card:nth-child(3n) .value-index,
+.steps>div:nth-child(3n) b,
+.stats>div:nth-child(3n)::before{background:var(--brand-green)!important}
+
+.value-index,.steps b{
+  color:var(--brand-dark)!important;
+  border-color:transparent!important;
+}
+
+/* Team cards get a restrained tri-color brand marker. */
+.role{position:relative!important;overflow:hidden!important}
+.role::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;
+  height:3px;
+  background:var(--brand-orange);
+}
+.role:nth-child(3n+2)::before{background:var(--brand-blue)}
+.role:nth-child(3n)::before{background:var(--brand-green)}
+
+/* Stats: quiet neutral cards with a small brand indicator. */
+.stats>div{position:relative!important;border-top:0!important}
+.stats>div::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+}
+
+/* Mission list uses all three official accents. */
+.hero-panel li:nth-child(3n+1)::before{background:var(--brand-orange)!important}
+.hero-panel li:nth-child(3n+2)::before{background:var(--brand-blue)!important}
+.hero-panel li:nth-child(3n)::before{background:var(--brand-green)!important}
+
+/* Status and success = green; focus and selected informational states = blue. */
+.hero-status.live,.mobile-menu-status.live{color:var(--brand-green)!important}
+.hero-status.live::before,.mobile-menu-status.live::before,.proof-dot{background:var(--brand-green)!important}
+.success-icon{color:var(--brand-green)!important}
+#teamSearch:focus,input:focus,select:focus,textarea:focus{
+  border-color:var(--brand-blue)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-blue) 26%,transparent)!important;
+}
+:focus-visible{outline-color:var(--brand-blue)!important}
+
+/* Neutral surfaces come only from the official light/mid grays. */
+.section-soft,.community-card,.hero-panel.hero-brief,.hero-panel,
+.mobile-menu-panel,.role li,.value-index,.steps b,.preference-number{
+  border-color:color-mix(in srgb,var(--brand-mid) 44%,transparent)!important;
+}
+.section-soft,.community-card,.hero-panel.hero-brief,.hero-panel,
+.mobile-menu-panel,.role li{
+  background:color-mix(in srgb,var(--brand-light-gray) 72%,var(--brand-light))!important;
+}
+html[data-theme="dark"] .section-soft,
+html[data-theme="dark"] .community-card,
+html[data-theme="dark"] .hero-panel.hero-brief,
+html[data-theme="dark"] .hero-panel,
+html[data-theme="dark"] .mobile-menu-panel,
+html[data-theme="dark"] .role li{
+  background:color-mix(in srgb,var(--brand-dark) 84%,var(--brand-light-gray))!important;
+}
+
+/* Facebook/WhatsApp keep service identity only inside their own explicit controls. */
+.nav-facebook,.hero-facebook{color:var(--brand-blue)!important}
+
+/* Keep motion understated and professional. */
+.value-card:hover,.role:hover,.steps>div:hover,.faq-list details:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 10px 28px rgba(20,20,19,.06)!important;
+}
+html[data-theme="dark"] .value-card:hover,
+html[data-theme="dark"] .role:hover,
+html[data-theme="dark"] .steps>div:hover,
+html[data-theme="dark"] .faq-list details:hover{
+  box-shadow:0 10px 28px rgba(0,0,0,.16)!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
