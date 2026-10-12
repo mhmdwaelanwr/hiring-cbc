@@ -1,0 +1,160 @@
+/* Application layout hardening — loaded last in the CSS cascade. */
+
+.modal-card{
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:auto!important;
+  overscroll-behavior:contain!important;
+}
+
+/* Keep the application chrome in its own vertical space. */
+.modal-head{
+  position:sticky!important;
+  top:0!important;
+  z-index:40!important;
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+  align-items:start!important;
+  column-gap:18px!important;
+  row-gap:16px!important;
+  padding:24px 28px 20px!important;
+}
+
+.modal-head::before{
+  grid-column:1!important;
+  grid-row:1!important;
+  margin:0!important;
+  align-self:start!important;
+}
+
+.modal-head>div:first-child{
+  grid-column:2!important;
+  grid-row:1!important;
+  min-width:0!important;
+  display:block!important;
+}
+
+.icon-btn#closeModal{
+  grid-column:3!important;
+  grid-row:1!important;
+  align-self:start!important;
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+}
+
+/* Legacy rules previously allowed these chips to drift into page one. */
+.step-meta{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  display:flex!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
+  margin:12px 0 0!important;
+  width:100%!important;
+}
+
+#stepCounter,
+#stepLabel,
+#draftStatus{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  float:none!important;
+  margin:0!important;
+}
+
+#draftStatus{
+  margin-inline-start:auto!important;
+}
+
+.modal-head .progress{
+  grid-column:1/-1!important;
+  grid-row:2!important;
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  width:100%!important;
+  height:4px!important;
+  margin:0!important;
+  align-self:end!important;
+}
+
+/* Guarantee a clean gap between sticky chrome and the first question page. */
+#applicationForm{
+  position:relative!important;
+  padding:0!important;
+}
+
+.form-page{
+  position:relative!important;
+  padding-top:40px!important;
+}
+
+.form-page::before{
+  margin-bottom:18px!important;
+}
+
+.form-page>h3{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  margin:0 0 10px!important;
+  font-size:clamp(28px,3vw,34px)!important;
+  line-height:1.08!important;
+}
+
+.form-page>p{
+  position:static!important;
+  margin:0 0 30px!important;
+}
+
+@media(max-width:760px){
+  .modal{padding:0!important}
+
+  .modal-card{
+    width:100%!important;
+    max-height:100dvh!important;
+    min-height:100dvh!important;
+    border-radius:0!important;
+  }
+
+  .modal-head{
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    column-gap:12px!important;
+    row-gap:13px!important;
+    padding:18px 16px 16px!important;
+  }
+
+  .modal-head::before{
+    width:34px!important;
+    height:34px!important;
+  }
+
+  .modal-head h2{
+    font-size:16px!important;
+    line-height:1.22!important;
+  }
+
+  .step-meta{
+    gap:6px!important;
+    margin-top:10px!important;
+  }
+
+  #draftStatus{
+    margin-inline-start:0!important;
+  }
+
+  .form-page{
+    width:calc(100% - 32px)!important;
+    padding-top:30px!important;
+    padding-bottom:112px!important;
+  }
+
+  .form-page>h3{
+    font-size:clamp(26px,8vw,32px)!important;
+  }
+}
