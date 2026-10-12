@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Claude spark">
+  <g fill="none" stroke="#1F1F1D" stroke-width="3.35" stroke-linecap="round">
+    <path d="M16 4.5v6.1"/>
+    <path d="M16 21.4v6.1"/>
+    <path d="M4.5 16h6.1"/>
+    <path d="M21.4 16h6.1"/>
+    <path d="M7.9 7.9l4.3 4.3"/>
+    <path d="M19.8 19.8l4.3 4.3"/>
+    <path d="M24.1 7.9l-4.3 4.3"/>
+    <path d="M12.2 19.8l-4.3 4.3"/>
+  </g>
+  <circle cx="16" cy="16" r="2.35" fill="#1F1F1D"/>
+</svg>

@@ -1,0 +1,298 @@
+/*
+  Claude Builder Club — official Anthropic brand color system
+  Source: anthropics/skills brand-guidelines
+
+  Main
+  Dark       #141413
+  Light      #faf9f5
+  Mid Gray   #b0aea5
+  Light Gray #e8e6dc
+
+  Accents
+  Orange     #d97757
+  Blue       #6a9bcc
+  Green      #788c5d
+*/
+
+:root{
+  --anthropic-dark:#141413;
+  --anthropic-light:#faf9f5;
+  --anthropic-mid:#b0aea5;
+  --anthropic-light-gray:#e8e6dc;
+  --anthropic-orange:#d97757;
+  --anthropic-blue:#6a9bcc;
+  --anthropic-green:#788c5d;
+
+  --bg:#faf9f5;
+  --paper:#faf9f5;
+  --surface:#fffefa;
+  --surface-2:#e8e6dc;
+  --surface-3:color-mix(in srgb,#e8e6dc 72%,#faf9f5);
+  --ink:#141413;
+  --muted:color-mix(in srgb,#141413 58%,#b0aea5);
+  --line:color-mix(in srgb,#b0aea5 45%,transparent);
+  --line-strong:color-mix(in srgb,#141413 20%,#b0aea5);
+  --accent:#d97757;
+  --accent-dark:color-mix(in srgb,#d97757 80%,#141413);
+  --accent-soft:color-mix(in srgb,#d97757 16%,#faf9f5);
+  --dark:#141413;
+  --green:#788c5d;
+  --blue:#6a9bcc;
+  --focus:color-mix(in srgb,#6a9bcc 28%,transparent);
+  --shadow:0 1px 2px rgba(20,20,19,.05),0 10px 30px rgba(20,20,19,.05);
+}
+
+html[data-theme="dark"]{
+  --bg:#141413;
+  --paper:#141413;
+  --surface:color-mix(in srgb,#141413 92%,#e8e6dc);
+  --surface-2:color-mix(in srgb,#141413 84%,#e8e6dc);
+  --surface-3:color-mix(in srgb,#141413 76%,#e8e6dc);
+  --ink:#faf9f5;
+  --muted:#b0aea5;
+  --line:color-mix(in srgb,#b0aea5 24%,transparent);
+  --line-strong:color-mix(in srgb,#b0aea5 42%,transparent);
+  --accent:#d97757;
+  --accent-dark:color-mix(in srgb,#d97757 78%,#faf9f5);
+  --accent-soft:color-mix(in srgb,#d97757 18%,#141413);
+  --dark:#faf9f5;
+  --green:#788c5d;
+  --blue:#6a9bcc;
+  --focus:color-mix(in srgb,#6a9bcc 36%,transparent);
+  --shadow:0 1px 2px rgba(0,0,0,.24),0 16px 38px rgba(0,0,0,.16);
+}
+
+body{
+  background:var(--bg)!important;
+  color:var(--ink)!important;
+}
+
+::selection{
+  background:color-mix(in srgb,var(--anthropic-orange) 28%,transparent)!important;
+  color:var(--ink)!important;
+}
+
+/* Navigation */
+.nav{
+  background:color-mix(in srgb,var(--bg) 95%,transparent)!important;
+  border-bottom:1px solid var(--line)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.nav.scrolled{box-shadow:0 1px 0 var(--line)!important}
+.brand::before,.mobile-menu-mark,.brief-mark{
+  background-color:var(--anthropic-orange)!important;
+  box-shadow:none!important;
+}
+.brand-copy strong{color:var(--ink)!important}
+.brand-copy small{color:var(--muted)!important}
+.nav-links>a{color:var(--muted)!important}
+.nav-links>a:hover,.nav-links>a.is-active{color:var(--ink)!important}
+.nav-links>a.is-active::after{background:var(--anthropic-orange)!important}
+
+/* Primary and secondary actions */
+.btn-primary,.nav-apply,.dock-apply,.mobile-menu-apply,.btn-orange{
+  background:var(--anthropic-orange)!important;
+  color:var(--anthropic-dark)!important;
+  border:1px solid var(--anthropic-orange)!important;
+  box-shadow:none!important;
+}
+.btn-primary:hover:not(:disabled),.nav-apply:hover:not(:disabled),
+.dock-apply:hover,.mobile-menu-apply:hover,.btn-orange:hover:not(:disabled){
+  background:color-mix(in srgb,var(--anthropic-orange) 88%,var(--anthropic-light))!important;
+  border-color:color-mix(in srgb,var(--anthropic-orange) 88%,var(--anthropic-dark))!important;
+  transform:translateY(-1px);
+}
+.btn-dark{
+  background:var(--anthropic-dark)!important;
+  color:var(--anthropic-light)!important;
+  border-color:var(--anthropic-dark)!important;
+  box-shadow:none!important;
+}
+html[data-theme="dark"] .btn-dark{
+  background:var(--anthropic-light)!important;
+  color:var(--anthropic-dark)!important;
+  border-color:var(--anthropic-light)!important;
+}
+.btn-ghost{
+  background:transparent!important;
+  border:1px solid var(--line-strong)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+}
+.btn-ghost:hover{background:var(--surface-2)!important}
+
+.theme-toggle,.mobile-menu-toggle,.mobile-menu-close,.mobile-menu-theme{
+  background:transparent!important;
+  border-color:var(--line-strong)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+}
+.theme-toggle:hover,.mobile-menu-toggle:hover,.mobile-menu-close:hover,.mobile-menu-theme:hover{
+  background:var(--surface-2)!important;
+}
+.theme-icon{background:var(--surface-2)!important}
+
+/* Hero */
+.hero::before{display:none!important}
+.hero-status{
+  background:var(--surface-2)!important;
+  border-color:transparent!important;
+  color:var(--muted)!important;
+  box-shadow:none!important;
+}
+.hero-status.live{color:var(--anthropic-green)!important}
+.hero-status.live::before{background:var(--anthropic-green)!important;box-shadow:none!important}
+.hero-club-name{color:var(--anthropic-orange)!important}
+.proof-dot{background:var(--anthropic-green)!important;box-shadow:none!important}
+.community-proof span,.community-proof a{
+  background:transparent!important;
+  border-color:var(--line)!important;
+  color:var(--muted)!important;
+  box-shadow:none!important;
+}
+
+.hero-panel.hero-brief,.hero-panel{
+  background:var(--surface-2)!important;
+  color:var(--ink)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none!important;
+}
+.hero-panel.hero-brief h2,.hero-panel.hero-brief li,.brief-top strong{color:var(--ink)!important}
+.brief-top{border-bottom-color:var(--line)!important}
+.brief-top span,.brief-foot{color:var(--muted)!important}
+.hero-panel.hero-brief li:nth-child(3n+1)::before{background:var(--anthropic-orange)!important}
+.hero-panel.hero-brief li:nth-child(3n+2)::before{background:var(--anthropic-blue)!important}
+.hero-panel.hero-brief li:nth-child(3n)::before{background:var(--anthropic-green)!important}
+
+/* Surfaces */
+.stats div,.value-card,.role,.steps>div,.faq-list details,
+.community-card,.preference-card,.preference-card-secondary,
+.success-summary>div,.check{
+  background:var(--surface)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none!important;
+}
+.value-card:hover,.role:hover,.steps>div:hover,.faq-list details:hover{
+  border-color:var(--line-strong)!important;
+  box-shadow:none!important;
+  transform:translateY(-1px)!important;
+}
+.section-soft{
+  background:var(--surface-2)!important;
+  border-color:var(--line)!important;
+}
+.role li{
+  background:var(--surface-2)!important;
+  border-color:transparent!important;
+  color:var(--muted)!important;
+}
+.role-apply{
+  background:transparent!important;
+  border-color:var(--line-strong)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+}
+.role-apply:hover{background:var(--surface-2)!important}
+
+.stats strong{color:var(--ink)!important}
+.stats span{color:var(--muted)!important}
+
+/* Search, filters and forms */
+#teamSearch,input,select,textarea{
+  background:var(--surface)!important;
+  border:1px solid var(--line-strong)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+}
+#teamSearch::placeholder,input::placeholder,textarea::placeholder{
+  color:color-mix(in srgb,var(--muted) 80%,transparent)!important;
+}
+#teamSearch:focus,input:focus,select:focus,textarea:focus{
+  border-color:var(--anthropic-blue)!important;
+  box-shadow:0 0 0 3px var(--focus)!important;
+  outline:none!important;
+}
+.team-filter{
+  background:transparent!important;
+  border-color:var(--line-strong)!important;
+  color:var(--muted)!important;
+  box-shadow:none!important;
+}
+.team-filter:hover{background:var(--surface-2)!important;color:var(--ink)!important;transform:none!important}
+.team-filter.active{
+  background:var(--anthropic-dark)!important;
+  border-color:var(--anthropic-dark)!important;
+  color:var(--anthropic-light)!important;
+}
+html[data-theme="dark"] .team-filter.active{
+  background:var(--anthropic-light)!important;
+  border-color:var(--anthropic-light)!important;
+  color:var(--anthropic-dark)!important;
+}
+
+/* Community and CTA */
+.community-card{background:var(--surface-2)!important}
+.community-link.email{background:var(--surface)!important}
+.cta{
+  background:var(--anthropic-dark)!important;
+  color:var(--anthropic-light)!important;
+  border:1px solid var(--anthropic-dark)!important;
+  box-shadow:none!important;
+}
+.cta h2,.cta p{color:var(--anthropic-light)!important}
+.cta .cta-copy-eyebrow{color:var(--anthropic-orange)!important}
+.eyebrow,.panel-kicker,.role small,.community-kicker,.success-kicker{color:var(--anthropic-orange)!important}
+
+/* Modal / application */
+.modal{background:rgba(20,20,19,.46)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.modal-card{
+  background:var(--bg)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:0 24px 80px rgba(20,20,19,.18)!important;
+}
+.modal-head{
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+  border-color:var(--line)!important;
+}
+.progress{background:var(--surface-3)!important}
+.progress span{background:var(--anthropic-orange)!important}
+.form-nav{
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+  border-top-color:var(--line)!important;
+}
+.check:hover{border-color:var(--anthropic-blue)!important;background:var(--surface-2)!important}
+.success-icon{
+  background:color-mix(in srgb,var(--anthropic-green) 18%,var(--surface))!important;
+  color:var(--anthropic-green)!important;
+}
+.success-next{
+  border-left-color:var(--anthropic-orange)!important;
+  background:var(--surface-2)!important;
+}
+
+/* Mobile drawer / dock */
+.mobile-menu-panel{
+  background:var(--surface-2)!important;
+  border-left:1px solid var(--line)!important;
+  box-shadow:-12px 0 36px rgba(20,20,19,.10)!important;
+}
+.mobile-menu-backdrop{background:rgba(20,20,19,.36)!important}
+.mobile-menu-status{background:var(--surface)!important;border-color:var(--line)!important}
+.mobile-menu-nav a{color:var(--ink)!important}
+.mobile-menu-nav a:hover,.mobile-menu-nav a:focus-visible{background:var(--surface)!important}
+.mobile-menu-divider,.mobile-menu-head{border-color:var(--line)!important;background-color:transparent!important}
+.mobile-dock{
+  background:color-mix(in srgb,var(--bg) 96%,transparent)!important;
+  border-color:var(--line)!important;
+  box-shadow:0 8px 28px rgba(20,20,19,.08)!important;
+}
+
+/* Social services keep their own identity; surrounding UI stays Anthropic. */
+.nav-facebook,.hero-facebook{color:var(--anthropic-blue)!important}
+.community-link.facebook{box-shadow:none!important}
+
+@media(max-width:620px){
+  .hero-panel.hero-brief{background:var(--surface-2)!important}
+  .stats div,.role,.value-card,.steps>div,.faq-list details{border-radius:14px!important}
+}
