@@ -1,6 +1,6 @@
 @import url("./claude-theme.css?v=20261013official1");
 @import url("./claude-typography.css?v=20261013official1");
-@import url("./anthropic-official.css?v=20261013official1");
+@import url("./anthropic-official.css?v=20261013official2");
 
 /* Claude Builder Club — mobile navigation drawer */
 .mobile-menu-toggle,
@@ -50,26 +50,26 @@
   .mobile-menu-brand strong{font-size:13px;line-height:1.15;color:var(--ink)}
   .mobile-menu-brand small{margin-top:3px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.06em}
   .mobile-menu-close{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--ink);font-size:22px;cursor:pointer}
-  .mobile-menu-status{display:flex;align-items:center;gap:9px;margin:16px 0 8px;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:600}
+  .mobile-menu-status{display:flex;align-items:center;gap:9px;margin:16px 0 8px;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:800}
   .mobile-menu-status::before{content:"";width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#aaa}
   .mobile-menu-status.live{color:var(--green)}
   .mobile-menu-status.live::before{background:var(--green);box-shadow:0 0 0 5px color-mix(in srgb,var(--green) 13%,transparent)}
   .mobile-menu-nav{display:grid;gap:4px;margin-top:10px}
-  .mobile-menu-nav a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:50px;padding:12px 13px;border-radius:12px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;transition:background .16s ease,transform .16s ease}
+  .mobile-menu-nav a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:50px;padding:12px 13px;border-radius:12px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:800;transition:background .16s ease,transform .16s ease}
   .mobile-menu-nav a::after{content:"→";color:var(--muted);font-weight:500}
   .mobile-menu-nav a:hover,.mobile-menu-nav a:focus-visible{background:var(--surface-2)}
   .mobile-menu-nav a:active{transform:scale(.99)}
   .mobile-menu-divider{height:1px;margin:12px 0;background:var(--line)}
   .mobile-menu-socials{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .mobile-menu-social{min-height:46px;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 12px;border-radius:12px;text-decoration:none;font-size:12px;font-weight:600}
+  .mobile-menu-social{min-height:46px;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 12px;border-radius:12px;text-decoration:none;font-size:12px;font-weight:800}
   .mobile-menu-social svg{width:17px;height:17px;flex:0 0 17px}
   .mobile-menu-social.facebook{background:#1877f2;color:#fff}
   .mobile-menu-social.whatsapp{border:1px solid color-mix(in srgb,var(--green) 28%,var(--line));background:color-mix(in srgb,var(--green) 7%,var(--surface));color:var(--green)}
-  .mobile-menu-theme{margin-top:10px;min-height:46px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);cursor:pointer;font-size:12px;font-weight:600}
-  .mobile-menu-theme span:last-child{color:var(--muted);font-weight:500}
+  .mobile-menu-theme{margin-top:10px;min-height:46px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);cursor:pointer;font-size:12px;font-weight:800}
+  .mobile-menu-theme span:last-child{color:var(--muted);font-weight:700}
   .mobile-menu-actions{margin-top:auto;padding-top:18px}
-  .mobile-menu-apply{width:100%;min-height:50px;border:0;border-radius:13px;padding:12px 15px;background:var(--accent);color:#141413;font-size:14px;font-weight:600;cursor:pointer}
-  html[data-theme="dark"] .mobile-menu-apply{background:var(--accent);color:#141413}
+  .mobile-menu-apply{width:100%;min-height:50px;border:0;border-radius:13px;padding:12px 15px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:900;cursor:pointer}
+  html[data-theme="dark"] .mobile-menu-apply{background:var(--accent);color:#171210}
   body.mobile-menu-open{overflow:hidden!important}
 
   .nav-links{gap:6px!important}
