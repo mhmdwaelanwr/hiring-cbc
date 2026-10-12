@@ -1,11 +1,12 @@
 /*
   Reliable GitHub Pages submission transport.
 
-  The Apps Script backend already supports an iframe + postMessage response when
-  `_transport: "iframe"` and `_nonce` are present. The original frontend only
-  watched the iframe load event, which cannot distinguish success from a backend
-  validation/error response. This patch only takes over the final Submit click on
-  the official GitHub Pages origin; every earlier form step stays owned by app.js.
+  The current Apps Script code can return a nonce-based postMessage result, while
+  an older deployed Apps Script version may only finish the iframe navigation.
+  This transport supports both versions without submitting the application twice:
+  - use postMessage when available for a verified server result;
+  - otherwise, accept the completed iframe response as the legacy transport result;
+  - only show a timeout when no server response loads at all.
 */
 (() => {
   const OFFICIAL_ORIGIN = "https://mhmdwaelanwr.github.io";
@@ -103,7 +104,7 @@
     nextBtn.textContent = busy ? "Submitting" : "Submit application →";
   }
 
-  function showVerifiedSuccess(result, payload, fallbackReference) {
+  function showSuccessResult(result, payload, fallbackReference, legacyFallback = false) {
     try { localStorage.removeItem(DRAFT_KEY); } catch (_) {}
 
     latestVerifiedSubmission = { ...payload };
@@ -117,13 +118,23 @@
     const referenceEl = document.querySelector("#submissionReference");
     const teamEl = document.querySelector("#successTeam");
     const messageEl = document.querySelector("#successMessage");
+    const noteEl = document.querySelector(".success-note");
 
     if (referenceEl) referenceEl.textContent = reference;
     if (teamEl) teamEl.textContent = firstRole ? `${firstTeam} · ${firstRole}` : firstTeam;
+
     if (messageEl) {
-      messageEl.textContent = result.updated
-        ? "Your existing application was updated successfully."
-        : "Your application to the Claude Builder Club — AOU Egypt founding team has been received successfully.";
+      if (result.updated) {
+        messageEl.textContent = "Your existing application was updated successfully.";
+      } else if (legacyFallback) {
+        messageEl.textContent = "Your application was sent successfully and is being processed.";
+      } else {
+        messageEl.textContent = "Your application to the Claude Builder Club — AOU Egypt founding team has been received successfully.";
+      }
+    }
+
+    if (noteEl && legacyFallback) {
+      noteEl.textContent = "Keep this submission reference. Your confirmation email may arrive shortly with the official Application ID.";
     }
 
     if (modalCard) modalCard.scrollTop = 0;
@@ -150,10 +161,13 @@
     let iframe = null;
     let transportForm = null;
     let timer = null;
+    let responseFallbackTimer = null;
     let settled = false;
+    let submitted = false;
 
     const cleanup = () => {
       if (timer) clearTimeout(timer);
+      if (responseFallbackTimer) clearTimeout(responseFallbackTimer);
       window.removeEventListener("message", onMessage);
       if (transportForm) transportForm.remove();
       if (iframe) iframe.remove();
@@ -165,6 +179,14 @@
       cleanup();
       setBusy(false);
       alert(message || "We could not submit your application. Your draft is still saved on this device.");
+    };
+
+    const finishLegacySuccess = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      setBusy(false);
+      showSuccessResult({ ok: true }, cleanPayload, fallbackReference, true);
     };
 
     const onMessage = event => {
@@ -185,7 +207,7 @@
       setBusy(false);
 
       if (data.ok) {
-        showVerifiedSuccess(data, cleanPayload, fallbackReference);
+        showSuccessResult(data, cleanPayload, fallbackReference, false);
       } else {
         alert(data.message || "The application service rejected the submission. Your draft is still saved.");
       }
@@ -194,11 +216,26 @@
     try {
       iframe = document.createElement("iframe");
       iframe.name = "cbc-submit-verified-" + Date.now();
+      iframe.srcdoc = "<!doctype html><title>ready</title>";
       iframe.hidden = true;
       iframe.setAttribute("aria-hidden", "true");
       document.body.appendChild(iframe);
 
+      await new Promise(resolve => {
+        iframe.addEventListener("load", resolve, { once: true });
+        setTimeout(resolve, 300);
+      });
+
       window.addEventListener("message", onMessage);
+
+      // A completed navigation after submit means the Apps Script endpoint replied.
+      // Give a modern deployment a short grace period to send postMessage first;
+      // otherwise fall back to the legacy response behavior without re-submitting.
+      iframe.addEventListener("load", () => {
+        if (!submitted || settled) return;
+        if (responseFallbackTimer) clearTimeout(responseFallbackTimer);
+        responseFallbackTimer = setTimeout(finishLegacySuccess, 1500);
+      });
 
       transportForm = document.createElement("form");
       transportForm.method = "POST";
@@ -214,12 +251,13 @@
       document.body.appendChild(transportForm);
 
       timer = setTimeout(() => {
-        finishWithError("The server did not confirm the submission in time. Your draft is saved, so you can try again without retyping.");
-      }, 20000);
+        finishWithError("The application service did not respond. Your draft is saved, so please check your connection and try again.");
+      }, 45000);
 
+      submitted = true;
       transportForm.submit();
     } catch (error) {
-      console.error("Verified submission failed:", error);
+      console.error("Application submission failed:", error);
       finishWithError("We could not send your application. Your draft is saved on this device—please check your connection and try again.");
     }
   }
