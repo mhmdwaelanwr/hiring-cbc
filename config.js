@@ -52,7 +52,7 @@ window.CLUB_CONFIG = {
   const loadSubmissionHotfix = () => {
     if (document.querySelector('script[data-cbc-submission-hotfix]')) return;
     const script = document.createElement("script");
-    script.src = "./submission-hotfix.js?v=20261011b";
+    script.src = "./submission-hotfix.js?v=20261012";
     script.async = false;
     script.dataset.cbcSubmissionHotfix = "true";
     document.body.appendChild(script);
