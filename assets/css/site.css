@@ -4,32 +4,35 @@
 */
 
 /* Foundation */
-@import url("./base/styles.css?v=20261013brandpack4");
+@import url("./base/styles.css?v=20261013brandpack5");
 
 /* Historical layout layers kept isolated during consolidation */
-@import url("./legacy/polish.css?v=20261013brandpack4");
-@import url("./legacy/hotfix.css?v=20261013brandpack4");
-@import url("./legacy/brand.css?v=20261013brandpack4");
-@import url("./legacy/community.css?v=20261013brandpack4");
-@import url("./legacy/revamp.css?v=20261013brandpack4");
+@import url("./legacy/polish.css?v=20261013brandpack5");
+@import url("./legacy/hotfix.css?v=20261013brandpack5");
+@import url("./legacy/brand.css?v=20261013brandpack5");
+@import url("./legacy/community.css?v=20261013brandpack5");
+@import url("./legacy/revamp.css?v=20261013brandpack5");
 
 /* Claude / Anthropic visual system */
-@import url("./claude/theme.css?v=20261013brandpack4");
-@import url("./claude/polish.css?v=20261013brandpack4");
-@import url("./claude/typography.css?v=20261013brandpack4");
-@import url("./claude/official.css?v=20261013brandpack4");
+@import url("./claude/theme.css?v=20261013brandpack5");
+@import url("./claude/polish.css?v=20261013brandpack5");
+@import url("./claude/typography.css?v=20261013brandpack5");
+@import url("./claude/official.css?v=20261013brandpack5");
 
 /* Application experience */
-@import url("./claude/form.css?v=20261013brandpack4");
-@import url("./claude/form-fix.css?v=20261013brandpack4");
+@import url("./claude/form.css?v=20261013brandpack5");
+@import url("./claude/form-fix.css?v=20261013brandpack5");
 
 /* Components */
-@import url("./components/mobile-menu.css?v=20261013brandpack4");
-@import url("./components/navigation.css?v=20261013brandpack4");
-@import url("./components/form-layout-fix.css?v=20261013brandpack4");
+@import url("./components/mobile-menu.css?v=20261013brandpack5");
+@import url("./components/navigation.css?v=20261013brandpack5");
+@import url("./components/form-layout-fix.css?v=20261013brandpack5");
 
 /* Uploaded Claude asset pack wins over every legacy placeholder. */
-@import url("./claude/brand-assets.css?v=20261013brandpack4");
+@import url("./claude/brand-assets.css?v=20261013brandpack5");
 
 /* Final targeted visual corrections. */
-@import url("./components/visual-fixes.css?v=20261013brandpack4");
+@import url("./components/visual-fixes.css?v=20261013brandpack5");
+
+/* Single source of truth for phone/tablet layout. Must remain last. */
+@import url("./components/mobile-hardening.css?v=20261013brandpack5");
