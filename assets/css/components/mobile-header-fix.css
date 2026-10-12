@@ -1,0 +1,145 @@
+/*
+  Mobile header lock.
+  Loaded last to guarantee a compact Claude-style phone header regardless of legacy rules.
+*/
+
+@media (max-width:760px){
+  .nav{
+    min-height:64px!important;
+    height:64px!important;
+    overflow:visible!important;
+  }
+
+  .nav .nav-inner{
+    width:calc(100% - 24px)!important;
+    max-width:none!important;
+    min-height:64px!important;
+    height:64px!important;
+    margin-inline:auto!important;
+    padding:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+    justify-content:stretch!important;
+    gap:10px!important;
+    overflow:visible!important;
+  }
+
+  .nav .brand{
+    display:flex!important;
+    align-items:center!important;
+    min-width:0!important;
+    width:auto!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    gap:9px!important;
+    overflow:hidden!important;
+    text-decoration:none!important;
+  }
+
+  .nav .brand::before{
+    display:block!important;
+    width:28px!important;
+    height:28px!important;
+    flex:0 0 28px!important;
+    margin:0!important;
+    background-color:transparent!important;
+    background-image:var(--claude-official-spark)!important;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:contain!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+  }
+
+  .nav .brand-copy{
+    display:block!important;
+    min-width:0!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+  }
+
+  .nav .brand-copy strong{
+    display:block!important;
+    margin:0!important;
+    font-size:13px!important;
+    line-height:1.15!important;
+    font-weight:600!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  .nav .brand-copy small{
+    display:block!important;
+    margin:2px 0 0!important;
+    font-size:8px!important;
+    line-height:1.15!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  .nav .nav-links{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:0!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+    gap:0!important;
+    overflow:visible!important;
+  }
+
+  /* On phones, every desktop nav control lives in the drawer. */
+  .nav .nav-links > :not(.mobile-menu-toggle){
+    display:none!important;
+    visibility:hidden!important;
+  }
+
+  .nav .mobile-menu-toggle{
+    display:inline-grid!important;
+    place-items:center!important;
+    visibility:visible!important;
+    width:40px!important;
+    height:40px!important;
+    min-width:40px!important;
+    flex:0 0 40px!important;
+    margin:0!important;
+    padding:0!important;
+    border-radius:12px!important;
+  }
+
+  .nav .mobile-menu-toggle svg{
+    width:20px!important;
+    height:20px!important;
+  }
+}
+
+@media (max-width:360px){
+  .nav .nav-inner{
+    width:calc(100% - 20px)!important;
+    gap:8px!important;
+  }
+
+  .nav .brand::before{
+    width:26px!important;
+    height:26px!important;
+    flex-basis:26px!important;
+  }
+
+  .nav .brand-copy strong{font-size:12px!important}
+  .nav .brand-copy small{display:none!important}
+
+  .nav .mobile-menu-toggle{
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    flex-basis:38px!important;
+  }
+}
