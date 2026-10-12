@@ -1,7 +1,4 @@
-@import url("./claude-polish.css?v=20261013p2");
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap');
-@import url("./claude-form.css?v=20261013f1");
-@import url("./claude-form-fix.css?v=20261013f2");
 
 /*
   Claude Builder Club — unified Claude / Anthropic typography
@@ -40,7 +37,6 @@ html,body{
   font-synthesis:none;
 }
 
-/* Body/editorial copy follows the Claude serif voice, with Lora as official fallback. */
 body,p,.lead,.value-card p,.role p,.section-head p,.values-head p,
 .steps p,.faq-list details p,.community-card p,.cta p,
 .success-lead,.success-next p,.whatsapp-follow span,.form-page>p,
@@ -50,7 +46,6 @@ body,p,.lead,.value-card p,.role p,.section-head p,.values-head p,
   letter-spacing:0!important;
 }
 
-/* Headings / interface emphasis use Claude Sans, with Poppins as official fallback. */
 h1,h2,h3,h4,h5,h6,
 .hero-club-name,.section-head h2,.values-head h2,.hero-panel h2,
 .faq-intro h2,.community-card h2,.cta h2,.success h3,
@@ -99,7 +94,6 @@ h1,h2,h3,h4,h5,h6,
   letter-spacing:-.016em!important;
 }
 
-/* Interface text uses the Claude sans family for clarity. */
 a,button,input,select,textarea,label,summary,
 .nav,.brand,.brand-copy,.hero-status,.stats,.footer,
 .modal-card,.form-page,.success-summary,.mobile-menu-shell,.mobile-dock,
@@ -122,7 +116,6 @@ input,select,textarea{
   letter-spacing:0!important;
 }
 
-/* Claude-style technical metadata can use Mono; Poppins remains the visual fallback. */
 .eyebrow,.panel-kicker,.community-kicker,.cta-copy-eyebrow,.success-kicker,
 .role small,.value-index,.preference-number,.stats span,.success-summary span,
 .draft-status{
