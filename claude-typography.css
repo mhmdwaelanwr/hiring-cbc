@@ -1,0 +1,150 @@
+/*
+  Claude Builder Club — typography layer
+
+  Claude/Anthropic currently uses custom Anthropic Sans, Anthropic Serif and
+  Anthropic Mono families. Those proprietary webfont files are not bundled here.
+  The stacks below prefer the real family names when available and fall back to
+  the closest fonts already loaded by this site: IBM Plex Sans, Newsreader and
+  IBM Plex Mono.
+*/
+
+:root{
+  --claude-font-sans:"Anthropic Sans","IBM Plex Sans",Arial,Helvetica,sans-serif;
+  --claude-font-serif:"Anthropic Serif","Newsreader",Georgia,"Times New Roman",serif;
+  --claude-font-mono:"Anthropic Mono","IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+
+html,body{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:400;
+  letter-spacing:0;
+}
+
+button,input,select,textarea,
+.nav,.brand,.brand-copy,.hero-status,.stats,
+.value-card,.role,.steps,.faq-list,.community-card,.footer,
+.modal-card,.form-page,.success,.mobile-menu-shell,.mobile-dock,
+.btn,.team-filter,.team-result-meta,.community-link{
+  font-family:var(--claude-font-sans)!important;
+}
+
+/* Claude's editorial display face: large statements stay light, not bold. */
+h1,
+.section-head h2,
+.values-head h2,
+.hero-panel h2,
+.faq-intro h2,
+.community-card h2,
+.cta h2,
+.success h3{
+  font-family:var(--claude-font-serif)!important;
+  font-weight:400!important;
+  font-optical-sizing:auto;
+  letter-spacing:-.018em!important;
+}
+
+.hero h1{
+  line-height:1.01!important;
+}
+
+.section-head h2,
+.values-head h2,
+.faq-intro h2,
+.community-card h2,
+.cta h2{
+  line-height:1.08!important;
+}
+
+/* Product / UI headings use the sans face. */
+.hero-club-name,
+.role h3,
+.value-card h3,
+.steps h3,
+.form-page h3,
+.modal-head h2,
+.brief-top strong,
+.mobile-menu-brand strong{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:600!important;
+  letter-spacing:-.015em!important;
+}
+
+.hero-club-name{
+  font-weight:500!important;
+  letter-spacing:-.02em!important;
+}
+
+/* Body copy on claude.com is restrained sans; keep serif for display only. */
+.lead,
+.value-card p,
+.role p,
+.section-head p,
+.values-head p,
+.steps p,
+.faq-list details p,
+.community-card p,
+.cta p,
+.success-lead,
+.success-next p,
+.whatsapp-follow span,
+.form-page>p{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+
+/* Small metadata gets the technical mono treatment Claude uses sparingly. */
+.eyebrow,
+.panel-kicker,
+.community-kicker,
+.cta-copy-eyebrow,
+.success-kicker,
+.role small,
+.value-index,
+.preference-number,
+.stats span,
+.success-summary span,
+.draft-status{
+  font-family:var(--claude-font-mono)!important;
+  font-weight:600!important;
+  letter-spacing:.08em!important;
+}
+
+/* Navigation and controls are deliberately compact and medium-weight. */
+.nav-links a,
+.btn,
+.theme-toggle,
+.team-filter,
+.role-apply,
+.community-link,
+.mobile-menu-nav a,
+.mobile-menu-theme,
+.mobile-menu-apply,
+.dock-apply{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:500!important;
+  letter-spacing:-.005em!important;
+}
+
+label{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+
+input,select,textarea{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+
+@media(max-width:620px){
+  .hero h1{
+    line-height:1.02!important;
+    letter-spacing:-.02em!important;
+  }
+  .hero-club-name{letter-spacing:-.015em!important}
+  .section-head h2,.values-head h2,.faq-intro h2,.community-card h2,.cta h2{
+    letter-spacing:-.012em!important;
+  }
+}
