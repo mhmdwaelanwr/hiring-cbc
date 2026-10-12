@@ -1,3 +1,5 @@
+@import url("./claude-theme.css?v=20261012c1");
+
 /* Claude Builder Club — mobile navigation drawer */
 .mobile-menu-toggle,
 .mobile-menu-shell{display:none}
