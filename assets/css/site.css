@@ -4,29 +4,29 @@
 */
 
 /* Foundation */
-@import url("./base/styles.css");
+@import url("./base/styles.css?v=20261013fix2");
 
 /* Historical layout layers kept isolated during consolidation */
-@import url("./legacy/polish.css");
-@import url("./legacy/hotfix.css");
-@import url("./legacy/brand.css");
-@import url("./legacy/community.css");
-@import url("./legacy/revamp.css");
+@import url("./legacy/polish.css?v=20261013fix2");
+@import url("./legacy/hotfix.css?v=20261013fix2");
+@import url("./legacy/brand.css?v=20261013fix2");
+@import url("./legacy/community.css?v=20261013fix2");
+@import url("./legacy/revamp.css?v=20261013fix2");
 
 /* Claude / Anthropic visual system */
-@import url("./claude/theme.css");
-@import url("./claude/polish.css");
-@import url("./claude/typography.css");
-@import url("./claude/official.css");
+@import url("./claude/theme.css?v=20261013fix2");
+@import url("./claude/polish.css?v=20261013fix2");
+@import url("./claude/typography.css?v=20261013fix2");
+@import url("./claude/official.css?v=20261013fix2");
 
 /* Application experience */
-@import url("./claude/form.css");
-@import url("./claude/form-fix.css");
+@import url("./claude/form.css?v=20261013fix2");
+@import url("./claude/form-fix.css?v=20261013fix2");
 
 /* Components */
-@import url("./components/mobile-menu.css");
-@import url("./components/navigation.css");
-@import url("./components/form-layout-fix.css");
+@import url("./components/mobile-menu.css?v=20261013fix2");
+@import url("./components/navigation.css?v=20261013fix2");
+@import url("./components/form-layout-fix.css?v=20261013fix2");
 
 /*
   Canonical asset paths.
