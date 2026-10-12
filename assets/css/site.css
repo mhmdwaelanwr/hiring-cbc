@@ -1,0 +1,47 @@
+/*
+  Claude Builder Club — production CSS entrypoint
+  Keep import order intentional. New CSS should be added as a module, not at repo root.
+*/
+
+/* Foundation */
+@import url("./base/styles.css");
+
+/* Historical layout layers kept isolated during consolidation */
+@import url("./legacy/polish.css");
+@import url("./legacy/hotfix.css");
+@import url("./legacy/brand.css");
+@import url("./legacy/community.css");
+@import url("./legacy/revamp.css");
+
+/* Claude / Anthropic visual system */
+@import url("./claude/theme.css");
+@import url("./claude/polish.css");
+@import url("./claude/typography.css");
+@import url("./claude/official.css");
+
+/* Application experience */
+@import url("./claude/form.css");
+@import url("./claude/form-fix.css");
+
+/* Components */
+@import url("./components/mobile-menu.css");
+
+/*
+  Canonical asset paths.
+  Some legacy modules were moved without rewriting every historical declaration;
+  these final declarations keep all visual assets sourced from assets/brand/.
+*/
+.brand::before,
+html[data-theme="dark"] .brand::before,
+.hero-club-name::before,
+.brief-mark,
+.mobile-menu-mark,
+.modal-head::before{
+  background-image:url("../brand/logos/claude-spark.svg")!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+}
+
+.community-card::before{
+  background-image:url("../brand/logos/claude-spark.svg")!important;
+}
