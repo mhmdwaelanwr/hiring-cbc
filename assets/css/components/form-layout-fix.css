@@ -1,24 +1,31 @@
-/* Application layout hardening — loaded last in the CSS cascade. */
+/* Application layout hardening — loaded late in the CSS cascade. */
 
 .modal-card{
   display:flex!important;
   flex-direction:column!important;
   overflow:auto!important;
   overscroll-behavior:contain!important;
+  scroll-padding-top:0!important;
 }
 
-/* Keep the application chrome in its own vertical space. */
+/*
+  Keep the application header in normal document flow.
+  The previous sticky header could sit on top of page-one content whenever the
+  modal retained a non-zero scroll position. A normal-flow header guarantees
+  that the step title, intro copy and first field can never render underneath it.
+*/
 .modal-head{
-  position:sticky!important;
-  top:0!important;
+  position:relative!important;
+  top:auto!important;
   z-index:40!important;
+  flex:0 0 auto!important;
   display:grid!important;
   grid-template-columns:auto minmax(0,1fr) auto!important;
   grid-template-rows:auto auto!important;
   align-items:start!important;
   column-gap:18px!important;
-  row-gap:16px!important;
-  padding:24px 28px 20px!important;
+  row-gap:18px!important;
+  padding:24px 28px 22px!important;
 }
 
 .modal-head::before{
@@ -44,7 +51,7 @@
   transform:none!important;
 }
 
-/* Legacy rules previously allowed these chips to drift into page one. */
+/* Keep all step metadata inside the header instead of letting legacy rules drift it. */
 .step-meta{
   position:static!important;
   inset:auto!important;
@@ -83,15 +90,18 @@
   align-self:end!important;
 }
 
-/* Guarantee a clean gap between sticky chrome and the first question page. */
+/* Give the first content block its own unmistakable breathing room. */
 #applicationForm{
   position:relative!important;
   padding:0!important;
+  margin:0!important;
 }
 
 .form-page{
   position:relative!important;
-  padding-top:40px!important;
+  width:min(820px,calc(100% - 56px))!important;
+  margin:0 auto!important;
+  padding:44px 0 48px!important;
 }
 
 .form-page::before{
@@ -109,7 +119,13 @@
 
 .form-page>p{
   position:static!important;
-  margin:0 0 30px!important;
+  margin:0 0 32px!important;
+}
+
+/* The first question row must never touch the intro copy. */
+.form-page>.grid2:first-of-type,
+.form-page>label:first-of-type{
+  margin-top:4px!important;
 }
 
 @media(max-width:760px){
@@ -125,8 +141,8 @@
   .modal-head{
     grid-template-columns:auto minmax(0,1fr) auto!important;
     column-gap:12px!important;
-    row-gap:13px!important;
-    padding:18px 16px 16px!important;
+    row-gap:14px!important;
+    padding:18px 16px 17px!important;
   }
 
   .modal-head::before{
@@ -150,8 +166,7 @@
 
   .form-page{
     width:calc(100% - 32px)!important;
-    padding-top:30px!important;
-    padding-bottom:112px!important;
+    padding:34px 0 112px!important;
   }
 
   .form-page>h3{
