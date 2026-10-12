@@ -111,9 +111,11 @@
   align-self:center!important;
 }
 
-@media(max-width:1040px){
+/* Never let only one social link survive at narrower desktop widths. */
+@media(max-width:1100px){
+  .nav-facebook,
+  .nav-whatsapp{display:none!important}
   .nav-links{gap:6px!important}
-  .nav-facebook,.nav-whatsapp{padding-inline:10px!important}
 }
 
 @media(max-width:760px){
@@ -123,5 +125,11 @@
   }
   .nav-links{
     min-height:64px!important;
+  }
+  .nav-links>a,
+  .nav-facebook,
+  .nav-whatsapp,
+  .nav-status{
+    display:none!important;
   }
 }
