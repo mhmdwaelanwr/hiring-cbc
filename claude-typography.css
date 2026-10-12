@@ -1,15 +1,18 @@
-/*
-  Claude Builder Club — claude.ai typography
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-  The current claude.ai product UI primarily uses the native system sans stack,
-  with monospace reserved for technical/detail text. This intentionally avoids
-  marketing-site fonts and proprietary font assumptions so every visitor gets
-  the same Claude-app-like typography immediately.
+/*
+  Claude Builder Club — Claude-like open-source typography
+
+  Legal/open-source substitutes selected to mirror Claude's custom families:
+  Anthropic Sans  -> Inter
+  Anthropic Serif -> Fraunces (optical-size variable serif)
+  Anthropic Mono  -> JetBrains Mono
 */
 
 :root{
-  --claude-font-ui:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  --claude-font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --claude-font-ui:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --claude-font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --claude-font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
 }
 
 html,body{
@@ -20,24 +23,21 @@ html,body{
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
   font-synthesis:none;
+  font-feature-settings:"dlig" 0;
 }
 
-/* Keep the whole product UI on the same native sans stack. */
-body,h1,h2,h3,h4,h5,h6,p,a,button,input,select,textarea,label,summary,
+/* Product/UI text — mirrors Claude's restrained humanist sans usage. */
+body,p,a,button,input,select,textarea,label,summary,
 .nav,.brand,.brand-copy,.hero-status,.hero-club-name,.lead,.stats,
 .value-card,.role,.steps,.faq-list,.community-card,.footer,
 .modal-card,.form-page,.success,.mobile-menu-shell,.mobile-dock,
 .btn,.team-filter,.team-result-meta,.community-link,.brief-top{
   font-family:var(--claude-font-ui)!important;
+  font-feature-settings:"dlig" 0;
 }
 
-/* Claude app headings are restrained rather than marketing-heavy. */
-h1,.hero h1{
-  font-weight:400!important;
-  line-height:1.03!important;
-  letter-spacing:-.035em!important;
-}
-
+/* Claude's editorial display voice. */
+h1,
 .section-head h2,
 .values-head h2,
 .hero-panel h2,
@@ -45,23 +45,60 @@ h1,.hero h1{
 .community-card h2,
 .cta h2,
 .success h3{
-  font-weight:500!important;
-  line-height:1.1!important;
-  letter-spacing:-.025em!important;
+  font-family:var(--claude-font-display)!important;
+  font-optical-sizing:auto;
+  font-style:normal!important;
+  text-wrap:balance;
+  font-feature-settings:"dlig" 0;
 }
 
+.hero h1{
+  font-weight:400!important;
+  font-size:clamp(54px,7vw,82px)!important;
+  line-height:1.01!important;
+  letter-spacing:-.035em!important;
+}
+
+.section-head h2,
+.values-head h2{
+  font-weight:450!important;
+  font-size:clamp(36px,4.4vw,50px)!important;
+  line-height:1.08!important;
+  letter-spacing:-.026em!important;
+}
+
+.faq-intro h2,
+.community-card h2,
+.cta h2,
+.success h3{
+  font-weight:450!important;
+  font-size:clamp(32px,3.6vw,44px)!important;
+  line-height:1.1!important;
+  letter-spacing:-.022em!important;
+}
+
+.hero-panel h2{
+  font-weight:450!important;
+  font-size:34px!important;
+  line-height:1.09!important;
+  letter-spacing:-.022em!important;
+}
+
+/* UI headings stay sans like Claude's cards and product chrome. */
 .hero-club-name{
+  font-family:var(--claude-font-ui)!important;
   font-weight:500!important;
   letter-spacing:-.018em!important;
 }
 
 .role h3,.value-card h3,.steps h3,.form-page h3,
 .modal-head h2,.brief-top strong,.mobile-menu-brand strong{
+  font-family:var(--claude-font-ui)!important;
   font-weight:600!important;
   letter-spacing:-.014em!important;
 }
 
-/* Body and helper copy. */
+/* Body copy. */
 p,.lead,.value-card p,.role p,.section-head p,.values-head p,
 .steps p,.faq-list details p,.community-card p,.cta p,
 .success-lead,.success-next p,.whatsapp-follow span,.form-page>p,
@@ -71,10 +108,10 @@ p,.lead,.value-card p,.role p,.section-head p,.values-head p,
   letter-spacing:0!important;
 }
 
-.lead{font-size:17px!important;line-height:1.58!important}
-.section-head p,.values-head p,.community-card p,.faq-list details p{line-height:1.55!important}
+.lead{font-size:17px!important;line-height:1.6!important}
+.section-head p,.values-head p,.community-card p,.faq-list details p{line-height:1.58!important}
 
-/* Controls use compact medium weight like Claude's product chrome. */
+/* Compact controls. */
 .nav-links a,.btn,.theme-toggle,.team-filter,.role-apply,.community-link,
 .mobile-menu-nav a,.mobile-menu-theme,.mobile-menu-apply,.dock-apply,
 label,.faq-list summary{
@@ -89,30 +126,37 @@ input,select,textarea{
   letter-spacing:0!important;
 }
 
-/* Technical/detail labels use the same kind of native monospace fallback. */
+/* Technical/detail labels. */
 .eyebrow,.panel-kicker,.community-kicker,.cta-copy-eyebrow,.success-kicker,
 .role small,.value-index,.preference-number,.stats span,.success-summary span,
 .draft-status{
   font-family:var(--claude-font-mono)!important;
   font-weight:500!important;
-  letter-spacing:.03em!important;
+  letter-spacing:.035em!important;
+  font-feature-settings:"dlig" 0;
 }
-
-/* Claude-like scale, tuned for this recruitment layout. */
-.hero h1{font-size:clamp(52px,6.8vw,80px)!important}
-.section-head h2,.values-head h2{font-size:clamp(35px,4.2vw,48px)!important}
-.faq-intro h2,.community-card h2,.cta h2{font-size:clamp(31px,3.5vw,42px)!important}
-.hero-panel h2{font-size:33px!important}
 
 @media(max-width:620px){
   html,body{font-size:16px}
+
   .hero h1{
-    font-size:clamp(40px,11.7vw,50px)!important;
-    line-height:1.04!important;
+    font-size:clamp(42px,12vw,52px)!important;
+    line-height:1.02!important;
     letter-spacing:-.03em!important;
   }
-  .section-head h2,.values-head h2{font-size:33px!important;line-height:1.08!important}
-  .faq-intro h2,.community-card h2,.cta h2{font-size:30px!important;line-height:1.1!important}
-  .hero-panel h2{font-size:28px!important}
-  .lead{font-size:16px!important;line-height:1.56!important}
+
+  .section-head h2,.values-head h2{
+    font-size:34px!important;
+    line-height:1.08!important;
+    letter-spacing:-.022em!important;
+  }
+
+  .faq-intro h2,.community-card h2,.cta h2{
+    font-size:31px!important;
+    line-height:1.1!important;
+    letter-spacing:-.018em!important;
+  }
+
+  .hero-panel h2{font-size:29px!important}
+  .lead{font-size:16px!important;line-height:1.58!important}
 }
