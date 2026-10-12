@@ -1,0 +1,463 @@
+/*
+  Claude Builder Club — AOU Egypt
+  Recruitment experience revamp · 2026-10-12
+  Loaded last so it can safely refine the existing stable form and brand layers.
+*/
+
+html{scroll-padding-top:92px}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 78% -10%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 34rem),
+    linear-gradient(to bottom,color-mix(in srgb,var(--bg) 98%,var(--surface)),var(--bg));
+}
+
+/* ---------- Navigation ---------- */
+.nav{
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(18px) saturate(1.08);
+  -webkit-backdrop-filter:blur(18px) saturate(1.08);
+  transition:box-shadow .2s ease,background-color .2s ease;
+}
+.nav.scrolled{box-shadow:0 10px 35px color-mix(in srgb,var(--ink) 7%,transparent)}
+.nav-inner{min-height:74px}
+.brand{gap:10px}
+.brand::before{
+  width:42px;
+  height:42px;
+  flex-basis:42px;
+  border-radius:13px;
+  background-size:23px 23px;
+  box-shadow:0 9px 24px rgba(217,119,87,.17);
+}
+.brand-copy strong{font-size:14.5px}
+.brand-copy small{font-size:9.5px;letter-spacing:.055em;text-transform:uppercase}
+.nav-links{gap:15px}
+.nav-links>a{font-size:12px!important}
+.nav-links>a:not(.nav-facebook):not(.nav-whatsapp){font-weight:700}
+.nav-facebook,.nav-whatsapp{min-height:34px}
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:650px;
+  padding:88px 0 62px;
+  grid-template-columns:minmax(0,1.12fr) minmax(350px,.88fr);
+  gap:68px;
+}
+.hero::before{
+  width:310px;
+  height:310px;
+  top:58px;
+  left:-11vw;
+  border-color:color-mix(in srgb,var(--accent) 10%,transparent);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:120px;
+  height:120px;
+  right:35%;
+  bottom:30px;
+  background-image:radial-gradient(color-mix(in srgb,var(--accent) 22%,transparent) 1px,transparent 1px);
+  background-size:12px 12px;
+  opacity:.42;
+  pointer-events:none;
+}
+.hero-status{margin-bottom:22px}
+.eyebrow{margin-bottom:16px}
+h1{
+  max-width:720px;
+  font-size:clamp(58px,7vw,86px);
+  line-height:.91;
+  letter-spacing:-.055em;
+}
+.hero-club-name{
+  margin:17px 0 20px;
+  font-size:clamp(25px,3vw,34px);
+}
+.hero-club-name::before{width:28px;height:28px;flex-basis:28px}
+.lead{max-width:690px;font-size:17px;line-height:1.72}
+.hero-actions{margin-top:28px}
+.hero-actions .btn{padding-inline:19px}
+.hero-facebook{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#1769c2!important;
+}
+.hero-facebook svg{width:16px;height:16px}
+html[data-theme="dark"] .hero-facebook{color:#79b4ff!important}
+
+.community-proof{margin-top:20px}
+.community-proof span,.community-proof a{background:color-mix(in srgb,var(--surface) 76%,transparent)}
+
+.hero-panel.hero-brief{
+  min-height:438px;
+  padding:30px;
+  justify-content:flex-start;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 90% 2%,rgba(224,122,86,.24),transparent 18rem),
+    #171614;
+}
+.hero-panel.hero-brief::before{
+  width:250px;
+  height:250px;
+  right:-120px;
+  top:-125px;
+  border:1px solid rgba(255,255,255,.08);
+  background:transparent;
+}
+.hero-panel.hero-brief::after{
+  content:"CBC / AOU";
+  width:auto;
+  height:auto;
+  right:25px;
+  top:auto;
+  bottom:19px;
+  border-radius:0;
+  background:none;
+  color:rgba(255,255,255,.2);
+  font:700 9px/1 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.16em;
+}
+.brief-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:38px;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.brief-mark{
+  width:48px;
+  height:48px;
+  flex:0 0 48px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:#D97757;
+}
+.brief-mark img{width:25px;height:25px}
+.brief-top span,.brief-top strong{display:block}
+.brief-top span{color:#aaa49a;font-size:10px;text-transform:uppercase;letter-spacing:.11em;font-weight:700}
+.brief-top strong{margin-top:3px;color:#fff;font-size:14px}
+.hero-panel.hero-brief h2{margin:14px 0 23px;font-size:36px;max-width:430px}
+.hero-panel.hero-brief ul{gap:14px}
+.hero-panel.hero-brief li{font-size:13.5px}
+.brief-foot{
+  margin-top:auto;
+  padding-top:28px;
+  color:#aaa49a;
+  font:600 10px/1.4 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+/* ---------- Recruitment snapshot ---------- */
+.stats{margin-bottom:82px}
+.stats div{min-height:100px}
+.stats strong{font-size:33px}
+
+/* ---------- Why join ---------- */
+.values-section{
+  padding:16px 0 84px;
+}
+.values-head{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(300px,1.1fr);
+  gap:40px;
+  align-items:end;
+  margin-bottom:29px;
+}
+.values-head h2{
+  margin:0;
+  max-width:600px;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(36px,4.8vw,54px);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.values-head p{margin:0;color:var(--muted);line-height:1.7;max-width:620px}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.value-card{
+  min-height:200px;
+  padding:23px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--surface);
+}
+.value-index{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:31px;
+  height:31px;
+  margin-bottom:28px;
+  border-radius:9px;
+  background:var(--accent-soft);
+  color:var(--accent-dark);
+  font:700 10px/1 "IBM Plex Mono",ui-monospace,monospace;
+}
+.value-card h3{margin:0 0 7px;font-size:18px}
+.value-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.62}
+
+/* ---------- Team discovery ---------- */
+.team-tools{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin:-6px 0 24px;
+}
+.team-search-wrap{position:relative;flex:0 1 330px}
+.team-search-wrap svg{
+  position:absolute;
+  left:13px;
+  top:50%;
+  width:16px;
+  height:16px;
+  transform:translateY(-50%);
+  color:var(--muted);
+  pointer-events:none;
+}
+#teamSearch{
+  margin:0;
+  min-height:42px;
+  padding:10px 13px 10px 39px;
+  border-radius:999px;
+  background:var(--surface);
+  font-size:12px;
+}
+.team-filters{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.team-filter{
+  min-height:38px;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface);
+  color:var(--muted);
+  font:700 10px/1 "IBM Plex Sans",sans-serif;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.team-filter:hover{color:var(--ink);border-color:color-mix(in srgb,var(--accent) 28%,var(--line))}
+.team-filter.active{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.team-result-meta{margin:0 0 15px;color:var(--muted);font-size:11px;font-weight:700}
+.role{min-height:300px}
+.role h3{padding-right:30px}
+.role ul{margin-bottom:18px}
+.role-apply{
+  width:100%;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:color-mix(in srgb,var(--surface-2) 55%,var(--surface));
+  color:var(--ink);
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+.role-apply:hover{
+  transform:translateY(-1px);
+  border-color:color-mix(in srgb,var(--accent) 35%,var(--line));
+  background:color-mix(in srgb,var(--accent) 6%,var(--surface));
+}
+.role[hidden]{display:none!important}
+.team-empty{
+  grid-column:1/-1;
+  padding:34px;
+  border:1px dashed var(--line);
+  border-radius:18px;
+  color:var(--muted);
+  text-align:center;
+  background:color-mix(in srgb,var(--surface) 70%,transparent);
+}
+
+/* ---------- Process ---------- */
+.steps>div{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.steps>div:hover{
+  transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--accent) 25%,var(--line));
+  box-shadow:0 16px 34px color-mix(in srgb,var(--ink) 6%,transparent);
+}
+
+/* ---------- FAQ ---------- */
+.faq-section{padding:82px 0}
+.faq-layout{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:70px;align-items:start}
+.faq-intro{position:sticky;top:108px}
+.faq-intro h2{
+  margin:0 0 12px;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(38px,4vw,50px);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.faq-intro p{margin:0;color:var(--muted);line-height:1.7}
+.faq-list{display:grid;gap:9px}
+.faq-list details{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  overflow:hidden;
+}
+.faq-list summary{
+  list-style:none;
+  position:relative;
+  padding:17px 50px 17px 18px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:800;
+}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{
+  content:"+";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--accent-dark);
+  font-size:20px;
+  font-weight:400;
+}
+.faq-list details[open] summary::after{content:"−"}
+.faq-list details p{margin:0;padding:0 18px 18px;color:var(--muted);font-size:13px;line-height:1.7}
+
+/* ---------- Community ---------- */
+.community-section{padding:10px 0 82px}
+.community-card{
+  padding:39px 40px;
+  border-radius:26px;
+  box-shadow:0 20px 58px color-mix(in srgb,var(--ink) 7%,transparent);
+}
+.community-card h2{font-size:clamp(34px,4vw,48px)}
+.community-card p{line-height:1.7}
+
+/* ---------- Footer ---------- */
+.footer{padding-bottom:42px}
+.footer-meta-line{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.footer-meta-line .dot{opacity:.5}
+.footer-social a{min-height:32px;padding:5px 7px;border-radius:8px}
+.footer-social a:hover{background:var(--surface-2)}
+
+/* ---------- Form improvements ---------- */
+.step-meta{flex-wrap:wrap}
+.draft-status{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-left:auto;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:600;
+}
+.draft-status::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--green);
+}
+.draft-status.saving::before{background:var(--accent)}
+.form-page>p{max-width:690px}
+.form-page label{position:relative}
+.preference-card{box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 2%,transparent)}
+.form-nav{border-top-color:var(--line)}
+.modal-card{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+
+/* ---------- CTA ---------- */
+.cta{min-height:170px}
+.cta-copy-eyebrow{
+  margin-bottom:8px;
+  color:#e8a283;
+  font:700 9px/1.3 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1050px){
+  .hero{gap:38px}
+  h1{font-size:clamp(54px,7vw,74px)}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .team-tools{align-items:flex-start;flex-direction:column}
+  .team-search-wrap{width:100%;max-width:420px;flex-basis:auto}
+  .team-filters{justify-content:flex-start}
+}
+
+@media(max-width:900px){
+  .hero{min-height:auto;grid-template-columns:1fr;padding-top:62px}
+  .hero-panel.hero-brief{min-height:380px}
+  .values-head{grid-template-columns:1fr;gap:15px}
+  .faq-layout{grid-template-columns:1fr;gap:30px}
+  .faq-intro{position:static}
+}
+
+@media(max-width:760px){
+  .nav-links>a:not(.nav-facebook):not(.nav-whatsapp){display:none}
+  .values-section{padding-bottom:64px}
+  .community-card{padding:29px 26px}
+}
+
+@media(max-width:620px){
+  html{scroll-padding-top:76px}
+  body{padding-bottom:76px}
+  .nav-inner{min-height:66px}
+  .brand::before{width:35px;height:35px;flex-basis:35px;border-radius:11px;background-size:20px 20px}
+  .brand-copy strong{font-size:12.5px}
+  .brand-copy small{font-size:8.5px}
+  .nav-facebook,.nav-whatsapp{display:none!important}
+
+  .hero{padding:44px 0 42px}
+  .hero::after{display:none}
+  h1{font-size:clamp(46px,14vw,62px)}
+  .hero-club-name{font-size:25px}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:9px}
+  .hero-actions .btn{width:100%}
+  .community-proof{align-items:stretch;flex-direction:column}
+  .community-proof span,.community-proof a{justify-content:center}
+  .hero-panel.hero-brief{min-height:0;padding:24px;border-radius:21px}
+  .brief-top{margin-bottom:28px}
+  .hero-panel.hero-brief h2{font-size:30px}
+  .brief-foot{margin-top:24px}
+
+  .stats{margin-bottom:58px}
+  .stats strong{font-size:27px}
+
+  .values-section{padding:4px 0 58px}
+  .values-head h2{font-size:38px}
+  .values-grid{grid-template-columns:1fr;gap:10px}
+  .value-card{min-height:0;padding:20px}
+  .value-index{margin-bottom:20px}
+
+  .team-tools{gap:13px;margin-bottom:18px}
+  .team-search-wrap{max-width:none}
+  .team-filters{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .team-filter{width:100%;line-height:1.25}
+  .role{min-height:0}
+
+  .faq-section{padding:60px 0}
+  .faq-intro h2{font-size:38px}
+
+  .community-section{padding-bottom:60px}
+  .community-card{padding:24px 21px}
+
+  .draft-status{width:100%;margin-left:0}
+  .cta{min-height:0}
+}
+
+@media(max-width:380px){
+  .brand-copy small{display:none}
+  .team-filters{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nav,.role-apply,.team-filter,.steps>div{transition:none}
+}
