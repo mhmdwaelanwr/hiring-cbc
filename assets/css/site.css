@@ -28,25 +28,5 @@
 @import url("./components/navigation.css?v=20261013brandpack1");
 @import url("./components/form-layout-fix.css?v=20261013brandpack1");
 
-/*
-  Canonical asset paths.
-  Some legacy modules were moved without rewriting every historical declaration;
-  these declarations keep visual assets sourced from assets/brand/.
-*/
-.brand::before,
-html[data-theme="dark"] .brand::before,
-.hero-club-name::before,
-.brief-mark,
-.mobile-menu-mark,
-.modal-head::before{
-  background-image:url("../brand/logos/claude-spark.svg")!important;
-  background-repeat:no-repeat!important;
-  background-position:center!important;
-}
-
-.community-card::before{
-  background-image:url("../brand/logos/claude-spark.svg")!important;
-}
-
-/* Official uploaded Claude asset pack — last so real package assets win over legacy placeholders. */
+/* Official uploaded Claude asset pack — last import so package assets win. */
 @import url("./claude/brand-assets.css?v=20261013brandpack1");
