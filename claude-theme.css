@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap');
+
+/*
+  Claude Builder Club — Anthropic-inspired identity layer
+  Palette and typography follow Anthropic's published brand guidance:
+  Dark #141413 · Light #faf9f5 · Mid Gray #b0aea5 · Light Gray #e8e6dc
+  Orange #d97757 · Blue #6a9bcc · Green #788c5d
+*/
+
+:root{
+  --bg:#faf9f5;
+  --paper:#f7f5ef;
+  --surface:#fffefa;
+  --surface-2:#e8e6dc;
+  --ink:#141413;
+  --muted:#747169;
+  --line:#dedbd1;
+  --accent:#d97757;
+  --accent-dark:#b75f45;
+  --accent-soft:#f2ded5;
+  --dark:#141413;
+  --green:#788c5d;
+  --blue:#6a9bcc;
+  --focus:rgba(217,119,87,.20);
+  --shadow:0 18px 55px rgba(20,20,19,.08);
+  --claude-orange:#d97757;
+  --claude-blue:#6a9bcc;
+  --claude-green:#788c5d;
+  --claude-dark:#141413;
+  --claude-light:#faf9f5;
+  --claude-mid:#b0aea5;
+  --claude-soft:#e8e6dc;
+}
+
+html[data-theme="dark"]{
+  --bg:#141413;
+  --paper:#191816;
+  --surface:#201f1c;
+  --surface-2:#2b2925;
+  --ink:#faf9f5;
+  --muted:#b0aea5;
+  --line:#3b3933;
+  --accent:#d97757;
+  --accent-dark:#eca085;
+  --accent-soft:#3b2923;
+  --dark:#faf9f5;
+  --green:#91a873;
+  --blue:#86afd6;
+  --focus:rgba(217,119,87,.26);
+  --shadow:0 22px 65px rgba(0,0,0,.30);
+}
+
+body{
+  font-family:"Lora",Georgia,serif;
+  background:
+    radial-gradient(circle at 82% -8%,rgba(217,119,87,.10),transparent 32rem),
+    radial-gradient(circle at 2% 36%,rgba(106,155,204,.055),transparent 28rem),
+    var(--bg)!important;
+  color:var(--ink);
+}
+
+button,input,select,textarea,
+.nav,.brand,.hero-status,.eyebrow,.panel-kicker,.brief-top,
+.stats,.role small,.role h3,.team-filter,.team-result-meta,
+.value-index,.value-card h3,.steps,.faq-list summary,
+.community-kicker,.community-link,.footer,.modal-head,
+.form-page h3,label,.draft-status,.preference-number,
+.success-kicker,.success-summary,.success-next strong,
+.btn,.mobile-menu-shell{
+  font-family:"Poppins",Arial,sans-serif;
+}
+
+h1,.hero-club-name,.section-head h2,.values-head h2,
+.hero-panel h2,.faq-intro h2,.community-card h2,.cta h2,.success h3{
+  font-family:"Poppins",Arial,sans-serif!important;
+  font-weight:700!important;
+  letter-spacing:-.045em;
+}
+
+.lead,.value-card p,.role p,.section-head p,.values-head p,
+.steps p,.faq-list details p,.community-card p,.cta p,
+.success-lead,.success-next p,.whatsapp-follow span{
+  font-family:"Lora",Georgia,serif;
+}
+
+/* Claude's warm, editorial surface language */
+.nav{
+  background:color-mix(in srgb,var(--bg) 94%,transparent)!important;
+  border-bottom-color:color-mix(in srgb,var(--line) 86%,transparent)!important;
+}
+.nav.scrolled{
+  box-shadow:0 8px 28px rgba(20,20,19,.07)!important;
+}
+.brand::before,.mobile-menu-mark,.brief-mark{
+  background-color:var(--claude-orange)!important;
+}
+.brand-copy strong{font-weight:700}
+.brand-copy small{color:var(--muted)!important}
+
+/* Primary action is unmistakably Claude orange */
+.btn-primary,.nav-apply,.dock-apply,.mobile-menu-apply{
+  background:var(--claude-orange)!important;
+  color:var(--claude-dark)!important;
+  border-color:transparent!important;
+  box-shadow:0 9px 24px rgba(217,119,87,.20)!important;
+}
+.btn-primary:hover:not(:disabled),.nav-apply:hover:not(:disabled),
+.dock-apply:hover,.mobile-menu-apply:hover{
+  background:#e18464!important;
+  box-shadow:0 12px 30px rgba(217,119,87,.27)!important;
+}
+.btn-dark{
+  background:var(--claude-dark)!important;
+  color:var(--claude-light)!important;
+}
+html[data-theme="dark"] .btn-dark{
+  background:var(--claude-light)!important;
+  color:var(--claude-dark)!important;
+}
+.btn-orange{
+  background:var(--claude-orange)!important;
+  color:var(--claude-dark)!important;
+}
+.btn-ghost{
+  background:color-mix(in srgb,var(--surface) 96%,transparent)!important;
+  border-color:var(--line)!important;
+}
+.btn-ghost:hover{background:var(--surface-2)!important}
+
+/* Brand accents */
+.eyebrow,.panel-kicker,.role small,.community-kicker,
+.success-kicker,.cta-copy-eyebrow{
+  color:var(--claude-orange)!important;
+}
+.hero-club-name{color:var(--claude-orange)!important}
+.nav-links>a.is-active::after{background:var(--claude-orange)!important}
+.proof-dot{background:var(--claude-orange)!important;box-shadow:0 0 0 4px rgba(217,119,87,.13)!important}
+
+.hero-panel.hero-brief,.hero-panel,.cta{
+  background:
+    radial-gradient(circle at 90% 0%,rgba(217,119,87,.20),transparent 17rem),
+    var(--claude-dark)!important;
+  color:var(--claude-light)!important;
+  border-color:rgba(250,249,245,.08)!important;
+}
+html[data-theme="dark"] .hero-panel.hero-brief,
+html[data-theme="dark"] .hero-panel,
+html[data-theme="dark"] .cta{
+  background:
+    radial-gradient(circle at 90% 0%,rgba(217,119,87,.18),transparent 17rem),
+    #0d0d0c!important;
+}
+.hero-panel.hero-brief li::before{background:var(--claude-orange)!important}
+.brief-top span,.brief-foot{color:var(--claude-mid)!important}
+
+/* Cards and sections */
+.stats div,.value-card,.role,.steps>div,.faq-list details,
+.community-card,.preference-card,.success-summary>div{
+  border-color:var(--line)!important;
+  background:color-mix(in srgb,var(--surface) 97%,var(--bg))!important;
+  box-shadow:none!important;
+}
+.value-card:hover,.role:hover,.steps>div:hover{
+  border-color:color-mix(in srgb,var(--claude-orange) 32%,var(--line))!important;
+  box-shadow:0 14px 34px rgba(20,20,19,.065)!important;
+}
+.section-soft{
+  background:color-mix(in srgb,var(--claude-soft) 38%,var(--bg))!important;
+}
+.value-index,.steps b,.preference-number{
+  background:color-mix(in srgb,var(--claude-orange) 15%,var(--surface))!important;
+  color:var(--accent-dark)!important;
+}
+.role li{
+  background:color-mix(in srgb,var(--claude-soft) 60%,var(--surface))!important;
+  border-color:color-mix(in srgb,var(--line) 80%,transparent)!important;
+}
+html[data-theme="dark"] .role li{
+  background:color-mix(in srgb,var(--surface-2) 88%,transparent)!important;
+}
+.role-apply{
+  background:color-mix(in srgb,var(--claude-orange) 7%,var(--surface))!important;
+  border-color:color-mix(in srgb,var(--claude-orange) 24%,var(--line))!important;
+}
+.role-apply:hover{
+  background:color-mix(in srgb,var(--claude-orange) 12%,var(--surface))!important;
+  border-color:color-mix(in srgb,var(--claude-orange) 42%,var(--line))!important;
+}
+
+/* Search/filter language */
+#teamSearch,input,select,textarea,.check,.theme-toggle,.mobile-menu-toggle,
+.mobile-menu-close,.mobile-menu-theme{
+  background:var(--surface)!important;
+  border-color:var(--line)!important;
+  color:var(--ink)!important;
+}
+input:focus,select:focus,textarea:focus,#teamSearch:focus{
+  border-color:var(--claude-orange)!important;
+  box-shadow:0 0 0 3px var(--focus)!important;
+}
+.team-filter.active{
+  background:var(--claude-dark)!important;
+  border-color:var(--claude-dark)!important;
+  color:var(--claude-light)!important;
+}
+html[data-theme="dark"] .team-filter.active{
+  background:var(--claude-light)!important;
+  border-color:var(--claude-light)!important;
+  color:var(--claude-dark)!important;
+}
+
+/* Status uses Anthropic green rather than generic UI green */
+.hero-status.live,.mobile-menu-status.live{color:var(--claude-green)!important}
+.hero-status.live::before,.mobile-menu-status.live::before{
+  background:var(--claude-green)!important;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--claude-green) 15%,transparent)!important;
+}
+
+/* Social colors stay service-specific, but supporting UI remains Claude */
+.nav-facebook,.hero-facebook{color:var(--claude-blue)!important}
+html[data-theme="dark"] .nav-facebook,
+html[data-theme="dark"] .hero-facebook{color:#8cb6dc!important}
+.community-link.email{background:var(--surface-2)!important}
+
+/* Modal / application */
+.modal{background:rgba(20,20,19,.68)!important}
+.modal-card{background:var(--surface)!important}
+.modal-head{
+  background:color-mix(in srgb,var(--surface) 97%,var(--bg))!important;
+  border-color:var(--line)!important;
+}
+.progress{background:var(--surface-2)!important}
+.progress span{background:var(--claude-orange)!important}
+.form-nav{background:color-mix(in srgb,var(--surface) 96%,transparent)!important}
+.check:hover{border-color:color-mix(in srgb,var(--claude-orange) 38%,var(--line))!important}
+.success-icon{
+  background:color-mix(in srgb,var(--claude-green) 16%,var(--surface))!important;
+  color:var(--claude-green)!important;
+}
+.success-next{
+  border-left-color:var(--claude-orange)!important;
+  background:color-mix(in srgb,var(--claude-orange) 7%,var(--surface))!important;
+}
+
+/* Mobile drawer becomes a compact Claude sheet */
+.mobile-menu-panel{
+  background:color-mix(in srgb,var(--surface) 98%,var(--bg))!important;
+  border-left-color:var(--line)!important;
+}
+.mobile-menu-nav a:hover,.mobile-menu-nav a:focus-visible{
+  background:color-mix(in srgb,var(--claude-orange) 8%,var(--surface))!important;
+}
+.mobile-menu-status{background:color-mix(in srgb,var(--claude-soft) 48%,var(--surface))!important}
+
+/* Small decorative Anthropic accent trio */
+.stats div:nth-child(1){border-top:3px solid var(--claude-orange)!important}
+.stats div:nth-child(2){border-top:3px solid var(--claude-blue)!important}
+.stats div:nth-child(3){border-top:3px solid var(--claude-green)!important}
+.stats div:nth-child(4){border-top:3px solid var(--claude-mid)!important}
+
+::selection{
+  background:rgba(217,119,87,.24)!important;
+  color:var(--ink)!important;
+}
+
+@media(max-width:620px){
+  .hero h1{font-weight:700!important}
+  .hero-club-name{font-weight:600!important}
+  .mobile-dock{
+    background:color-mix(in srgb,var(--surface) 96%,transparent)!important;
+    border-color:var(--line)!important;
+  }
+}
