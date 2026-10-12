@@ -1,7 +1,10 @@
 (() => {
   const modal = document.querySelector('#modal');
   const closeModal = document.querySelector('#closeModal');
+  const closeSuccess = document.querySelector('#closeSuccess');
+  const success = document.querySelector('#success');
   const form = document.querySelector('#applicationForm');
+  const nextBtn = document.querySelector('#nextBtn');
   const teamFirst = document.querySelector('#teamFirst');
   const teamSearch = document.querySelector('#teamSearch');
   const resultCount = document.querySelector('#teamResultCount');
@@ -26,6 +29,11 @@
     return Array.from(document.querySelectorAll('#rolesGrid .role'));
   }
 
+  function focusActiveField() {
+    const field = form?.querySelector('.form-page.active input:not([type="hidden"]), .form-page.active select, .form-page.active textarea');
+    field?.focus?.({ preventScroll: true });
+  }
+
   function enhanceCards() {
     getCards().forEach(card => {
       if (card.querySelector('.role-apply')) return;
@@ -48,9 +56,7 @@
         }
         const trigger = document.querySelector('.hero .js-apply') || document.querySelector('.js-apply');
         trigger?.click();
-        window.setTimeout(() => {
-          form?.elements?.full_name?.focus?.({ preventScroll: true });
-        }, 120);
+        window.setTimeout(focusActiveField, 120);
       });
       card.appendChild(button);
     });
@@ -126,18 +132,87 @@
     updateDraftStatus('saved');
   }
 
+  function formValue(name) {
+    const field = form?.elements?.namedItem?.(name);
+    return field && 'value' in field ? String(field.value || '').trim() : '';
+  }
+
+  function ensureReviewSummary() {
+    const page = form?.querySelector('.form-page[data-page="5"]');
+    if (!page) return null;
+    let summary = page.querySelector('.review-summary');
+    if (summary) return summary;
+
+    summary = document.createElement('div');
+    summary.className = 'review-summary';
+    summary.innerHTML = `
+      <div class="review-summary-head">
+        <span>APPLICATION REVIEW</span>
+        <strong>Check your key details before submitting.</strong>
+      </div>
+      <div class="review-summary-grid">
+        <div><span>Name</span><strong data-review="name">—</strong></div>
+        <div><span>AOU email</span><strong data-review="email">—</strong></div>
+        <div><span>First preference</span><strong data-review="first">—</strong></div>
+        <div><span>Second preference</span><strong data-review="second">—</strong></div>
+        <div><span>Availability</span><strong data-review="availability">—</strong></div>
+        <div><span>In-person</span><strong data-review="in-person">—</strong></div>
+      </div>
+    `;
+
+    const intro = page.querySelector(':scope > p');
+    intro?.insertAdjacentElement('afterend', summary);
+    return summary;
+  }
+
+  function setReviewValue(summary, key, value) {
+    const target = summary?.querySelector(`[data-review="${key}"]`);
+    if (target) target.textContent = value || '—';
+  }
+
+  function updateReviewSummary() {
+    const page = form?.querySelector('.form-page[data-page="5"]');
+    if (!page?.classList.contains('active')) return;
+
+    const summary = ensureReviewSummary();
+    const firstTeam = formValue('team_first');
+    const firstRole = formValue('preferred_role');
+    const secondTeam = formValue('team_second');
+    const secondRole = formValue('second_preferred_role');
+
+    setReviewValue(summary, 'name', formValue('full_name'));
+    setReviewValue(summary, 'email', formValue('university_email'));
+    setReviewValue(summary, 'first', [firstTeam, firstRole].filter(Boolean).join(' · '));
+    setReviewValue(summary, 'second', [secondTeam, secondRole].filter(Boolean).join(' · '));
+    setReviewValue(summary, 'availability', formValue('availability'));
+    setReviewValue(summary, 'in-person', formValue('in_person'));
+  }
+
+  const reviewPage = form?.querySelector('.form-page[data-page="5"]');
+  if (reviewPage) {
+    const observer = new MutationObserver(updateReviewSummary);
+    observer.observe(reviewPage, { attributes: true, attributeFilter: ['class'] });
+  }
+  nextBtn?.addEventListener('click', () => window.setTimeout(updateReviewSummary, 0));
+  form?.addEventListener('change', updateReviewSummary);
+  form?.addEventListener('input', updateReviewSummary);
+
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && modal?.classList.contains('open')) {
-      closeModal?.click();
+    if (event.key !== 'Escape' || !modal?.classList.contains('open')) return;
+    if (success?.classList.contains('show')) closeSuccess?.click();
+    else closeModal?.click();
+  });
+
+  closeModal?.addEventListener('click', () => {
+    if (success?.classList.contains('show')) {
+      window.setTimeout(() => closeSuccess?.click(), 0);
     }
   });
 
   document.querySelectorAll('.js-apply').forEach(button => {
     button.addEventListener('click', () => {
       window.setTimeout(() => {
-        if (modal?.classList.contains('open')) {
-          form?.elements?.full_name?.focus?.({ preventScroll: true });
-        }
+        if (modal?.classList.contains('open')) focusActiveField();
       }, 120);
     });
   });
@@ -153,4 +228,5 @@
 
   enhanceCards();
   applyTeamFilter();
+  ensureReviewSummary();
 })();
