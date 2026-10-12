@@ -4,6 +4,16 @@
   const normalize = value => String(value || '').toLowerCase().trim();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Load the isolated mobile-nav component only when the interaction layer runs. */
+  if (!qs('link[data-cbc-mobile-menu]')) {
+    const menuStyles = document.createElement('link');
+    menuStyles.rel = 'stylesheet';
+    menuStyles.href = './mobile-menu.css?v=20261012r3';
+    menuStyles.media = 'screen and (max-width: 760px)';
+    menuStyles.dataset.cbcMobileMenu = 'true';
+    document.head.appendChild(menuStyles);
+  }
+
   const modal = qs('#modal');
   const modalCard = qs('.modal-card');
   const closeModal = qs('#closeModal');
@@ -17,9 +27,208 @@
   const rolesGrid = qs('#rolesGrid');
   const draftStatus = qs('#draftStatus');
   const nav = qs('.nav');
+  const navContainer = qs('.nav-links');
   const hero = qs('.hero');
+  const heroStatus = qs('#heroStatus');
+  const themeToggle = qs('#themeToggle');
 
   let lastFocusedElement = null;
+
+  /* ---------- Mobile burger navigation ---------- */
+  function createMobileMenu() {
+    if (!navContainer || qs('.mobile-menu-toggle')) return;
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'mobile-menu-toggle';
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'mobileMenu');
+    toggle.innerHTML = `
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path class="menu-line" d="M4 6h16"/>
+        <path class="menu-line" d="M4 12h16"/>
+        <path class="menu-line" d="M4 18h16"/>
+      </svg>`;
+
+    const applyButton = qs('.nav-apply', navContainer);
+    navContainer.insertBefore(toggle, applyButton || null);
+
+    const shell = document.createElement('div');
+    shell.className = 'mobile-menu-shell';
+    shell.id = 'mobileMenu';
+    shell.setAttribute('aria-hidden', 'true');
+    shell.innerHTML = `
+      <button class="mobile-menu-backdrop" type="button" aria-label="Close navigation menu"></button>
+      <aside class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <div class="mobile-menu-head">
+          <div class="mobile-menu-brand">
+            <span class="mobile-menu-mark" aria-hidden="true"></span>
+            <span><strong>Claude Builder Club</strong><small>AOU Egypt · Founding Team</small></span>
+          </div>
+          <button class="mobile-menu-close" type="button" aria-label="Close navigation menu">×</button>
+        </div>
+
+        <div class="mobile-menu-status">Applications opening soon</div>
+
+        <nav class="mobile-menu-nav" aria-label="Mobile navigation links">
+          <a href="#top">Home</a>
+          <a href="#about">About</a>
+          <a href="#teams">Teams</a>
+          <a href="#process">Process</a>
+          <a href="#community">Community</a>
+        </nav>
+
+        <div class="mobile-menu-divider" aria-hidden="true"></div>
+
+        <div class="mobile-menu-socials">
+          <a class="mobile-menu-social facebook" href="https://www.facebook.com/claudeaouclub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.6 22v-9h3l.45-3.5H13.6V7.27c0-1.01.28-1.7 1.74-1.7H17.2V2.44A24.8 24.8 0 0 0 14.5 2c-2.67 0-4.5 1.63-4.5 4.62V9.5H7V13h3v9h3.6Z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a class="mobile-menu-social whatsapp" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+
+        <button class="mobile-menu-theme" type="button">
+          <span>Appearance</span><span data-mobile-theme>System</span>
+        </button>
+
+        <div class="mobile-menu-actions">
+          <button class="mobile-menu-apply" type="button">Start application</button>
+        </div>
+      </aside>`;
+    document.body.appendChild(shell);
+
+    const panel = qs('.mobile-menu-panel', shell);
+    const closeButton = qs('.mobile-menu-close', shell);
+    const backdrop = qs('.mobile-menu-backdrop', shell);
+    const drawerApply = qs('.mobile-menu-apply', shell);
+    const drawerTheme = qs('.mobile-menu-theme', shell);
+    const drawerThemeLabel = qs('[data-mobile-theme]', shell);
+    const drawerStatus = qs('.mobile-menu-status', shell);
+    const mobileViewport = window.matchMedia('(max-width: 760px)');
+    let lastMenuFocus = null;
+
+    const syncDrawerStatus = () => {
+      if (drawerStatus && heroStatus) {
+        drawerStatus.textContent = heroStatus.textContent || 'Applications opening soon';
+        drawerStatus.classList.toggle('live', heroStatus.classList.contains('live'));
+      }
+
+      if (drawerThemeLabel) {
+        const preference = document.documentElement.dataset.themePreference || 'system';
+        drawerThemeLabel.textContent = preference === 'system'
+          ? 'System'
+          : preference.charAt(0).toUpperCase() + preference.slice(1);
+      }
+
+      const liveApply = qs('.js-apply:not([hidden])');
+      if (drawerApply) drawerApply.hidden = !liveApply;
+    };
+
+    const getDrawerFocusable = () => qsa('a[href],button:not([disabled]):not([hidden])', panel)
+      .filter(element => element.offsetParent !== null);
+
+    const openMenu = () => {
+      if (!mobileViewport.matches || modal?.classList.contains('open')) return;
+      lastMenuFocus = document.activeElement;
+      syncDrawerStatus();
+      shell.classList.add('is-open');
+      shell.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation menu');
+      document.body.classList.add('mobile-menu-open');
+      window.setTimeout(() => closeButton?.focus({ preventScroll: true }), prefersReducedMotion ? 0 : 80);
+    };
+
+    const closeMenu = (restoreFocus = true) => {
+      shell.classList.remove('is-open');
+      shell.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('mobile-menu-open');
+      if (restoreFocus && lastMenuFocus instanceof HTMLElement) {
+        lastMenuFocus.focus?.({ preventScroll: true });
+      }
+      lastMenuFocus = null;
+    };
+
+    toggle.addEventListener('click', () => {
+      shell.classList.contains('is-open') ? closeMenu() : openMenu();
+    });
+    closeButton?.addEventListener('click', () => closeMenu());
+    backdrop?.addEventListener('click', () => closeMenu());
+
+    qsa('.mobile-menu-nav a', shell).forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    qsa('.mobile-menu-social', shell).forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    drawerTheme?.addEventListener('click', () => {
+      themeToggle?.click();
+      window.setTimeout(syncDrawerStatus, 0);
+    });
+
+    drawerApply?.addEventListener('click', () => {
+      closeMenu(false);
+      const trigger = qs('.hero .js-apply:not([hidden])') || qs('.js-apply:not([hidden])');
+      window.setTimeout(() => trigger?.click(), prefersReducedMotion ? 0 : 80);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (!shell.classList.contains('is-open')) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeMenu();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusable = getDrawerFocusable();
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    mobileViewport.addEventListener?.('change', event => {
+      if (!event.matches) closeMenu(false);
+    });
+
+    if (heroStatus && 'MutationObserver' in window) {
+      new MutationObserver(syncDrawerStatus).observe(heroStatus, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
+    if ('MutationObserver' in window) {
+      new MutationObserver(syncDrawerStatus).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme', 'data-theme-preference']
+      });
+    }
+
+    syncDrawerStatus();
+  }
+
+  createMobileMenu();
 
   /* ---------- Team discovery ---------- */
   function filterGroup(category) {
@@ -218,7 +427,7 @@
 
   function updateDockVisibility(heroVisible = null) {
     if (!mobileDock) return;
-    if (!mobileQuery.matches || modal?.classList.contains('open')) {
+    if (!mobileQuery.matches || modal?.classList.contains('open') || document.body.classList.contains('mobile-menu-open')) {
       mobileDock.hidden = true;
       return;
     }
