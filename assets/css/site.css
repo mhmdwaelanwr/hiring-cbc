@@ -4,34 +4,34 @@
 */
 
 /* Foundation */
-@import url("./base/styles.css?v=20261013fix2");
+@import url("./base/styles.css?v=20261013brandpack1");
 
 /* Historical layout layers kept isolated during consolidation */
-@import url("./legacy/polish.css?v=20261013fix2");
-@import url("./legacy/hotfix.css?v=20261013fix2");
-@import url("./legacy/brand.css?v=20261013fix2");
-@import url("./legacy/community.css?v=20261013fix2");
-@import url("./legacy/revamp.css?v=20261013fix2");
+@import url("./legacy/polish.css?v=20261013brandpack1");
+@import url("./legacy/hotfix.css?v=20261013brandpack1");
+@import url("./legacy/brand.css?v=20261013brandpack1");
+@import url("./legacy/community.css?v=20261013brandpack1");
+@import url("./legacy/revamp.css?v=20261013brandpack1");
 
 /* Claude / Anthropic visual system */
-@import url("./claude/theme.css?v=20261013fix2");
-@import url("./claude/polish.css?v=20261013fix2");
-@import url("./claude/typography.css?v=20261013fix2");
-@import url("./claude/official.css?v=20261013fix2");
+@import url("./claude/theme.css?v=20261013brandpack1");
+@import url("./claude/polish.css?v=20261013brandpack1");
+@import url("./claude/typography.css?v=20261013brandpack1");
+@import url("./claude/official.css?v=20261013brandpack1");
 
 /* Application experience */
-@import url("./claude/form.css?v=20261013fix2");
-@import url("./claude/form-fix.css?v=20261013fix2");
+@import url("./claude/form.css?v=20261013brandpack1");
+@import url("./claude/form-fix.css?v=20261013brandpack1");
 
 /* Components */
-@import url("./components/mobile-menu.css?v=20261013fix2");
-@import url("./components/navigation.css?v=20261013fix2");
-@import url("./components/form-layout-fix.css?v=20261013fix2");
+@import url("./components/mobile-menu.css?v=20261013brandpack1");
+@import url("./components/navigation.css?v=20261013brandpack1");
+@import url("./components/form-layout-fix.css?v=20261013brandpack1");
 
 /*
   Canonical asset paths.
   Some legacy modules were moved without rewriting every historical declaration;
-  these final declarations keep all visual assets sourced from assets/brand/.
+  these declarations keep visual assets sourced from assets/brand/.
 */
 .brand::before,
 html[data-theme="dark"] .brand::before,
@@ -47,3 +47,6 @@ html[data-theme="dark"] .brand::before,
 .community-card::before{
   background-image:url("../brand/logos/claude-spark.svg")!important;
 }
+
+/* Official uploaded Claude asset pack — last so real package assets win over legacy placeholders. */
+@import url("./claude/brand-assets.css?v=20261013brandpack1");
