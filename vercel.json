@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/config.js",
+      "source": "/assets/js/config.js",
       "headers": [
         { "key": "Cache-Control", "value": "no-store, max-age=0" }
       ]
