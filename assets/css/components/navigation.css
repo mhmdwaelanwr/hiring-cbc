@@ -61,23 +61,15 @@
   transform:none!important;
 }
 
-.nav-facebook svg{
-  width:16px!important;
-  height:16px!important;
-  flex:0 0 16px!important;
-}
-
-/* WhatsApp gets the same icon/text structure as Facebook without changing HTML. */
-.nav-whatsapp::before{
-  content:""!important;
+.nav-facebook svg,
+.nav-whatsapp svg{
   width:16px!important;
   height:16px!important;
   flex:0 0 16px!important;
   display:block!important;
-  background:currentColor!important;
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
-  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
 }
+
+.nav-whatsapp::before{content:none!important;display:none!important}
 
 .nav-facebook{
   color:#6a9bcc!important;
