@@ -1,32 +1,32 @@
 /*
   Claude Builder Club — production CSS entrypoint
-  Keep import order intentional. New CSS should be added as a module, not at repo root.
+  Keep import order intentional. All @imports stay before style rules.
 */
 
 /* Foundation */
-@import url("./base/styles.css?v=20261013brandpack1");
+@import url("./base/styles.css?v=20261013brandpack3");
 
 /* Historical layout layers kept isolated during consolidation */
-@import url("./legacy/polish.css?v=20261013brandpack1");
-@import url("./legacy/hotfix.css?v=20261013brandpack1");
-@import url("./legacy/brand.css?v=20261013brandpack1");
-@import url("./legacy/community.css?v=20261013brandpack1");
-@import url("./legacy/revamp.css?v=20261013brandpack1");
+@import url("./legacy/polish.css?v=20261013brandpack3");
+@import url("./legacy/hotfix.css?v=20261013brandpack3");
+@import url("./legacy/brand.css?v=20261013brandpack3");
+@import url("./legacy/community.css?v=20261013brandpack3");
+@import url("./legacy/revamp.css?v=20261013brandpack3");
 
 /* Claude / Anthropic visual system */
-@import url("./claude/theme.css?v=20261013brandpack1");
-@import url("./claude/polish.css?v=20261013brandpack1");
-@import url("./claude/typography.css?v=20261013brandpack1");
-@import url("./claude/official.css?v=20261013brandpack1");
+@import url("./claude/theme.css?v=20261013brandpack3");
+@import url("./claude/polish.css?v=20261013brandpack3");
+@import url("./claude/typography.css?v=20261013brandpack3");
+@import url("./claude/official.css?v=20261013brandpack3");
 
 /* Application experience */
-@import url("./claude/form.css?v=20261013brandpack1");
-@import url("./claude/form-fix.css?v=20261013brandpack1");
+@import url("./claude/form.css?v=20261013brandpack3");
+@import url("./claude/form-fix.css?v=20261013brandpack3");
 
 /* Components */
-@import url("./components/mobile-menu.css?v=20261013brandpack1");
-@import url("./components/navigation.css?v=20261013brandpack1");
-@import url("./components/form-layout-fix.css?v=20261013brandpack1");
+@import url("./components/mobile-menu.css?v=20261013brandpack3");
+@import url("./components/navigation.css?v=20261013brandpack3");
+@import url("./components/form-layout-fix.css?v=20261013brandpack3");
 
-/* Official uploaded Claude asset pack — last import so package assets win. */
-@import url("./claude/brand-assets.css?v=20261013brandpack1");
+/* Uploaded Claude asset pack wins over every legacy placeholder. */
+@import url("./claude/brand-assets.css?v=20261013brandpack3");
