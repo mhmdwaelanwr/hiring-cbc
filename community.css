@@ -1,0 +1,227 @@
+/* Community + social layer for Claude Builder Club — AOU Egypt */
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+}
+.brand-copy{min-width:0}
+
+.nav-facebook{
+  display:inline-flex!important;
+  align-items:center;
+  gap:7px;
+  padding:8px 10px;
+  border:1px solid color-mix(in srgb,#1877f2 28%,var(--line));
+  border-radius:999px;
+  background:color-mix(in srgb,#1877f2 5%,var(--surface));
+  color:#1769c2!important;
+  font-size:12px!important;
+  white-space:nowrap;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.nav-facebook:hover{
+  transform:translateY(-1px);
+  background:color-mix(in srgb,#1877f2 9%,var(--surface));
+  border-color:color-mix(in srgb,#1877f2 45%,var(--line));
+}
+.nav-facebook svg{width:15px;height:15px;flex:0 0 auto}
+html[data-theme="dark"] .nav-facebook{color:#79b4ff!important}
+
+.hero-panel{
+  position:relative;
+  overflow:hidden;
+}
+.hero-panel::after{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:190px;
+  right:-72px;
+  top:-70px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(217,119,87,.22),rgba(217,119,87,0) 70%);
+  pointer-events:none;
+}
+.hero-panel>*{position:relative;z-index:1}
+
+.community-proof{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:18px;
+}
+.community-proof a,
+.community-proof span{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:32px;
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  color:var(--muted);
+  text-decoration:none;
+  font-size:11px;
+  font-weight:700;
+}
+.community-proof a:hover{color:var(--ink);border-color:color-mix(in srgb,var(--accent) 38%,var(--line))}
+.community-proof .proof-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 11%,transparent);
+}
+.community-proof .proof-facebook{color:#1769c2}
+html[data-theme="dark"] .community-proof .proof-facebook{color:#79b4ff}
+
+.community-section{
+  padding:8px 0 76px;
+}
+.community-card{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:36px;
+  padding:34px 36px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 23rem),
+    var(--surface);
+  box-shadow:var(--shadow);
+}
+.community-card::before{
+  content:"";
+  width:70px;
+  height:70px;
+  position:absolute;
+  right:30px;
+  top:-24px;
+  opacity:.08;
+  background:url("./claude-spark.svg") center/contain no-repeat;
+  transform:rotate(9deg);
+  pointer-events:none;
+}
+.community-copy{position:relative;z-index:1;max-width:680px}
+.community-kicker{
+  margin-bottom:9px;
+  color:var(--accent-dark);
+  font:600 10px/1.4 "IBM Plex Mono",ui-monospace,monospace;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.community-card h2{
+  margin:0 0 9px;
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(30px,4vw,44px);
+  line-height:1.02;
+  letter-spacing:-.035em;
+}
+.community-card p{margin:0;color:var(--muted);max-width:650px}
+.community-actions{
+  position:relative;
+  z-index:1;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.community-link{
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:11px 15px;
+  border-radius:11px;
+  font-weight:800;
+  font-size:13px;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.community-link svg{width:17px;height:17px}
+.community-link.facebook{background:#1877f2;color:#fff;box-shadow:0 8px 22px rgba(24,119,242,.18)}
+.community-link.whatsapp{background:color-mix(in srgb,var(--green) 8%,var(--surface));color:var(--green);border:1px solid color-mix(in srgb,var(--green) 28%,var(--line))}
+.community-link.email{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.community-link:hover{transform:translateY(-1px)}
+
+.footer{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+}
+.footer-social{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.footer-social a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:var(--muted);
+  text-decoration:none;
+  font-weight:700;
+  font-size:12px;
+}
+.footer-social a:hover{color:var(--ink)}
+.footer-social svg{width:15px;height:15px}
+
+.social-after-submit{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:12px;
+  padding:14px 16px;
+  border:1px solid color-mix(in srgb,#1877f2 24%,var(--line));
+  border-radius:13px;
+  background:color-mix(in srgb,#1877f2 4%,var(--surface));
+}
+.social-after-submit div{min-width:0}
+.social-after-submit strong{display:block;font-size:13px;margin-bottom:2px;color:var(--ink)}
+.social-after-submit span{display:block;color:var(--muted);font-size:12px}
+.social-after-submit a{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 12px;
+  border-radius:10px;
+  background:#1877f2;
+  color:#fff;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+}
+.social-after-submit svg{width:15px;height:15px}
+
+@media(max-width:1040px){
+  .nav-facebook{display:none!important}
+}
+
+@media(max-width:760px){
+  .community-card{grid-template-columns:1fr;gap:24px;padding:28px}
+  .community-actions{justify-content:flex-start}
+  .footer{align-items:flex-start;flex-direction:column}
+}
+
+@media(max-width:620px){
+  .brand{gap:9px}
+  .community-proof{gap:7px}
+  .community-proof a,.community-proof span{font-size:10px}
+  .community-section{padding:0 0 56px}
+  .community-card{padding:24px 21px;border-radius:19px}
+  .community-actions{display:grid;grid-template-columns:1fr;width:100%}
+  .community-link{width:100%;white-space:normal}
+  .social-after-submit{align-items:flex-start;flex-direction:column}
+  .social-after-submit a{width:100%;justify-content:center}
+}
