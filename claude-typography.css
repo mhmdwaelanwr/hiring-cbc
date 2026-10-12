@@ -1,67 +1,58 @@
 /*
-  Claude Builder Club — official Anthropic brand typography
+  Claude Builder Club — claude.ai product typography mapping
 
-  Anthropic's published brand guidance specifies:
-  - Headings / interface emphasis: Poppins (Arial fallback)
-  - Body / editorial copy: Lora (Georgia fallback)
-
-  The font files are loaded by claude-theme.css from Google Fonts so every
-  visitor gets the same typography without relying on proprietary local fonts.
+  Claude's product UI uses Anthropic Sans for interface text, Anthropic Serif for
+  editorial/assistant-style display copy, and Anthropic Mono for technical detail.
+  The custom binaries are not redistributed here; fallbacks preserve the product
+  proportions and keep the site fast and stable on every platform.
 */
 
 :root{
-  --claude-font-heading:"Poppins",Arial,Helvetica,sans-serif;
-  --claude-font-body:"Lora",Georgia,"Times New Roman",serif;
-  --claude-font-ui:"Poppins",Arial,Helvetica,sans-serif;
+  --claude-font-sans:"Anthropic Sans",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --claude-font-serif:"Anthropic Serif",Georgia,"Times New Roman",serif;
+  --claude-font-mono:"Anthropic Mono","SFMono-Regular",Consolas,"Liberation Mono",monospace;
 }
 
 html,body{
-  font-family:var(--claude-font-body)!important;
-  font-weight:400;
+  font-family:var(--claude-font-sans)!important;
+  font-size:16px;
+  font-weight:430;
   letter-spacing:0;
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
+  font-synthesis:none;
 }
 
-/* Anthropic UI language: Poppins for navigation, controls, cards and labels. */
+/* Product/UI text */
 button,input,select,textarea,
 .nav,.brand,.brand-copy,.hero-status,.stats,
-.value-card,.role,.steps,.faq-list summary,.footer,
+.value-card,.role,.steps,.faq-list,.footer,
 .modal-card,.form-page,.success-summary,.mobile-menu-shell,.mobile-dock,
 .btn,.team-filter,.team-result-meta,.community-link,
-.eyebrow,.panel-kicker,.community-kicker,.cta-copy-eyebrow,
-.success-kicker,.role small,.value-index,.preference-number,
-.stats span,.draft-status,label{
-  font-family:var(--claude-font-ui)!important;
+.hero-club-name,.role h3,.value-card h3,.steps h3,.form-page h3,
+.modal-head h2,.brief-top strong,.mobile-menu-brand strong{
+  font-family:var(--claude-font-sans)!important;
 }
 
-/* Official brand heading face. */
+/* Claude-style editorial display. */
 h1,
-h2,
-h3,
-.hero-club-name,
 .section-head h2,
 .values-head h2,
 .hero-panel h2,
 .faq-intro h2,
 .community-card h2,
 .cta h2,
-.success h3,
-.role h3,
-.value-card h3,
-.steps h3,
-.form-page h3,
-.modal-head h2,
-.brief-top strong,
-.mobile-menu-brand strong{
-  font-family:var(--claude-font-heading)!important;
+.success h3{
+  font-family:var(--claude-font-serif)!important;
   font-style:normal!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  text-wrap:balance;
 }
 
 .hero h1{
-  font-weight:600!important;
-  line-height:.98!important;
-  letter-spacing:-.045em!important;
+  line-height:1.04!important;
+  font-weight:400!important;
 }
 
 .section-head h2,
@@ -71,28 +62,11 @@ h3,
 .cta h2,
 .success h3,
 .hero-panel h2{
-  font-weight:600!important;
-  line-height:1.05!important;
-  letter-spacing:-.035em!important;
+  line-height:1.12!important;
+  font-weight:500!important;
 }
 
-.hero-club-name{
-  font-weight:600!important;
-  letter-spacing:-.025em!important;
-}
-
-.role h3,
-.value-card h3,
-.steps h3,
-.form-page h3,
-.modal-head h2,
-.brief-top strong,
-.mobile-menu-brand strong{
-  font-weight:600!important;
-  letter-spacing:-.018em!important;
-}
-
-/* Editorial/body copy uses Lora, matching Anthropic's published guidance. */
+/* Body copy stays Sans, mirroring the product UI. */
 p,
 .lead,
 .value-card p,
@@ -109,27 +83,26 @@ p,
 .form-page>p,
 .community-proof span,
 .community-proof a{
-  font-family:var(--claude-font-body)!important;
-  font-weight:400!important;
+  font-family:var(--claude-font-sans)!important;
+  font-weight:430!important;
   letter-spacing:0!important;
 }
 
-/* Compact UI should remain sans for clarity. */
-.nav-links a,
-.btn,
-.theme-toggle,
-.team-filter,
-.role-apply,
-.community-link,
-.mobile-menu-nav a,
-.mobile-menu-theme,
-.mobile-menu-apply,
-.dock-apply,
-input,select,textarea,
-.faq-list summary{
-  font-family:var(--claude-font-ui)!important;
+.lead{font-size:17px!important;line-height:1.6!important}
+.section-head p,.values-head p,.community-card p,.faq-list details p{line-height:1.58!important}
+
+/* UI headings */
+.hero-club-name{
+  font-weight:500!important;
+  letter-spacing:-.01em!important;
+}
+.role h3,.value-card h3,.steps h3,.form-page h3,
+.modal-head h2,.brief-top strong,.mobile-menu-brand strong{
+  font-weight:580!important;
+  letter-spacing:-.01em!important;
 }
 
+/* Compact controls */
 .nav-links a,
 .btn,
 .theme-toggle,
@@ -140,17 +113,20 @@ input,select,textarea,
 .mobile-menu-theme,
 .mobile-menu-apply,
 .dock-apply,
-label{
-  font-weight:600!important;
-  letter-spacing:-.008em!important;
+label,
+.faq-list summary{
+  font-family:var(--claude-font-sans)!important;
+  font-weight:550!important;
+  letter-spacing:0!important;
 }
 
 input,select,textarea{
-  font-weight:400!important;
+  font-family:var(--claude-font-sans)!important;
+  font-weight:430!important;
   letter-spacing:0!important;
 }
 
-/* Anthropic-style small caps/details: Poppins, restrained tracking. */
+/* Technical/detail text gets Anthropic Mono treatment. */
 .eyebrow,
 .panel-kicker,
 .community-kicker,
@@ -162,27 +138,34 @@ input,select,textarea{
 .stats span,
 .success-summary span,
 .draft-status{
-  font-weight:600!important;
-  letter-spacing:.08em!important;
+  font-family:var(--claude-font-mono)!important;
+  font-weight:500!important;
+  letter-spacing:.035em!important;
 }
 
+/* Claude-like display scale. */
+.hero h1{font-size:clamp(54px,7vw,82px)!important}
+.section-head h2,.values-head h2{font-size:clamp(36px,4.4vw,50px)!important}
+.faq-intro h2,.community-card h2,.cta h2{font-size:clamp(32px,3.6vw,44px)!important}
+.hero-panel h2{font-size:34px!important}
+
+html[data-theme="dark"] body{font-weight:400}
+html[data-theme="dark"] p,
+html[data-theme="dark"] .lead,
+html[data-theme="dark"] .value-card p,
+html[data-theme="dark"] .role p{font-weight:400!important}
+
 @media(max-width:620px){
+  html,body{font-size:16px}
   .hero h1{
-    line-height:1!important;
-    letter-spacing:-.04em!important;
+    font-size:clamp(42px,12vw,52px)!important;
+    line-height:1.05!important;
   }
-  .section-head h2,
-  .values-head h2,
-  .faq-intro h2,
-  .community-card h2,
-  .cta h2{
-    line-height:1.07!important;
-    letter-spacing:-.03em!important;
+  .section-head h2,.values-head h2{
+    font-size:34px!important;
+    line-height:1.1!important;
   }
-  .lead,
-  .section-head p,
-  .values-head p,
-  .community-card p{
-    line-height:1.62!important;
-  }
+  .faq-intro h2,.community-card h2,.cta h2{font-size:31px!important;line-height:1.12!important}
+  .hero-panel h2{font-size:29px!important}
+  .lead{font-size:16px!important;line-height:1.58!important}
 }
