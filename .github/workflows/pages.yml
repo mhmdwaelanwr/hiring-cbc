@@ -25,6 +25,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Stamp static asset versions
+        shell: bash
+        run: |
+          VERSION="${GITHUB_SHA::12}"
+          sed -i -E "s#(assets/(css|js)/[^?\"']+)\?v=[^\"']+#\1?v=${VERSION}#g" index.html
+          sed -i -E "s#\?v=[A-Za-z0-9._-]+#?v=${VERSION}#g" assets/css/site.css
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
