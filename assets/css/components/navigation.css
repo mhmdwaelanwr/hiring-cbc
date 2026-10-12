@@ -1,0 +1,127 @@
+/* Navigation alignment + unified social controls. Loaded after all legacy/brand layers. */
+
+.nav{
+  min-height:72px!important;
+}
+
+.nav-inner{
+  min-height:72px!important;
+  height:72px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+}
+
+.nav-links{
+  min-height:72px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+.nav-links>a,
+.nav-links>button,
+.nav-links>.nav-status{
+  align-self:center!important;
+  margin-block:0!important;
+}
+
+.nav-links>a:not(.nav-facebook):not(.nav-whatsapp){
+  min-height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 10px!important;
+  line-height:1!important;
+}
+
+.nav-facebook,
+.nav-whatsapp{
+  min-height:40px!important;
+  height:40px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  padding:0 13px!important;
+  border-radius:12px!important;
+  border:1px solid transparent!important;
+  background:transparent!important;
+  text-decoration:none!important;
+  white-space:nowrap!important;
+  font-family:var(--claude-font-sans,"Poppins",Arial,sans-serif)!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  box-sizing:border-box!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+
+.nav-facebook svg{
+  width:16px!important;
+  height:16px!important;
+  flex:0 0 16px!important;
+}
+
+/* WhatsApp gets the same icon/text structure as Facebook without changing HTML. */
+.nav-whatsapp::before{
+  content:""!important;
+  width:16px!important;
+  height:16px!important;
+  flex:0 0 16px!important;
+  display:block!important;
+  background:currentColor!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+}
+
+.nav-facebook{
+  color:#6a9bcc!important;
+  border-color:color-mix(in srgb,#6a9bcc 58%,transparent)!important;
+  background:color-mix(in srgb,#6a9bcc 10%,transparent)!important;
+}
+
+.nav-whatsapp{
+  color:#788c5d!important;
+  border-color:color-mix(in srgb,#788c5d 58%,transparent)!important;
+  background:color-mix(in srgb,#788c5d 10%,transparent)!important;
+}
+
+.nav-facebook:hover,
+.nav-whatsapp:hover{
+  transform:translateY(-1px)!important;
+}
+
+.nav-facebook:hover{
+  background:color-mix(in srgb,#6a9bcc 16%,transparent)!important;
+}
+
+.nav-whatsapp:hover{
+  background:color-mix(in srgb,#788c5d 16%,transparent)!important;
+}
+
+.theme-toggle,
+.nav-apply{
+  min-height:40px!important;
+  height:40px!important;
+  align-self:center!important;
+}
+
+@media(max-width:1040px){
+  .nav-links{gap:6px!important}
+  .nav-facebook,.nav-whatsapp{padding-inline:10px!important}
+}
+
+@media(max-width:760px){
+  .nav-inner{
+    min-height:64px!important;
+    height:64px!important;
+  }
+  .nav-links{
+    min-height:64px!important;
+  }
+}
