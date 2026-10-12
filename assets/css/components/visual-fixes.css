@@ -1,0 +1,167 @@
+/* Final visual corrections for Claude identity, CTA restraint, and social icons. */
+
+/* The Claude wordmark already includes the Spark. Avoid showing a second Spark beside it. */
+.brief-mark{
+  display:none!important;
+}
+
+.brief-top{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:0!important;
+}
+
+.brief-top>div:last-child{
+  min-width:0!important;
+}
+
+.brief-top>div:last-child>span{
+  width:148px!important;
+  height:34px!important;
+  background-size:contain!important;
+  background-position:left center!important;
+}
+
+.brief-top>div:last-child>strong{
+  margin-top:7px!important;
+  display:block!important;
+}
+
+/* Remove the oversized decorative star near the primary CTA. */
+.cta::before,
+.cta::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Unified social pill system. */
+.nav-facebook,
+.nav-whatsapp{
+  width:126px!important;
+  min-width:126px!important;
+  height:40px!important;
+  padding:0 14px!important;
+  gap:9px!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  border:1px solid color-mix(in srgb,var(--brand-mid,#b0aea5) 42%,transparent)!important;
+  color:var(--ink,#141413)!important;
+  font-size:12px!important;
+  font-weight:500!important;
+  line-height:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+html[data-theme="dark"] .nav-facebook,
+html[data-theme="dark"] .nav-whatsapp{
+  color:var(--brand-light,#faf9f5)!important;
+  background:color-mix(in srgb,var(--brand-light,#faf9f5) 2%,transparent)!important;
+  border-color:color-mix(in srgb,var(--brand-light,#faf9f5) 20%,transparent)!important;
+}
+
+.nav-facebook:hover,
+.nav-whatsapp:hover{
+  background:color-mix(in srgb,var(--brand-light-gray,#e8e6dc) 35%,transparent)!important;
+  border-color:color-mix(in srgb,var(--brand-mid,#b0aea5) 62%,transparent)!important;
+}
+
+html[data-theme="dark"] .nav-facebook:hover,
+html[data-theme="dark"] .nav-whatsapp:hover{
+  background:color-mix(in srgb,var(--brand-light,#faf9f5) 6%,transparent)!important;
+}
+
+.nav-facebook svg,
+.nav-whatsapp svg{
+  display:none!important;
+}
+
+.nav-facebook::before,
+.nav-whatsapp::before{
+  content:""!important;
+  display:block!important;
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+}
+
+.nav-facebook::before{
+  background-image:url("../../icons/social/facebook.svg")!important;
+}
+
+.nav-whatsapp::before{
+  background-image:url("../../icons/social/whatsapp.svg")!important;
+}
+
+/* Keep community social controls consistent with the navbar without making them loud. */
+.community-link.facebook,
+.community-link.whatsapp{
+  background:transparent!important;
+  color:var(--ink,#141413)!important;
+  border:1px solid color-mix(in srgb,var(--brand-mid,#b0aea5) 42%,transparent)!important;
+  box-shadow:none!important;
+}
+
+html[data-theme="dark"] .community-link.facebook,
+html[data-theme="dark"] .community-link.whatsapp{
+  color:var(--brand-light,#faf9f5)!important;
+  border-color:color-mix(in srgb,var(--brand-light,#faf9f5) 20%,transparent)!important;
+}
+
+.community-link.facebook svg,
+.community-link.whatsapp svg{
+  display:none!important;
+}
+
+.community-link.facebook::before,
+.community-link.whatsapp::before,
+.footer-social a[href*="facebook.com"]::before,
+.footer-social a[href*="chat.whatsapp.com"]::before{
+  content:""!important;
+  display:block!important;
+  width:17px!important;
+  height:17px!important;
+  flex:0 0 17px!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+}
+
+.community-link.facebook::before,
+.footer-social a[href*="facebook.com"]::before{
+  background-image:url("../../icons/social/facebook.svg")!important;
+}
+
+.community-link.whatsapp::before,
+.footer-social a[href*="chat.whatsapp.com"]::before{
+  background-image:url("../../icons/social/whatsapp.svg")!important;
+}
+
+.footer-social a{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+
+.footer-social a[href*="facebook.com"] svg{
+  display:none!important;
+}
+
+.wa-dot{
+  width:18px!important;
+  height:18px!important;
+  border-radius:0!important;
+  background:transparent url("../../icons/social/whatsapp.svg") center/contain no-repeat!important;
+  box-shadow:none!important;
+}
+
+@media(max-width:760px){
+  .brief-top>div:last-child>span{
+    width:128px!important;
+    height:29px!important;
+  }
+}
