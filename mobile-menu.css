@@ -1,6 +1,8 @@
 @import url("./claude-theme.css?v=20261013official2");
 @import url("./claude-typography.css?v=20261013official3");
 @import url("./anthropic-official.css?v=20261013official3");
+@import url("./claude-form.css?v=20261013f3");
+@import url("./claude-form-fix.css?v=20261013f3");
 
 /* Claude Builder Club — mobile navigation drawer */
 .mobile-menu-toggle,
