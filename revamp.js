@@ -31,7 +31,6 @@
   const themeToggle = qs('#themeToggle');
   let lastFocused = null;
 
-  /* Mobile burger drawer */
   function initMobileMenu() {
     if (!navContainer || qs('.mobile-menu-toggle')) return;
 
@@ -142,7 +141,6 @@
   }
   initMobileMenu();
 
-  /* Team discovery */
   const groupFor = c => {
     const v = normalize(c);
     if (['technical','build'].includes(v)) return 'technical';
@@ -194,7 +192,6 @@
   }));
   teamSearch?.addEventListener('input', filterTeams, { passive:true });
 
-  /* Draft feedback */
   let draftTimer = 0;
   const setDraft = saving => {
     if (!draftStatus) return;
@@ -206,7 +203,6 @@
     form.addEventListener('input', activity, { passive:true }); form.addEventListener('change', activity, { passive:true }); setDraft(false);
   }
 
-  /* Review summary */
   const value = name => { const f = form?.elements?.namedItem?.(name); return f && 'value' in f ? String(f.value || '').trim() : ''; };
   function ensureReview(){
     const page = qs('.form-page[data-page="5"]', form); if (!page) return null;
@@ -229,7 +225,6 @@
   nextBtn?.addEventListener('click', () => setTimeout(updateReview, 0));
   form?.addEventListener('input', updateReview, { passive:true }); form?.addEventListener('change', updateReview, { passive:true });
 
-  /* Mobile action dock */
   function makeDock(){
     if (qs('.mobile-dock')) return qs('.mobile-dock');
     const dock = document.createElement('div'); dock.className='mobile-dock'; dock.hidden=true;
@@ -248,7 +243,6 @@
   if (hero && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => updateDock(e.isIntersecting && e.intersectionRatio>.18), { threshold:[0,.18,.45] }).observe(hero); else updateDock();
   mobile.addEventListener?.('change', () => updateDock());
 
-  /* Modal accessibility */
   function syncModal(){
     const open = !!modal?.classList.contains('open'); document.body.classList.toggle('modal-open', open); updateDock(open ? true : null);
     if (open) { if (!lastFocused) lastFocused=document.activeElement; setTimeout(focusActiveField,80); }
@@ -264,10 +258,8 @@
   });
   closeModal?.addEventListener('click', () => { if (success?.classList.contains('show')) setTimeout(() => closeSuccess?.click(),0); });
 
-  /* FAQ accordion */
   qsa('.faq-list details').forEach(d => d.addEventListener('toggle', () => { if (d.open) qsa('.faq-list details').forEach(o => { if (o!==d) o.open=false; }); }));
 
-  /* Active nav + scroll */
   const navLinks = qsa('.nav-links a[href^="#"]');
   const sections = navLinks.map(l => qs(l.getAttribute('href'))).filter(Boolean);
   if (sections.length && 'IntersectionObserver' in window) {
@@ -281,7 +273,6 @@
   addEventListener('scroll', () => { if (ticking) return; ticking=true; requestAnimationFrame(() => { nav?.classList.toggle('scrolled', scrollY>8); if (!('IntersectionObserver' in window)) updateDock(); ticking=false; }); }, { passive:true });
   nav?.classList.toggle('scrolled', scrollY>8);
 
-  /* Lightweight reveal */
   function reveals(){
     const els=qsa('.value-card,.role,.steps>div,.faq-list details,.community-card,.cta');
     if (reduced || !('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('is-visible')); return; }
@@ -293,5 +284,5 @@
   qsa('.js-apply').forEach(b => b.addEventListener('click', () => setTimeout(focusActiveField,90)));
   const year=qs('#footerYear'); if(year) year.textContent=new Date().getFullYear();
   filterTeams(); ensureReview(); syncModal();
-  (requestIdleCallback || (cb=>setTimeout(cb,1)))(reveals);
+  (window.requestIdleCallback || (cb => setTimeout(cb, 1)))(reveals);
 })();
