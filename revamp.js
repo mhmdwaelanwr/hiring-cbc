@@ -144,13 +144,11 @@
     if (summary) return summary;
 
     summary = document.createElement('div');
-    summary.className = 'review-summary';
+    summary.className = 'preference-card review-summary';
     summary.innerHTML = `
-      <div class="review-summary-head">
-        <span>APPLICATION REVIEW</span>
-        <strong>Check your key details before submitting.</strong>
-      </div>
-      <div class="review-summary-grid">
+      <div class="success-kicker">APPLICATION REVIEW</div>
+      <p>Check your key details before submitting.</p>
+      <div class="success-summary review-summary-grid">
         <div><span>Name</span><strong data-review="name">—</strong></div>
         <div><span>AOU email</span><strong data-review="email">—</strong></div>
         <div><span>First preference</span><strong data-review="first">—</strong></div>
