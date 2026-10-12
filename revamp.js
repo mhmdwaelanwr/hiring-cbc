@@ -1,311 +1,27 @@
 (() => {
-  /*
-    Final responsive guardrails.
-    These rules intentionally load after every CSS layer so older visual layers
-    cannot re-introduce mobile overflow or override the HTML hidden attribute.
-  */
-  const responsiveStyle = document.createElement('style');
-  responsiveStyle.id = 'cbc-responsive-guardrails';
-  responsiveStyle.textContent = `
-    [hidden]{display:none!important}
-    html,body{max-width:100%;overflow-x:hidden}
-    .nav-inner,.hero,.stats,.section,.footer,.community-card,.cta{min-width:0}
+  const qs = (selector, root = document) => root.querySelector(selector);
+  const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+  const normalize = value => String(value || '').toLowerCase().trim();
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    @media(max-width:760px){
-      .nav-links>a{display:none!important}
-      .nav-status{display:none!important}
-      .nav-links .theme-toggle,.nav-links .nav-apply{display:inline-flex!important}
-    }
+  const modal = qs('#modal');
+  const modalCard = qs('.modal-card');
+  const closeModal = qs('#closeModal');
+  const closeSuccess = qs('#closeSuccess');
+  const success = qs('#success');
+  const form = qs('#applicationForm');
+  const nextBtn = qs('#nextBtn');
+  const teamFirst = qs('#teamFirst');
+  const teamSearch = qs('#teamSearch');
+  const resultCount = qs('#teamResultCount');
+  const rolesGrid = qs('#rolesGrid');
+  const draftStatus = qs('#draftStatus');
+  const nav = qs('.nav');
+  const hero = qs('.hero');
 
-    @media(max-width:620px){
-      html{scroll-padding-top:72px}
-      body{padding-bottom:66px!important}
+  let lastFocusedElement = null;
 
-      .nav{overflow:visible}
-      .nav-inner{
-        width:100%!important;
-        min-height:64px!important;
-        padding:0 12px!important;
-        gap:8px!important;
-      }
-      .brand{
-        flex:1 1 auto!important;
-        min-width:0!important;
-        max-width:calc(100% - 116px)!important;
-        gap:8px!important;
-        overflow:hidden;
-      }
-      .brand::before{
-        width:38px!important;
-        height:38px!important;
-        flex:0 0 38px!important;
-        border-radius:12px!important;
-        background-size:21px 21px!important;
-      }
-      .brand-copy{
-        min-width:0!important;
-        overflow:hidden!important;
-      }
-      .brand-copy strong{
-        display:block!important;
-        max-width:100%!important;
-        overflow:hidden!important;
-        text-overflow:ellipsis!important;
-        white-space:nowrap!important;
-        font-size:12px!important;
-        line-height:1.15!important;
-      }
-      .brand-copy small{display:none!important}
-
-      .nav-links{
-        flex:0 0 auto!important;
-        gap:7px!important;
-        min-width:auto!important;
-      }
-      .nav-links>a,.nav-facebook,.nav-whatsapp,.nav-status{display:none!important}
-      .theme-toggle{
-        display:inline-grid!important;
-        place-items:center!important;
-        width:36px!important;
-        height:36px!important;
-        min-height:36px!important;
-        padding:0!important;
-        border-radius:50%!important;
-        flex:0 0 36px!important;
-      }
-      .theme-toggle .theme-label{display:none!important}
-      .theme-toggle .theme-icon{
-        width:auto!important;
-        height:auto!important;
-        background:transparent!important;
-        font-size:15px!important;
-      }
-      .nav-apply{
-        display:inline-flex!important;
-        min-width:68px!important;
-        min-height:40px!important;
-        padding:10px 14px!important;
-        border-radius:13px!important;
-        font-size:12px!important;
-        line-height:1!important;
-        white-space:nowrap!important;
-      }
-
-      .hero{
-        width:min(92%,1180px)!important;
-        min-height:0!important;
-        padding:36px 0 36px!important;
-        gap:24px!important;
-      }
-      .hero-status{
-        margin:0 0 18px!important;
-        padding:7px 10px!important;
-        font-size:10.5px!important;
-      }
-      .hero .eyebrow{
-        margin-bottom:12px!important;
-        font-size:9.5px!important;
-        letter-spacing:.13em!important;
-      }
-      .hero h1{
-        max-width:100%!important;
-        font-size:clamp(42px,12.2vw,54px)!important;
-        line-height:.94!important;
-        letter-spacing:-.045em!important;
-        overflow-wrap:normal!important;
-      }
-      .hero-club-name{
-        margin:14px 0 17px!important;
-        gap:8px!important;
-        font-size:24px!important;
-        line-height:1.08!important;
-      }
-      .hero-club-name::before{
-        width:25px!important;
-        height:25px!important;
-        flex-basis:25px!important;
-        border-radius:8px!important;
-        background-size:14px 14px!important;
-      }
-      .lead{
-        max-width:100%!important;
-        font-size:15.5px!important;
-        line-height:1.62!important;
-      }
-      .hero-actions{
-        display:grid!important;
-        grid-template-columns:1fr!important;
-        gap:9px!important;
-        margin-top:22px!important;
-      }
-      .hero-actions .btn,
-      .hero-actions a{
-        width:100%!important;
-        min-height:50px!important;
-        padding:13px 16px!important;
-        border-radius:14px!important;
-        font-size:15px!important;
-        line-height:1.2!important;
-        text-align:center!important;
-        justify-content:center!important;
-      }
-      .hero-actions svg{width:16px!important;height:16px!important;flex:0 0 16px!important}
-
-      .community-proof{
-        display:flex!important;
-        flex-direction:row!important;
-        align-items:center!important;
-        justify-content:flex-start!important;
-        flex-wrap:wrap!important;
-        gap:7px!important;
-        margin-top:14px!important;
-      }
-      .community-proof span,
-      .community-proof a{
-        width:auto!important;
-        min-height:30px!important;
-        padding:6px 9px!important;
-        justify-content:flex-start!important;
-        border-radius:999px!important;
-        font-size:9.5px!important;
-        line-height:1.2!important;
-      }
-      .community-proof svg{width:13px!important;height:13px!important;flex:0 0 13px!important}
-      .community-proof .proof-facebook{display:none!important}
-
-      .hero-panel,
-      .hero-panel.hero-brief{
-        width:100%!important;
-        min-height:0!important;
-        padding:23px!important;
-        border-radius:20px!important;
-      }
-      .hero-panel h2,.hero-panel.hero-brief h2{
-        font-size:29px!important;
-        line-height:1.08!important;
-      }
-      .hero-panel li,.hero-panel.hero-brief li{font-size:13px!important;line-height:1.5!important}
-
-      .stats{
-        grid-template-columns:1fr 1fr!important;
-        gap:9px!important;
-        margin-bottom:50px!important;
-      }
-      .stats div{min-height:82px!important;padding:14px!important}
-      .stats strong{font-size:25px!important}
-      .stats span{font-size:9px!important}
-
-      .section{padding:54px 0!important}
-      .section-head{margin-bottom:22px!important}
-      .section-head h2{font-size:34px!important;line-height:1.03!important}
-      .section-head p{font-size:14px!important;line-height:1.6!important}
-
-      .role{padding:20px!important;border-radius:16px!important}
-      .role h3{font-size:20px!important}
-      .role p{font-size:13px!important}
-      .role-apply{min-height:44px!important;font-size:11px!important}
-
-      .community-card{
-        grid-template-columns:1fr!important;
-        gap:20px!important;
-        padding:22px 19px!important;
-        border-radius:18px!important;
-      }
-      .community-card h2{font-size:32px!important}
-      .community-card p{font-size:13.5px!important}
-      .community-actions{
-        display:grid!important;
-        grid-template-columns:1fr!important;
-        width:100%!important;
-        gap:8px!important;
-      }
-      .community-link{
-        width:100%!important;
-        min-height:46px!important;
-        padding:11px 13px!important;
-        font-size:12px!important;
-      }
-      .community-link svg{width:16px!important;height:16px!important}
-
-      .cta{
-        min-height:0!important;
-        padding:26px 22px!important;
-        border-radius:19px!important;
-      }
-      .cta h2{font-size:31px!important}
-      .cta .btn{width:100%!important;min-height:48px!important;font-size:14px!important}
-
-      .floating-whatsapp{
-        left:auto!important;
-        right:12px!important;
-        bottom:calc(10px + env(safe-area-inset-bottom))!important;
-        width:auto!important;
-        max-width:138px!important;
-        min-height:46px!important;
-        padding:9px 13px!important;
-        gap:8px!important;
-        border-radius:999px!important;
-        justify-content:flex-start!important;
-      }
-      .floating-whatsapp .wa-dot{
-        width:10px!important;
-        height:10px!important;
-        flex:0 0 10px!important;
-      }
-      .floating-whatsapp strong{
-        font-size:0!important;
-        white-space:nowrap!important;
-      }
-      .floating-whatsapp strong::after{
-        content:"Updates";
-        font-size:11.5px;
-      }
-      .floating-whatsapp small{display:none!important}
-
-      .footer{
-        padding:26px 0 82px!important;
-        gap:14px!important;
-      }
-      .footer-social{gap:5px!important}
-      .footer-social a{font-size:10.5px!important}
-
-      .modal-head{padding-right:60px!important}
-      .modal-head h2{font-size:17px!important}
-      .form-page h3{font-size:28px!important}
-      input,select,textarea{font-size:16px!important}
-    }
-
-    @media(max-width:390px){
-      .nav-inner{padding-inline:10px!important}
-      .brand{max-width:calc(100% - 110px)!important}
-      .brand::before{width:34px!important;height:34px!important;flex-basis:34px!important;background-size:19px 19px!important}
-      .brand-copy strong{font-size:11px!important}
-      .theme-toggle{width:34px!important;height:34px!important;min-height:34px!important;flex-basis:34px!important}
-      .nav-apply{min-width:64px!important;min-height:38px!important;padding-inline:12px!important}
-      .hero h1{font-size:clamp(39px,12.5vw,48px)!important}
-      .hero-club-name{font-size:21px!important}
-      .team-filters{grid-template-columns:1fr!important}
-    }
-  `;
-  document.head.appendChild(responsiveStyle);
-
-  const modal = document.querySelector('#modal');
-  const closeModal = document.querySelector('#closeModal');
-  const closeSuccess = document.querySelector('#closeSuccess');
-  const success = document.querySelector('#success');
-  const form = document.querySelector('#applicationForm');
-  const nextBtn = document.querySelector('#nextBtn');
-  const teamFirst = document.querySelector('#teamFirst');
-  const teamSearch = document.querySelector('#teamSearch');
-  const resultCount = document.querySelector('#teamResultCount');
-  const rolesGrid = document.querySelector('#rolesGrid');
-  const draftStatus = document.querySelector('#draftStatus');
-  const nav = document.querySelector('.nav');
-
-  function normalize(value) {
-    return String(value || '').toLowerCase().trim();
-  }
-
+  /* ---------- Team discovery ---------- */
   function filterGroup(category) {
     const cat = normalize(category);
     if (['technical', 'build'].includes(cat)) return 'technical';
@@ -316,24 +32,25 @@
   }
 
   function getCards() {
-    return Array.from(document.querySelectorAll('#rolesGrid .role'));
+    return qsa('#rolesGrid .role');
   }
 
   function focusActiveField() {
-    const field = form?.querySelector('.form-page.active input:not([type="hidden"]), .form-page.active select, .form-page.active textarea');
+    const activePage = qs('.form-page.active', form);
+    const field = activePage?.querySelector('input:not([type="hidden"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled])');
     field?.focus?.({ preventScroll: true });
   }
 
   function enhanceCards() {
     getCards().forEach(card => {
-      if (card.querySelector('.role-apply')) return;
-      const title = card.querySelector('h3')?.textContent?.trim();
-      const category = card.querySelector('small')?.textContent?.trim();
+      const title = qs('h3', card)?.textContent?.trim();
+      const category = qs('small', card)?.textContent?.trim();
       if (!title) return;
 
       card.dataset.teamName = title;
       card.dataset.teamGroup = filterGroup(category);
 
+      if (qs('.role-apply', card)) return;
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'role-apply';
@@ -344,9 +61,9 @@
           teamFirst.value = title;
           teamFirst.dispatchEvent(new Event('change', { bubbles: true }));
         }
-        const trigger = document.querySelector('.hero .js-apply') || document.querySelector('.js-apply');
+        const trigger = qs('.hero .js-apply') || qs('.js-apply');
         trigger?.click();
-        window.setTimeout(focusActiveField, 120);
+        window.setTimeout(focusActiveField, 90);
       });
       card.appendChild(button);
     });
@@ -359,21 +76,18 @@
     let visible = 0;
 
     getCards().forEach(card => {
-      const haystack = normalize(card.textContent);
       const groupMatches = activeFilter === 'all' || card.dataset.teamGroup === activeFilter;
-      const searchMatches = !query || haystack.includes(query);
+      const searchMatches = !query || normalize(card.textContent).includes(query);
       const show = groupMatches && searchMatches;
       card.hidden = !show;
       if (show) visible += 1;
     });
 
-    if (resultCount) {
-      resultCount.textContent = visible === 1 ? '1 team shown' : `${visible} teams shown`;
-    }
+    if (resultCount) resultCount.textContent = `${visible} ${visible === 1 ? 'team' : 'teams'} shown`;
 
-    let empty = document.querySelector('#teamEmpty');
-    if (!visible) {
-      if (!empty && rolesGrid) {
+    let empty = qs('#teamEmpty');
+    if (!visible && rolesGrid) {
+      if (!empty) {
         empty = document.createElement('div');
         empty.id = 'teamEmpty';
         empty.className = 'team-empty';
@@ -386,51 +100,49 @@
     }
   }
 
-  document.querySelectorAll('[data-team-filter]').forEach(button => {
+  qsa('[data-team-filter]').forEach(button => {
     button.addEventListener('click', () => {
       activeFilter = button.dataset.teamFilter || 'all';
-      document.querySelectorAll('[data-team-filter]').forEach(item => {
-        item.classList.toggle('active', item === button);
-        item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
+      qsa('[data-team-filter]').forEach(item => {
+        const active = item === button;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-pressed', String(active));
       });
       applyTeamFilter();
     });
   });
 
-  teamSearch?.addEventListener('input', applyTeamFilter);
+  teamSearch?.addEventListener('input', applyTeamFilter, { passive: true });
 
-  function updateDraftStatus(state) {
+  /* ---------- Draft feedback ---------- */
+  function setDraftStatus(saving) {
     if (!draftStatus) return;
-    if (state === 'saving') {
-      draftStatus.textContent = 'Saving draft…';
-      draftStatus.classList.add('saving');
-      return;
-    }
-    draftStatus.textContent = 'Draft saved on this device';
-    draftStatus.classList.remove('saving');
+    draftStatus.textContent = saving ? 'Saving draft…' : 'Draft saved on this device';
+    draftStatus.classList.toggle('saving', saving);
   }
 
-  let saveTimer = null;
+  let draftTimer = 0;
   if (form && draftStatus) {
-    const handleDraftActivity = () => {
-      updateDraftStatus('saving');
-      window.clearTimeout(saveTimer);
-      saveTimer = window.setTimeout(() => updateDraftStatus('saved'), 450);
+    const onDraftChange = () => {
+      setDraftStatus(true);
+      window.clearTimeout(draftTimer);
+      draftTimer = window.setTimeout(() => setDraftStatus(false), 420);
     };
-    form.addEventListener('input', handleDraftActivity);
-    form.addEventListener('change', handleDraftActivity);
-    updateDraftStatus('saved');
+    form.addEventListener('input', onDraftChange, { passive: true });
+    form.addEventListener('change', onDraftChange, { passive: true });
+    setDraftStatus(false);
   }
 
+  /* ---------- Review summary ---------- */
   function formValue(name) {
     const field = form?.elements?.namedItem?.(name);
     return field && 'value' in field ? String(field.value || '').trim() : '';
   }
 
   function ensureReviewSummary() {
-    const page = form?.querySelector('.form-page[data-page="5"]');
+    const page = qs('.form-page[data-page="5"]', form);
     if (!page) return null;
-    let summary = page.querySelector('.review-summary');
+    let summary = qs('.review-summary', page);
     if (summary) return summary;
 
     summary = document.createElement('div');
@@ -445,8 +157,7 @@
         <div><span>Second preference</span><strong data-review="second">—</strong></div>
         <div><span>Availability</span><strong data-review="availability">—</strong></div>
         <div><span>In-person</span><strong data-review="in-person">—</strong></div>
-      </div>
-    `;
+      </div>`;
 
     const intro = page.querySelector(':scope > p');
     intro?.insertAdjacentElement('afterend', summary);
@@ -459,62 +170,208 @@
   }
 
   function updateReviewSummary() {
-    const page = form?.querySelector('.form-page[data-page="5"]');
+    const page = qs('.form-page[data-page="5"]', form);
     if (!page?.classList.contains('active')) return;
 
     const summary = ensureReviewSummary();
-    const firstTeam = formValue('team_first');
-    const firstRole = formValue('preferred_role');
-    const secondTeam = formValue('team_second');
-    const secondRole = formValue('second_preferred_role');
-
+    const first = [formValue('team_first'), formValue('preferred_role')].filter(Boolean).join(' · ');
+    const second = [formValue('team_second'), formValue('second_preferred_role')].filter(Boolean).join(' · ');
     setReviewValue(summary, 'name', formValue('full_name'));
     setReviewValue(summary, 'email', formValue('university_email'));
-    setReviewValue(summary, 'first', [firstTeam, firstRole].filter(Boolean).join(' · '));
-    setReviewValue(summary, 'second', [secondTeam, secondRole].filter(Boolean).join(' · '));
+    setReviewValue(summary, 'first', first);
+    setReviewValue(summary, 'second', second);
     setReviewValue(summary, 'availability', formValue('availability'));
     setReviewValue(summary, 'in-person', formValue('in_person'));
   }
 
-  const reviewPage = form?.querySelector('.form-page[data-page="5"]');
-  if (reviewPage) {
-    const observer = new MutationObserver(updateReviewSummary);
-    observer.observe(reviewPage, { attributes: true, attributeFilter: ['class'] });
+  const reviewPage = qs('.form-page[data-page="5"]', form);
+  if (reviewPage && 'MutationObserver' in window) {
+    new MutationObserver(updateReviewSummary).observe(reviewPage, { attributes: true, attributeFilter: ['class'] });
   }
   nextBtn?.addEventListener('click', () => window.setTimeout(updateReviewSummary, 0));
-  form?.addEventListener('change', updateReviewSummary);
-  form?.addEventListener('input', updateReviewSummary);
+  form?.addEventListener('change', updateReviewSummary, { passive: true });
+  form?.addEventListener('input', updateReviewSummary, { passive: true });
+
+  /* ---------- Mobile action dock ---------- */
+  function createMobileDock() {
+    if (qs('.mobile-dock')) return qs('.mobile-dock');
+
+    const dock = document.createElement('div');
+    dock.className = 'mobile-dock';
+    dock.hidden = true;
+    dock.innerHTML = `
+      <button type="button" class="dock-apply">Start application</button>
+      <a class="dock-updates" href="https://chat.whatsapp.com/GwiXzxyBXTBDsBqeenPYP8" target="_blank" rel="noopener noreferrer" aria-label="Recruitment updates on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.6 5.96L0 24l6.24-1.64a11.93 11.93 0 0 0 5.81 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.41Z"/></svg>
+      </a>`;
+    document.body.appendChild(dock);
+
+    qs('.dock-apply', dock)?.addEventListener('click', () => {
+      const trigger = qs('.hero .js-apply:not([hidden])') || qs('.js-apply:not([hidden])');
+      trigger?.click();
+    });
+    return dock;
+  }
+
+  const mobileDock = createMobileDock();
+  const mobileQuery = window.matchMedia('(max-width: 620px)');
+
+  function updateDockVisibility(heroVisible = null) {
+    if (!mobileDock) return;
+    if (!mobileQuery.matches || modal?.classList.contains('open')) {
+      mobileDock.hidden = true;
+      return;
+    }
+
+    const applyAvailable = Boolean(qs('.js-apply:not([hidden])'));
+    if (!applyAvailable) {
+      mobileDock.hidden = true;
+      return;
+    }
+
+    const shouldHideForHero = heroVisible === null
+      ? (hero ? hero.getBoundingClientRect().bottom > window.innerHeight * .82 : false)
+      : heroVisible;
+    mobileDock.hidden = shouldHideForHero;
+  }
+
+  if (hero && 'IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver(entries => {
+      const entry = entries[0];
+      updateDockVisibility(entry.isIntersecting && entry.intersectionRatio > .18);
+    }, { threshold: [0, .18, .45] });
+    heroObserver.observe(hero);
+  } else {
+    updateDockVisibility();
+  }
+  mobileQuery.addEventListener?.('change', () => updateDockVisibility());
+
+  /* ---------- Modal state / keyboard accessibility ---------- */
+  function syncModalState() {
+    const open = Boolean(modal?.classList.contains('open'));
+    document.body.classList.toggle('modal-open', open);
+    updateDockVisibility(open ? true : null);
+
+    if (open) {
+      if (!lastFocusedElement) lastFocusedElement = document.activeElement;
+      window.setTimeout(focusActiveField, 80);
+    } else if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus?.({ preventScroll: true });
+      lastFocusedElement = null;
+    }
+  }
+
+  if (modal && 'MutationObserver' in window) {
+    new MutationObserver(syncModalState).observe(modal, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function getFocusable() {
+    if (!modalCard) return [];
+    return qsa('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])', modalCard)
+      .filter(el => !el.hidden && el.offsetParent !== null);
+  }
 
   document.addEventListener('keydown', event => {
-    if (event.key !== 'Escape' || !modal?.classList.contains('open')) return;
-    if (success?.classList.contains('show')) closeSuccess?.click();
-    else closeModal?.click();
-  });
+    if (!modal?.classList.contains('open')) return;
 
-  closeModal?.addEventListener('click', () => {
-    if (success?.classList.contains('show')) {
-      window.setTimeout(() => closeSuccess?.click(), 0);
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      if (success?.classList.contains('show')) closeSuccess?.click();
+      else closeModal?.click();
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusable = getFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 
-  document.querySelectorAll('.js-apply').forEach(button => {
-    button.addEventListener('click', () => {
-      window.setTimeout(() => {
-        if (modal?.classList.contains('open')) focusActiveField();
-      }, 120);
+  closeModal?.addEventListener('click', () => {
+    if (success?.classList.contains('show')) window.setTimeout(() => closeSuccess?.click(), 0);
+  });
+
+  /* ---------- FAQ ---------- */
+  qsa('.faq-list details').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if (!detail.open) return;
+      qsa('.faq-list details').forEach(other => {
+        if (other !== detail) other.open = false;
+      });
     });
   });
 
-  function syncNavState() {
-    nav?.classList.toggle('scrolled', window.scrollY > 8);
-  }
-  syncNavState();
-  window.addEventListener('scroll', syncNavState, { passive: true });
+  /* ---------- Active navigation + scroll state ---------- */
+  const navLinks = qsa('.nav-links a[href^="#"]');
+  const sections = navLinks
+    .map(link => qs(link.getAttribute('href')))
+    .filter(Boolean);
 
-  const year = document.querySelector('#footerYear');
+  if (sections.length && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${visible.target.id}`));
+    }, { rootMargin: '-25% 0px -58% 0px', threshold: [0, .1, .35] });
+    sections.forEach(section => sectionObserver.observe(section));
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      nav?.classList.toggle('scrolled', window.scrollY > 8);
+      if (!('IntersectionObserver' in window)) updateDockVisibility();
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Lightweight reveal motion ---------- */
+  function setupReveals() {
+    const elements = qsa('.value-card,.role,.steps>div,.faq-list details,.community-card,.cta');
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      elements.forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    elements.forEach(el => el.classList.add('reveal-ready'));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    elements.forEach(el => observer.observe(el));
+  }
+
+  /* ---------- Apply triggers ---------- */
+  qsa('.js-apply').forEach(button => {
+    button.addEventListener('click', () => window.setTimeout(focusActiveField, 90));
+  });
+
+  const year = qs('#footerYear');
   if (year) year.textContent = new Date().getFullYear();
 
   enhanceCards();
   applyTeamFilter();
   ensureReviewSummary();
+  syncModalState();
+
+  const idle = window.requestIdleCallback || (callback => window.setTimeout(callback, 1));
+  idle(setupReveals);
 })();
