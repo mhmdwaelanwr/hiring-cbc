@@ -19,7 +19,7 @@ window.CLUB_CONFIG = {
 
 (() => {
   [
-    ["./assets/js/ui-polish.js?v=20261013social1", "cbc-ui-polish"],
+    ["./assets/js/ui-polish.js?v=20261013selectclick1", "cbc-ui-polish"],
     ["./assets/js/form-quality.js?v=20261013quality1", "cbc-form-quality"]
   ].forEach(([src, marker]) => {
     if (document.querySelector(`script[data-module="${marker}"]`)) return;
