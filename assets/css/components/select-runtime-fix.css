@@ -1,0 +1,67 @@
+/*
+  Last-mile native select compatibility.
+  Windows/Chromium can ignore parts of option styling when the page advertises a
+  dark color-scheme. Keep the field itself themed, but force the operating-system
+  popup to a predictable light scheme so options never render blank or inverted.
+*/
+
+#applicationForm select{
+  color-scheme:light!important;
+  isolation:isolate!important;
+  background-clip:padding-box!important;
+}
+
+#applicationForm select option,
+#applicationForm select optgroup,
+html[data-theme="dark"] #applicationForm select option,
+html[data-theme="dark"] #applicationForm select optgroup{
+  color:#141413!important;
+  background-color:#ffffff!important;
+  -webkit-text-fill-color:#141413!important;
+}
+
+#applicationForm select option:checked{
+  color:#141413!important;
+  background:#e8e6dc!important;
+  -webkit-text-fill-color:#141413!important;
+}
+
+#applicationForm select option:disabled,
+html[data-theme="dark"] #applicationForm select option:disabled{
+  color:#8d8981!important;
+  background:#ffffff!important;
+  -webkit-text-fill-color:#8d8981!important;
+}
+
+/* Keep the closed control dark in dark mode while its OS popup remains readable. */
+html[data-theme="dark"] #applicationForm select{
+  color:var(--form-light)!important;
+  -webkit-text-fill-color:var(--form-light)!important;
+  color-scheme:light!important;
+}
+
+html[data-theme="dark"] #applicationForm select:required:invalid{
+  color:var(--form-mid)!important;
+  -webkit-text-fill-color:var(--form-mid)!important;
+}
+
+/* Disabled role/major selectors should never look like active blank fields. */
+#applicationForm select:disabled{
+  cursor:not-allowed!important;
+  filter:saturate(.72)!important;
+}
+
+/* Safari/iOS should keep the platform picker; only normalize the closed field. */
+@media(max-width:760px), (pointer:coarse){
+  #applicationForm select{
+    appearance:auto!important;
+    -webkit-appearance:menulist!important;
+    background-image:none!important;
+    padding-right:13px!important;
+    color-scheme:light!important;
+  }
+
+  html[data-theme="dark"] #applicationForm select{
+    color-scheme:dark!important;
+  }
+}
