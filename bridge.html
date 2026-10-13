@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>CBC Submission Bridge</title>
+</head>
+<body>
+<script>
+(() => {
+  const PARENT_ORIGIN = "https://claudeaou.github.io";
+  let upstreamFrame = null;
+  let upstreamForm = null;
+  let activeNonce = "";
+  let timeout = null;
+
+  function cleanup() {
+    if (timeout) clearTimeout(timeout);
+    timeout = null;
+    upstreamForm?.remove();
+    upstreamFrame?.remove();
+    upstreamForm = null;
+    upstreamFrame = null;
+    activeNonce = "";
+  }
+
+  function reply(message) {
+    window.parent.postMessage(message, PARENT_ORIGIN);
+  }
+
+  async function startSubmission(message) {
+    if (upstreamFrame || upstreamForm) return;
+
+    const nonce = String(message.nonce || "");
+    const endpoint = String(message.endpoint || "");
+    const payload = message.payload;
+
+    if (!nonce || !payload || typeof payload !== "object") {
+      reply({ type: "CBC_BRIDGE_ERROR", nonce, message: "Invalid bridge payload." });
+      return;
+    }
+
+    let target;
+    try { target = new URL(endpoint); }
+    catch (_) {
+      reply({ type: "CBC_BRIDGE_ERROR", nonce, message: "Invalid submission endpoint." });
+      return;
+    }
+
+    if (target.protocol !== "https:" || target.hostname !== "script.google.com") {
+      reply({ type: "CBC_BRIDGE_ERROR", nonce, message: "Unexpected submission endpoint." });
+      return;
+    }
+
+    activeNonce = nonce;
+    upstreamFrame = document.createElement("iframe");
+    upstreamFrame.name = "cbc-upstream-" + Date.now();
+    upstreamFrame.srcdoc = "<!doctype html><title>ready</title>";
+    upstreamFrame.hidden = true;
+    upstreamFrame.setAttribute("aria-hidden", "true");
+    document.body.appendChild(upstreamFrame);
+
+    await new Promise(resolve => {
+      upstreamFrame.addEventListener("load", resolve, { once: true });
+      setTimeout(resolve, 300);
+    });
+
+    upstreamForm = document.createElement("form");
+    upstreamForm.method = "POST";
+    upstreamForm.action = endpoint;
+    upstreamForm.target = upstreamFrame.name;
+    upstreamForm.hidden = true;
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "application_payload";
+    input.value = JSON.stringify(payload);
+    upstreamForm.appendChild(input);
+    document.body.appendChild(upstreamForm);
+
+    timeout = setTimeout(() => {
+      const nonceToReport = activeNonce;
+      cleanup();
+      reply({
+        type: "CBC_BRIDGE_ERROR",
+        nonce: nonceToReport,
+        message: "The application service did not return a verified response in time."
+      });
+    }, 45000);
+
+    upstreamForm.submit();
+  }
+
+  window.addEventListener("message", event => {
+    const data = event.data;
+    if (!data || typeof data !== "object") return;
+
+    if (event.source === window.parent) {
+      if (event.origin !== PARENT_ORIGIN || data.type !== "CBC_BRIDGE_SUBMIT") return;
+      startSubmission(data).catch(error => {
+        console.error("CBC bridge submission failed", error);
+        const nonce = String(data.nonce || "");
+        cleanup();
+        reply({ type: "CBC_BRIDGE_ERROR", nonce, message: "Could not start the application submission." });
+      });
+      return;
+    }
+
+    if (
+      upstreamFrame &&
+      event.source === upstreamFrame.contentWindow &&
+      data.type === "CBC_APPLICATION_RESULT" &&
+      String(data.nonce || "") === activeNonce
+    ) {
+      const result = { ...data };
+      cleanup();
+      reply(result);
+    }
+  });
+
+  reply({ type: "CBC_BRIDGE_READY" });
+})();
+</script>
+</body>
+</html>
