@@ -1,0 +1,68 @@
+/* Final cleanup for mobile spacing and temporary Facebook visibility. */
+
+/* Keep Facebook markup/links in the project, but hide them from the UI for now. */
+.nav-facebook,
+.hero-facebook,
+.community-link.facebook,
+.mobile-menu-social.facebook,
+.footer-social a[href*="facebook.com"],
+.social-after-submit{
+  display:none!important;
+}
+
+@media (max-width:760px){
+  /* Remove the oversized footer tail left by older mobile layers. */
+  .footer{
+    min-height:0!important;
+    height:auto!important;
+    padding-top:22px!important;
+    padding-bottom:24px!important;
+    gap:14px!important;
+    align-items:flex-start!important;
+    align-content:start!important;
+  }
+
+  .footer>div:first-child,
+  .footer-meta-line,
+  .footer-social{
+    margin:0!important;
+  }
+
+  .footer-meta-line{gap:6px!important}
+
+  .footer-social{
+    width:100%!important;
+    gap:8px!important;
+  }
+
+  .footer-social a[href^="mailto:"]{
+    width:100%!important;
+    min-height:42px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:0 12px!important;
+    border:1px solid var(--line-strong,var(--line))!important;
+    border-radius:12px!important;
+    text-align:center!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  /* Let team cards hug their real content instead of stretching vertically. */
+  .role{
+    min-height:0!important;
+    height:auto!important;
+    padding:18px!important;
+  }
+
+  .role p{margin-bottom:12px!important}
+
+  .role ul{
+    margin:0 0 14px!important;
+    gap:6px!important;
+  }
+
+  .role-apply{
+    margin-top:6px!important;
+  }
+}
