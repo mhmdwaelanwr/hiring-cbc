@@ -51,3 +51,6 @@
 
 /* Absolute final cleanup: compact mobile spacing + temporarily hidden Facebook. */
 @import url("./components/mobile-cleanup.css?v=20261013cleanup1");
+
+/* Application answer quality, hints and counters. */
+@import url("./components/form-quality.css?v=20261013quality1");
