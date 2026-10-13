@@ -1,0 +1,82 @@
+/* Final checkbox normalization.
+   Global input sizing rules were inflating checkboxes inside confirmation rows.
+   This layer restores a compact, square control without changing form behavior. */
+
+#applicationForm .check{
+  display:grid!important;
+  grid-template-columns:22px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:12px!important;
+  min-height:0!important;
+  padding:14px 16px!important;
+}
+
+#applicationForm .check input[type="checkbox"]{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  box-sizing:border-box!important;
+  width:22px!important;
+  height:22px!important;
+  min-width:22px!important;
+  min-height:22px!important;
+  max-width:22px!important;
+  max-height:22px!important;
+  margin:0!important;
+  padding:0!important;
+  align-self:center!important;
+  justify-self:center!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1.5px solid color-mix(in srgb,var(--form-mid,#b0aea5) 68%,var(--form-dark,#141413))!important;
+  border-radius:6px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  cursor:pointer!important;
+  line-height:1!important;
+  transition:background .16s ease,border-color .16s ease,box-shadow .16s ease,transform .12s ease!important;
+}
+
+#applicationForm .check input[type="checkbox"]::after{
+  content:""!important;
+  width:9px!important;
+  height:5px!important;
+  margin-top:-1px!important;
+  border-left:2px solid var(--form-dark,#141413)!important;
+  border-bottom:2px solid var(--form-dark,#141413)!important;
+  transform:rotate(-45deg) scale(0)!important;
+  transform-origin:center!important;
+  transition:transform .12s ease!important;
+}
+
+#applicationForm .check input[type="checkbox"]:checked{
+  background:var(--form-green,#788c5d)!important;
+  border-color:var(--form-green,#788c5d)!important;
+}
+
+#applicationForm .check input[type="checkbox"]:checked::after{
+  transform:rotate(-45deg) scale(1)!important;
+}
+
+#applicationForm .check input[type="checkbox"]:focus-visible{
+  outline:none!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--form-blue,#6a9bcc) 28%,transparent)!important;
+}
+
+#applicationForm .check:has(input[type="checkbox"]:checked){
+  border-color:color-mix(in srgb,var(--form-green,#788c5d) 56%,var(--form-mid,#b0aea5))!important;
+  background:color-mix(in srgb,var(--form-green,#788c5d) 6%,transparent)!important;
+}
+
+#applicationForm .check span{
+  align-self:center!important;
+  margin:0!important;
+  line-height:1.45!important;
+}
+
+@media(max-width:760px){
+  #applicationForm .check{
+    grid-template-columns:22px minmax(0,1fr)!important;
+    gap:11px!important;
+    padding:13px 14px!important;
+  }
+}
