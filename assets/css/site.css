@@ -72,7 +72,7 @@
 
 /* Final dropdown/select hardening across every application choice. */
 @import url("./components/select-fix.css?v=20261013select2");
-@import url("./components/select-runtime-fix.css?v=20261013select3");
+@import url("./components/select-runtime-fix.css?v=20261013select4");
 
-/* Keep the generated PDF render surface inside html2canvas' viewport. */
-@import url("./components/pdf-render-fix.css?v=20261013pdf2");
+/* Keep the generated PDF render surface inside html2canvas' capture geometry. */
+@import url("./components/pdf-render-fix.css?v=20261013pdf3");
