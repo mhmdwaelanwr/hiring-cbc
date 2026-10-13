@@ -1,0 +1,140 @@
+/*
+  Final theme control polish.
+  Uses vector masks instead of Unicode glyphs so the control looks like a real product UI.
+*/
+
+.theme-toggle{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  min-width:88px!important;
+  height:40px!important;
+  min-height:40px!important;
+  padding:0 12px 0 9px!important;
+  border:1px solid var(--line-strong,var(--line))!important;
+  border-radius:12px!important;
+  background:color-mix(in srgb,var(--surface) 94%,transparent)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+  cursor:pointer!important;
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
+}
+
+.theme-toggle:hover{
+  background:var(--surface-2)!important;
+  border-color:color-mix(in srgb,var(--ink) 22%,var(--line))!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 6px 18px rgba(20,20,19,.06)!important;
+}
+
+.theme-toggle:active{
+  transform:translateY(0)!important;
+  box-shadow:none!important;
+}
+
+.theme-toggle:focus-visible{
+  outline:none!important;
+  border-color:var(--brand-blue,#6a9bcc)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-blue,#6a9bcc) 20%,transparent)!important;
+}
+
+.theme-toggle .theme-icon{
+  position:relative!important;
+  width:20px!important;
+  height:20px!important;
+  min-width:20px!important;
+  flex:0 0 20px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  overflow:visible!important;
+}
+
+.theme-toggle .theme-icon::before{
+  content:""!important;
+  display:block!important;
+  width:18px!important;
+  height:18px!important;
+  background:currentColor!important;
+  color:var(--muted)!important;
+  -webkit-mask-repeat:no-repeat!important;
+  mask-repeat:no-repeat!important;
+  -webkit-mask-position:center!important;
+  mask-position:center!important;
+  -webkit-mask-size:contain!important;
+  mask-size:contain!important;
+}
+
+/* System: compact monitor icon. */
+html[data-theme-preference="system"] .theme-toggle .theme-icon::before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='4.5' width='17' height='12' rx='2.2'/%3E%3Cpath d='M9 20h6M12 16.5V20'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='4.5' width='17' height='12' rx='2.2'/%3E%3Cpath d='M9 20h6M12 16.5V20'/%3E%3C/svg%3E")!important;
+}
+
+/* Light: restrained sun, not emoji. */
+html[data-theme-preference="light"] .theme-toggle .theme-icon::before{
+  color:var(--brand-orange,#d97757)!important;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3.6'/%3E%3Cpath d='M12 2.5v2.2M12 19.3v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='3.6'/%3E%3Cpath d='M12 2.5v2.2M12 19.3v2.2M4.5 4.5l1.6 1.6M17.9 17.9l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.5 19.5l1.6-1.6M17.9 6.1l1.6-1.6'/%3E%3C/svg%3E")!important;
+}
+
+/* Dark: simple crescent outline. */
+html[data-theme-preference="dark"] .theme-toggle .theme-icon::before{
+  color:var(--brand-light,#faf9f5)!important;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M20.1 15.15A8.3 8.3 0 0 1 8.85 3.9 8.6 8.6 0 1 0 20.1 15.15Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M20.1 15.15A8.3 8.3 0 0 1 8.85 3.9 8.6 8.6 0 1 0 20.1 15.15Z'/%3E%3C/svg%3E")!important;
+}
+
+.theme-toggle .theme-label{
+  display:block!important;
+  color:inherit!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  letter-spacing:-.005em!important;
+  white-space:nowrap!important;
+}
+
+html[data-theme="dark"] .theme-toggle{
+  background:color-mix(in srgb,var(--surface) 92%,transparent)!important;
+  color:var(--brand-light,#faf9f5)!important;
+}
+html[data-theme="dark"] .theme-toggle:hover{
+  background:var(--surface-2)!important;
+  border-color:rgba(250,249,245,.18)!important;
+}
+
+/* Phone header uses a clean icon-only control beside the burger. */
+@media(max-width:760px){
+  .nav .theme-toggle{
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    min-height:40px!important;
+    padding:0!important;
+    gap:0!important;
+    border-radius:12px!important;
+  }
+
+  .nav .theme-toggle .theme-label{display:none!important}
+  .nav .theme-toggle .theme-icon{width:20px!important;height:20px!important;min-width:20px!important}
+}
+
+@media(max-width:420px){
+  .nav .theme-toggle{
+    width:38px!important;
+    min-width:38px!important;
+    height:38px!important;
+    min-height:38px!important;
+    border-radius:11px!important;
+  }
+}
