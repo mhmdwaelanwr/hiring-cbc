@@ -49,8 +49,8 @@
 /* Final theme switch presentation. */
 @import url("./components/theme-toggle.css?v=20261013cleanup1");
 
-/* Absolute final cleanup: compact mobile spacing + temporarily hidden Facebook. */
-@import url("./components/mobile-cleanup.css?v=20261013cleanup1");
+/* Absolute final cleanup: compact mobile spacing. */
+@import url("./components/mobile-cleanup.css?v=20261013cleanup2");
 
 /* Application answer quality, hints and counters. */
 @import url("./components/form-quality.css?v=20261013quality1");
