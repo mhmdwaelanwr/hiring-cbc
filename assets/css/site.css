@@ -66,3 +66,6 @@
 
 /* Final FAQ accordion styling. */
 @import url("./components/faq-polish.css?v=20261013faq1");
+
+/* Success confirmation + professional PDF export presentation. */
+@import url("./components/success-polish.css?v=20261013success1");
