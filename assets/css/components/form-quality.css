@@ -1,0 +1,90 @@
+/* Application data-quality presentation. Loaded after core form styles. */
+
+.form-field-meta{
+  margin-top:7px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+  font-family:var(--claude-font-sans,"Poppins",Arial,sans-serif);
+  font-size:10px;
+  line-height:1.35;
+  font-weight:450;
+  letter-spacing:0;
+}
+.form-field-hint{min-width:0;max-width:72ch}
+.form-field-counter{
+  flex:0 0 auto;
+  padding:3px 7px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface-2);
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  font-size:9px;
+  line-height:1;
+}
+.form-field-counter.near-limit{
+  border-color:color-mix(in srgb,var(--accent) 48%,var(--line));
+  color:var(--accent);
+}
+
+#applicationForm textarea{
+  resize:none!important;
+  overflow-y:auto!important;
+  min-height:112px;
+  transition:height .12s ease,border-color .16s ease,box-shadow .16s ease!important;
+}
+
+#applicationForm label.quality-invalid>input,
+#applicationForm label.quality-invalid>textarea,
+#applicationForm label.quality-invalid>select{
+  border-color:color-mix(in srgb,var(--accent) 74%,#b94b3a)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 13%,transparent)!important;
+}
+#applicationForm label.quality-invalid .form-field-hint,
+#applicationForm label.quality-invalid .form-field-counter{
+  color:var(--accent)!important;
+}
+
+/* Make question groups read like intentional prompts, not a long input dump. */
+#conditional{
+  display:grid;
+  gap:16px;
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+#conditional:empty{display:none}
+#conditional>label{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:color-mix(in srgb,var(--surface) 96%,var(--surface-2));
+}
+#conditional>label>textarea,
+#conditional>label>input{margin-top:10px}
+
+/* A little more separation between prompt copy and the first field. */
+.form-page>p+label,
+.form-page>p+.grid2,
+.form-page>p+.preference-card{
+  margin-top:8px;
+}
+
+@media(max-width:760px){
+  .form-field-meta{
+    align-items:flex-start;
+    gap:8px;
+    font-size:9.5px;
+  }
+  .form-field-counter{margin-top:1px}
+  #conditional{gap:12px;margin-top:14px;padding-top:14px}
+  #conditional>label{padding:14px;border-radius:12px}
+  #applicationForm textarea{min-height:124px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #applicationForm textarea{transition:none!important}
+}
