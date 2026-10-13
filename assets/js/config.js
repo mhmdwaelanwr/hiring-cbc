@@ -1,9 +1,8 @@
 /*
   GITHUB PAGES LAUNCH CONFIGURATION
 
-  The page now loads its visual and enhancement assets directly from index.html.
-  Keeping this file focused on runtime configuration avoids style/script pop-in and
-  makes the first paint match the final interface.
+  Runtime configuration stays here. Small presentation helpers are loaded from
+  their own module so the main app/recruitment logic stays untouched.
 */
 window.CLUB_CONFIG = {
   IS_LIVE: true,
@@ -17,3 +16,10 @@ window.CLUB_CONFIG = {
   // Official club contact email.
   CONTACT_EMAIL: "claudebuilder.aou@gmail.com"
 };
+
+(() => {
+  const script = document.createElement("script");
+  script.src = "./assets/js/ui-polish.js?v=20261013social1";
+  script.defer = true;
+  document.head.appendChild(script);
+})();
