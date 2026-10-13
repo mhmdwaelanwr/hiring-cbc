@@ -266,7 +266,70 @@ body.footer-in-view .mobile-dock{
   }
 }
 
+/* ---------- Explicitly synchronized Facebook + WhatsApp nav interactions ---------- */
+.nav-facebook,
+.nav-whatsapp{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  border-color:var(--line-strong,var(--line))!important;
+  background:color-mix(in srgb,var(--surface) 96%,transparent)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03)!important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease!important;
+}
+
+.nav-facebook::after,
+.nav-whatsapp::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:-1!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),transparent 72%)!important;
+  transition:opacity .18s ease!important;
+}
+
+.nav-facebook::before,
+.nav-whatsapp::before{
+  transition:transform .18s ease,filter .18s ease!important;
+  transform-origin:center!important;
+}
+
+.nav-facebook:is(:hover,:focus-visible),
+.nav-whatsapp:is(:hover,:focus-visible){
+  transform:translateY(-2px)!important;
+  background:var(--surface-2)!important;
+  border-color:color-mix(in srgb,var(--brand-orange,#d97757) 34%,var(--line-strong,var(--line)))!important;
+  box-shadow:0 8px 22px rgba(20,20,19,.10),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  outline:none!important;
+}
+
+.nav-facebook:is(:hover,:focus-visible)::after,
+.nav-whatsapp:is(:hover,:focus-visible)::after{
+  opacity:1!important;
+}
+
+.nav-facebook:is(:hover,:focus-visible)::before,
+.nav-whatsapp:is(:hover,:focus-visible)::before{
+  transform:scale(1.08)!important;
+  filter:saturate(1.08) brightness(1.04)!important;
+}
+
+.nav-facebook:active,
+.nav-whatsapp:active{
+  transform:translateY(0) scale(.985)!important;
+  box-shadow:0 3px 10px rgba(20,20,19,.07)!important;
+}
+
+.nav-facebook:focus-visible,
+.nav-whatsapp:focus-visible{
+  box-shadow:0 0 0 3px var(--focus),0 8px 22px rgba(20,20,19,.10)!important;
+}
+
 @media(prefers-reduced-motion:reduce){
   .nav-facebook,.nav-whatsapp,.community-link,.footer-social a,
-  .floating-whatsapp,.dock-updates,.dock-apply{transition:none!important}
+  .floating-whatsapp,.dock-updates,.dock-apply,
+  .nav-facebook::before,.nav-whatsapp::before,
+  .nav-facebook::after,.nav-whatsapp::after{transition:none!important}
 }
