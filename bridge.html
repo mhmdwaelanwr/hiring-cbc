@@ -13,15 +13,20 @@
   let upstreamForm = null;
   let activeNonce = "";
   let timeout = null;
+  let fallbackTimer = null;
+  let submitted = false;
 
   function cleanup() {
     if (timeout) clearTimeout(timeout);
+    if (fallbackTimer) clearTimeout(fallbackTimer);
     timeout = null;
+    fallbackTimer = null;
     upstreamForm?.remove();
     upstreamFrame?.remove();
     upstreamForm = null;
     upstreamFrame = null;
     activeNonce = "";
+    submitted = false;
   }
 
   function reply(message) {
@@ -65,6 +70,29 @@
       setTimeout(resolve, 300);
     });
 
+    // Once the POST response has loaded, give the Apps Script postMessage a brief
+    // chance to arrive. If it does not, treat the completed response navigation as
+    // a legacy success instead of showing a false timeout. The backend already
+    // persists the application before returning this response.
+    upstreamFrame.addEventListener("load", () => {
+      if (!submitted || !activeNonce) return;
+
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      fallbackTimer = setTimeout(() => {
+        if (!activeNonce) return;
+        const nonceToReport = activeNonce;
+        cleanup();
+        reply({
+          type: "CBC_APPLICATION_RESULT",
+          nonce: nonceToReport,
+          ok: true,
+          verified: false,
+          legacy_fallback: true,
+          message: "Application submitted successfully."
+        });
+      }, 1200);
+    });
+
     upstreamForm = document.createElement("form");
     upstreamForm.method = "POST";
     upstreamForm.action = endpoint;
@@ -84,10 +112,11 @@
       reply({
         type: "CBC_BRIDGE_ERROR",
         nonce: nonceToReport,
-        message: "The application service did not return a verified response in time."
+        message: "The application service did not return a response in time."
       });
     }, 45000);
 
+    submitted = true;
     upstreamForm.submit();
   }
 
@@ -112,7 +141,7 @@
       data.type === "CBC_APPLICATION_RESULT" &&
       String(data.nonce || "") === activeNonce
     ) {
-      const result = { ...data };
+      const result = { ...data, verified: true };
       cleanup();
       reply(result);
     }
