@@ -1,0 +1,134 @@
+/* Final FAQ presentation — compact, card-based and consistent with Claude styling. */
+
+.faq-list{
+  display:grid!important;
+  gap:12px!important;
+  border-top:0!important;
+}
+
+.faq-list details{
+  overflow:hidden!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid var(--line-strong,var(--line))!important;
+  border-radius:16px!important;
+  background:color-mix(in srgb,var(--surface) 97%,transparent)!important;
+  box-shadow:none!important;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease!important;
+}
+
+.faq-list details:hover{
+  transform:none!important;
+  border-color:color-mix(in srgb,var(--brand-orange,#d97757) 28%,var(--line-strong,var(--line)))!important;
+  background:var(--surface-2)!important;
+}
+
+.faq-list details[open]{
+  border-color:color-mix(in srgb,var(--brand-orange,#d97757) 40%,var(--line-strong,var(--line)))!important;
+  background:color-mix(in srgb,var(--brand-orange,#d97757) 4%,var(--surface))!important;
+}
+
+.faq-list summary{
+  min-height:64px!important;
+  display:flex!important;
+  align-items:center!important;
+  position:relative!important;
+  margin:0!important;
+  padding:18px 66px 18px 20px!important;
+  border:0!important;
+  list-style:none!important;
+  cursor:pointer!important;
+  font-size:clamp(16px,1.25vw,18px)!important;
+  line-height:1.35!important;
+  font-weight:600!important;
+  letter-spacing:-.018em!important;
+  color:var(--ink)!important;
+}
+
+.faq-list summary::-webkit-details-marker{display:none!important}
+.faq-list summary::marker{content:""}
+
+.faq-list summary::after{
+  content:"+"!important;
+  position:absolute!important;
+  right:18px!important;
+  top:50%!important;
+  width:32px!important;
+  height:32px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid var(--line-strong,var(--line))!important;
+  border-radius:50%!important;
+  background:transparent!important;
+  color:var(--muted)!important;
+  font-size:22px!important;
+  line-height:1!important;
+  font-weight:400!important;
+  transform:translateY(-50%)!important;
+  transition:transform .18s ease,border-color .18s ease,color .18s ease,background .18s ease!important;
+}
+
+.faq-list details[open] summary::after{
+  content:"−"!important;
+  transform:translateY(-50%)!important;
+  color:var(--brand-orange,#d97757)!important;
+  border-color:color-mix(in srgb,var(--brand-orange,#d97757) 48%,var(--line))!important;
+  background:color-mix(in srgb,var(--brand-orange,#d97757) 7%,transparent)!important;
+}
+
+.faq-list summary:hover::after{
+  color:var(--ink)!important;
+  border-color:var(--ink)!important;
+}
+
+.faq-list details p{
+  max-width:none!important;
+  margin:0!important;
+  padding:0 66px 20px 20px!important;
+  color:var(--muted)!important;
+  font-size:15px!important;
+  line-height:1.65!important;
+  font-weight:400!important;
+  letter-spacing:-.008em!important;
+}
+
+.faq-list details[open] summary{
+  padding-bottom:10px!important;
+}
+
+.faq-list summary:focus-visible{
+  outline:none!important;
+  box-shadow:inset 0 0 0 2px var(--focus)!important;
+}
+
+@media(max-width:760px){
+  .faq-list{gap:9px!important}
+
+  .faq-list details{
+    border-radius:14px!important;
+  }
+
+  .faq-list summary{
+    min-height:58px!important;
+    padding:16px 58px 16px 16px!important;
+    font-size:15px!important;
+    line-height:1.35!important;
+  }
+
+  .faq-list summary::after{
+    right:14px!important;
+    width:30px!important;
+    height:30px!important;
+    font-size:20px!important;
+  }
+
+  .faq-list details p{
+    padding:0 16px 18px!important;
+    font-size:13.5px!important;
+    line-height:1.6!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .faq-list details,.faq-list summary::after{transition:none!important}
+}
