@@ -38,6 +38,10 @@
   appearance:none;
 }
 
+.cbc-select-trigger:active{
+  transform:none!important;
+}
+
 .cbc-select-trigger:hover:not(:disabled){
   border-color:color-mix(in srgb,var(--accent) 55%,#ddd7d2);
 }
