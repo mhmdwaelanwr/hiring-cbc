@@ -1,19 +1,44 @@
 /*
-  Claude wordmark-inspired display typography.
+  Claude wordmark-inspired typography — global site treatment.
 
-  The official Claude wordmark uses brand typography that is not bundled here.
-  Newsreader is already loaded by the base stylesheet and gives the closest
-  open web feel for the serif display style in the supplied Claude Code mark.
-
-  Keep controls/navigation in the existing sans face for readability; use the
-  display serif for identity and hierarchy.
+  The supplied Claude Code lockup uses a proprietary brand wordmark face.
+  Newsreader is the closest already-loaded open web serif in this project,
+  so this final layer applies that visual character consistently everywhere.
 */
 
 :root{
   --claude-wordmark-font:"Newsreader","Lora",Georgia,"Times New Roman",serif;
 }
 
-h1,h2,h3,
+/*
+  Make the entire experience use the Claude-like serif — navigation, body copy,
+  buttons, filters, forms, modal UI, counters and mobile controls included.
+  This file is imported last, so it intentionally wins over older sans/mono rules.
+*/
+html,
+body,
+body *,
+body *::before,
+body *::after,
+button,
+input,
+select,
+textarea,
+option,
+label,
+summary{
+  font-family:var(--claude-wordmark-font)!important;
+  font-optical-sizing:auto;
+  font-synthesis:none;
+}
+
+input::placeholder,
+textarea::placeholder{
+  font-family:var(--claude-wordmark-font)!important;
+}
+
+/* Keep the Claude-like compact display rhythm on major identity text. */
+h1,h2,h3,h4,h5,h6,
 .brand-copy strong,
 .mobile-menu-brand strong,
 .hero-club-name,
@@ -30,15 +55,12 @@ h1,h2,h3,
 .form-page h3,
 .modal-head h2,
 .stats strong{
-  font-family:var(--claude-wordmark-font)!important;
-  font-optical-sizing:auto;
-  font-synthesis:none;
+  font-weight:600!important;
+  letter-spacing:-.028em!important;
 }
 
-/* Brand lockup: closer to the compact Claude wordmark rhythm. */
 .brand-copy strong,
 .mobile-menu-brand strong{
-  font-weight:600!important;
   letter-spacing:-.025em!important;
 }
 
@@ -47,7 +69,6 @@ h1,h2,h3,
   letter-spacing:-.025em!important;
 }
 
-/* Large display copy carries the Claude-like editorial serif character. */
 .hero h1{
   font-weight:600!important;
   letter-spacing:-.045em!important;
@@ -60,18 +81,31 @@ h1,h2,h3,
 .cta h2,
 .hero-panel h2,
 .success h3{
-  font-weight:600!important;
   letter-spacing:-.035em!important;
 }
 
-.role h3,
-.value-card h3,
-.steps h3,
-.form-page h3,
-.modal-head h2,
-.stats strong{
-  font-weight:600!important;
-  letter-spacing:-.022em!important;
+/* UI text stays readable while retaining the same family. */
+p,li,a,button,input,select,textarea,label,summary,
+.btn,.nav-links a,.team-filter,.role-apply,.community-link,
+.theme-toggle,.mobile-menu-nav a,.mobile-menu-theme,.mobile-menu-apply,
+.dock-apply,.hero-status,.eyebrow,.panel-kicker,.community-kicker,
+.cta-copy-eyebrow,.success-kicker,.role small,.value-index,
+.preference-number,.stats span,.draft-status,.brief-foot{
+  font-weight:500!important;
+}
+
+p,li,.lead,.value-card p,.role p,.section-head p,.values-head p,
+.steps p,.faq-list details p,.community-card p,.cta p,.success-lead,
+.success-next p,.form-page>p,.hero-panel li{
+  font-weight:400!important;
+  letter-spacing:-.008em!important;
+}
+
+/* Small labels no longer switch to mono; use the same Claude-like face. */
+.eyebrow,.panel-kicker,.community-kicker,.cta-copy-eyebrow,.success-kicker,
+.role small,.value-index,.preference-number,.stats span,.success-summary span,
+.draft-status{
+  letter-spacing:.035em!important;
 }
 
 @media(max-width:620px){
