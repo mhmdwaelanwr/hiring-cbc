@@ -15,8 +15,9 @@
 .nav-links{
   min-height:72px!important;
   display:flex!important;
+  flex:1 1 auto!important;
   align-items:center!important;
-  justify-content:flex-end!important;
+  justify-content:center!important;
   gap:8px!important;
   margin:0!important;
   padding:0!important;
@@ -36,6 +37,7 @@
   justify-content:center!important;
   padding:0 10px!important;
   line-height:1!important;
+  text-align:center!important;
 }
 
 .nav-facebook,
@@ -117,6 +119,7 @@
   }
   .nav-links{
     min-height:64px!important;
+    flex:0 0 auto!important;
   }
   .nav-links>a,
   .nav-facebook,
