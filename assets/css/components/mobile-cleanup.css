@@ -1,12 +1,23 @@
 /* Final cleanup for mobile spacing. */
 
 @media (max-width:760px){
-  /* Remove the oversized footer tail left by older mobile layers. */
+  /*
+    The mobile hardening layer reserves space at the bottom of <body> for the
+    floating dock. The dock is hidden as soon as the footer enters the viewport,
+    so keeping that reservation at the end of the page creates a large empty
+    tail under the footer. Let the page end naturally instead.
+  */
+  body{
+    padding-bottom:0!important;
+  }
+
+  /* Keep the footer compact and content-sized on phones. */
   .footer{
     min-height:0!important;
     height:auto!important;
+    margin-bottom:0!important;
     padding-top:22px!important;
-    padding-bottom:24px!important;
+    padding-bottom:20px!important;
     gap:14px!important;
     align-items:flex-start!important;
     align-content:start!important;
