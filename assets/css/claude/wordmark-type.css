@@ -1,0 +1,80 @@
+/*
+  Claude wordmark-inspired display typography.
+
+  The official Claude wordmark uses brand typography that is not bundled here.
+  Newsreader is already loaded by the base stylesheet and gives the closest
+  open web feel for the serif display style in the supplied Claude Code mark.
+
+  Keep controls/navigation in the existing sans face for readability; use the
+  display serif for identity and hierarchy.
+*/
+
+:root{
+  --claude-wordmark-font:"Newsreader","Lora",Georgia,"Times New Roman",serif;
+}
+
+h1,h2,h3,
+.brand-copy strong,
+.mobile-menu-brand strong,
+.hero-club-name,
+.hero-panel h2,
+.section-head h2,
+.values-head h2,
+.faq-intro h2,
+.community-card h2,
+.cta h2,
+.success h3,
+.role h3,
+.value-card h3,
+.steps h3,
+.form-page h3,
+.modal-head h2,
+.stats strong{
+  font-family:var(--claude-wordmark-font)!important;
+  font-optical-sizing:auto;
+  font-synthesis:none;
+}
+
+/* Brand lockup: closer to the compact Claude wordmark rhythm. */
+.brand-copy strong,
+.mobile-menu-brand strong{
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+}
+
+.hero-club-name{
+  font-weight:500!important;
+  letter-spacing:-.025em!important;
+}
+
+/* Large display copy carries the Claude-like editorial serif character. */
+.hero h1{
+  font-weight:600!important;
+  letter-spacing:-.045em!important;
+}
+
+.section-head h2,
+.values-head h2,
+.faq-intro h2,
+.community-card h2,
+.cta h2,
+.hero-panel h2,
+.success h3{
+  font-weight:600!important;
+  letter-spacing:-.035em!important;
+}
+
+.role h3,
+.value-card h3,
+.steps h3,
+.form-page h3,
+.modal-head h2,
+.stats strong{
+  font-weight:600!important;
+  letter-spacing:-.022em!important;
+}
+
+@media(max-width:620px){
+  .hero h1{letter-spacing:-.04em!important}
+  .brand-copy strong{letter-spacing:-.02em!important}
+}
