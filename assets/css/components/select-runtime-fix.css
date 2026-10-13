@@ -1,14 +1,24 @@
 /*
-  Last-mile native select compatibility.
-  Windows/Chromium can ignore parts of option styling when the page advertises a
-  dark color-scheme. Keep the field itself themed, but force the operating-system
-  popup to a predictable light scheme so options never render blank or inverted.
+  Native select compatibility - final pass.
+  Chromium/Linux can render an abnormally narrow popup when a styled select uses
+  appearance:none. Restore the platform menulist on every device so the opened
+  menu inherits the real control width and remains keyboard/accessibility safe.
 */
 
 #applicationForm select{
+  appearance:auto!important;
+  -webkit-appearance:menulist!important;
+  -moz-appearance:menulist!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  background-image:none!important;
+  padding-right:13px!important;
   color-scheme:light!important;
   isolation:isolate!important;
   background-clip:padding-box!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
 }
 
 #applicationForm select option,
@@ -16,8 +26,9 @@
 html[data-theme="dark"] #applicationForm select option,
 html[data-theme="dark"] #applicationForm select optgroup{
   color:#141413!important;
-  background-color:#ffffff!important;
+  background:#ffffff!important;
   -webkit-text-fill-color:#141413!important;
+  font:inherit!important;
 }
 
 #applicationForm select option:checked{
@@ -33,7 +44,8 @@ html[data-theme="dark"] #applicationForm select option:disabled{
   -webkit-text-fill-color:#8d8981!important;
 }
 
-/* Keep the closed control dark in dark mode while its OS popup remains readable. */
+/* The closed control can stay dark while Chromium renders the popup with a
+   predictable readable palette. */
 html[data-theme="dark"] #applicationForm select{
   color:var(--form-light)!important;
   -webkit-text-fill-color:var(--form-light)!important;
@@ -45,20 +57,19 @@ html[data-theme="dark"] #applicationForm select:required:invalid{
   -webkit-text-fill-color:var(--form-mid)!important;
 }
 
-/* Disabled role/major selectors should never look like active blank fields. */
 #applicationForm select:disabled{
   cursor:not-allowed!important;
   filter:saturate(.72)!important;
 }
 
-/* Safari/iOS should keep the platform picker; only normalize the closed field. */
+/* Touch devices use their native picker presentation. */
 @media(max-width:760px), (pointer:coarse){
   #applicationForm select{
     appearance:auto!important;
     -webkit-appearance:menulist!important;
     background-image:none!important;
     padding-right:13px!important;
-    color-scheme:light!important;
+    font-size:16px!important;
   }
 
   html[data-theme="dark"] #applicationForm select{
