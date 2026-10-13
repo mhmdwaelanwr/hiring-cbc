@@ -63,3 +63,6 @@
 
 /* Checkbox normalization: neutralizes global input sizing on confirmation controls. */
 @import url("./components/checkbox-fix.css?v=20261013check1");
+
+/* Final FAQ accordion styling. */
+@import url("./components/faq-polish.css?v=20261013faq1");
