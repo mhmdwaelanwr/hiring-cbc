@@ -56,7 +56,7 @@
 @import url("./components/form-quality.css?v=20261013quality1");
 
 /* Final typography: Claude wordmark-inspired serif across the whole site. */
-@import url("./claude/wordmark-type.css?v=20261013type2");
+@import url("./claude/wordmark-type.css?v=20261013type3");
 
 /* Desktop header geometry: centered primary nav + right-aligned actions. */
 @import url("./components/desktop-nav-layout.css?v=20261013nav2");
