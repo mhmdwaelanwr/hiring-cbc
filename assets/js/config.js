@@ -1,8 +1,8 @@
 /*
   GITHUB PAGES LAUNCH CONFIGURATION
 
-  Runtime configuration stays here. Small presentation helpers are loaded from
-  their own module so the main app/recruitment logic stays untouched.
+  Runtime configuration stays here. Small presentation/data-quality helpers are
+  loaded as isolated modules so the main recruitment transport stays untouched.
 */
 window.CLUB_CONFIG = {
   IS_LIVE: true,
@@ -18,8 +18,15 @@ window.CLUB_CONFIG = {
 };
 
 (() => {
-  const script = document.createElement("script");
-  script.src = "./assets/js/ui-polish.js?v=20261013social1";
-  script.defer = true;
-  document.head.appendChild(script);
+  [
+    ["./assets/js/ui-polish.js?v=20261013social1", "cbc-ui-polish"],
+    ["./assets/js/form-quality.js?v=20261013quality1", "cbc-form-quality"]
+  ].forEach(([src, marker]) => {
+    if (document.querySelector(`script[data-module="${marker}"]`)) return;
+    const script = document.createElement("script");
+    script.src = src;
+    script.defer = true;
+    script.dataset.module = marker;
+    document.head.appendChild(script);
+  });
 })();
