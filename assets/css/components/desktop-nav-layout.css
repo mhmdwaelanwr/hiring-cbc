@@ -1,0 +1,79 @@
+/* Desktop navigation geometry.
+   Keep the four section links visually centered in the bar while social,
+   theme and application controls stay pinned to the far right. */
+
+@media (min-width:1181px){
+  .nav-inner{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+  }
+
+  .nav .brand{
+    position:relative!important;
+    z-index:3!important;
+    flex:0 0 auto!important;
+  }
+
+  .nav-links{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:72px!important;
+    min-height:72px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:8px!important;
+    margin:0!important;
+    padding:0!important;
+    pointer-events:none!important;
+  }
+
+  .nav-links>*{
+    pointer-events:auto!important;
+  }
+
+  /* Fixed group width makes the four primary links stay truly centered. */
+  .nav-links>a[href="#about"],
+  .nav-links>a[href="#teams"],
+  .nav-links>a[href="#process"],
+  .nav-links>a[href="#community"]{
+    position:absolute!important;
+    top:50%!important;
+    margin:0!important;
+    padding:0 8px!important;
+    transform:translateY(-50%)!important;
+    justify-content:center!important;
+  }
+
+  .nav-links>a[href="#about"]{
+    left:calc(50% - 176px)!important;
+    width:72px!important;
+  }
+
+  .nav-links>a[href="#teams"]{
+    left:calc(50% - 96px)!important;
+    width:72px!important;
+  }
+
+  .nav-links>a[href="#process"]{
+    left:calc(50% - 16px)!important;
+    width:82px!important;
+  }
+
+  .nav-links>a[href="#community"]{
+    left:calc(50% + 74px)!important;
+    width:102px!important;
+  }
+
+  /* Right-side controls sit flush to the right edge of the shared wrapper. */
+  .nav-facebook{
+    margin-left:0!important;
+  }
+
+  .nav-apply{
+    margin-right:0!important;
+  }
+}
