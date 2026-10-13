@@ -1,0 +1,106 @@
+/* Final native-select hardening for every dropdown in the application form.
+   Keeps selects accessible/native while fixing theme, arrow, spacing and mobile behavior. */
+
+#applicationForm select{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  -moz-appearance:none!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:50px!important;
+  padding:12px 44px 12px 13px!important;
+  border:1px solid color-mix(in srgb,var(--form-mid) 56%,transparent)!important;
+  border-radius:12px!important;
+  background-color:#fff!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.25 7.5 10 12.25 14.75 7.5' fill='none' stroke='%23141413' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 14px center!important;
+  background-size:16px 16px!important;
+  color:var(--form-dark)!important;
+  color-scheme:light!important;
+  cursor:pointer!important;
+  line-height:1.35!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  box-shadow:0 1px 0 rgba(20,20,19,.025)!important;
+}
+
+#applicationForm select::-ms-expand{display:none!important}
+
+#applicationForm select:hover:not(:disabled){
+  border-color:color-mix(in srgb,var(--form-mid) 78%,var(--form-dark))!important;
+}
+
+#applicationForm select:focus{
+  outline:none!important;
+  border-color:var(--form-blue)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--form-blue) 22%,transparent)!important;
+}
+
+#applicationForm select:disabled{
+  cursor:not-allowed!important;
+  opacity:.62!important;
+  background-color:color-mix(in srgb,var(--form-soft) 68%,var(--form-light))!important;
+}
+
+/* Native popup menu colors. This is particularly important on Windows/Chrome
+   where document color-scheme can otherwise produce unreadable option menus. */
+#applicationForm select option,
+#applicationForm select optgroup{
+  background:#fff!important;
+  color:#141413!important;
+  font-family:var(--claude-wordmark-font,"Fraunces",Georgia,serif)!important;
+  font-weight:500!important;
+}
+
+#applicationForm select option:disabled{
+  color:#8d8981!important;
+}
+
+html[data-theme="dark"] #applicationForm select{
+  background-color:color-mix(in srgb,var(--form-dark) 91%,var(--form-soft))!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.25 7.5 10 12.25 14.75 7.5' fill='none' stroke='%23faf9f5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;
+  border-color:color-mix(in srgb,var(--form-mid) 31%,transparent)!important;
+  color:var(--form-light)!important;
+  color-scheme:dark!important;
+}
+
+html[data-theme="dark"] #applicationForm select:hover:not(:disabled){
+  border-color:color-mix(in srgb,var(--form-mid) 55%,transparent)!important;
+}
+
+html[data-theme="dark"] #applicationForm select:disabled{
+  background-color:color-mix(in srgb,var(--form-dark) 84%,var(--form-soft))!important;
+}
+
+html[data-theme="dark"] #applicationForm select option,
+html[data-theme="dark"] #applicationForm select optgroup{
+  background:#1b1b19!important;
+  color:#faf9f5!important;
+}
+
+html[data-theme="dark"] #applicationForm select option:disabled{
+  color:#8f8c84!important;
+}
+
+/* Keep the placeholder/empty selection visually secondary without breaking
+   the selected value after the user chooses a real option. */
+#applicationForm select:required:invalid{
+  color:color-mix(in srgb,var(--form-mid) 90%,var(--form-dark))!important;
+}
+
+html[data-theme="dark"] #applicationForm select:required:invalid{
+  color:var(--form-mid)!important;
+}
+
+/* Mobile: preserve native picker behavior and prevent iOS focus zoom. */
+@media(max-width:760px){
+  #applicationForm select{
+    min-height:50px!important;
+    padding:12px 42px 12px 13px!important;
+    background-position:right 13px center!important;
+    font-size:16px!important;
+    touch-action:manipulation;
+  }
+}
