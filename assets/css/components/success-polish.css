@@ -1,0 +1,244 @@
+/* Success-state polish + PDF export presentation. Loaded last on purpose. */
+
+.success-icon{
+  position:relative!important;
+  width:64px!important;
+  height:64px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0 0 24px!important;
+  overflow:hidden!important;
+  border:1px solid color-mix(in srgb,var(--form-green) 78%,transparent)!important;
+  border-radius:20px!important;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.20),transparent 34%),
+    linear-gradient(145deg,color-mix(in srgb,var(--form-green) 92%,#a9b992),var(--form-green))!important;
+  box-shadow:
+    0 12px 32px color-mix(in srgb,var(--form-green) 20%,transparent),
+    inset 0 1px 0 rgba(255,255,255,.22)!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  isolation:isolate;
+}
+
+/* Draw the check with CSS so it stays crisp and does not depend on a font glyph. */
+.success-icon::before{
+  content:""!important;
+  position:absolute!important;
+  z-index:2!important;
+  width:13px!important;
+  height:25px!important;
+  left:25px!important;
+  top:16px!important;
+  border-right:3px solid #141413!important;
+  border-bottom:3px solid #141413!important;
+  border-radius:1px!important;
+  transform:rotate(45deg)!important;
+  transform-origin:center!important;
+}
+
+.success-icon::after{
+  content:""!important;
+  position:absolute!important;
+  z-index:1!important;
+  inset:10px!important;
+  border:1px solid rgba(20,20,19,.13)!important;
+  border-radius:14px!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)!important;
+}
+
+.success.show .success-icon{
+  animation:cbcSuccessMarkIn .34s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes cbcSuccessMarkIn{
+  from{opacity:0;transform:translateY(7px) scale(.92)}
+  to{opacity:1;transform:none}
+}
+
+.success-kicker{
+  font-weight:650!important;
+  letter-spacing:.11em!important;
+}
+
+/* Make the application-copy action read as a document export, not a generic button. */
+#downloadCopy{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  min-height:48px!important;
+  padding:12px 16px!important;
+  border-radius:13px!important;
+  box-shadow:0 8px 24px rgba(20,20,19,.10)!important;
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important;
+}
+
+#downloadCopy::before{
+  content:"↓"!important;
+  width:24px!important;
+  height:24px!important;
+  display:grid!important;
+  place-items:center!important;
+  flex:0 0 24px!important;
+  border:1px solid currentColor!important;
+  border-radius:7px!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:700!important;
+}
+
+#downloadCopy::after{
+  content:"PDF"!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:21px!important;
+  padding:4px 7px 3px!important;
+  margin-left:2px!important;
+  border:1px solid color-mix(in srgb,currentColor 24%,transparent)!important;
+  border-radius:999px!important;
+  font-size:8px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:.08em!important;
+}
+
+#downloadCopy:hover:not(:disabled){
+  transform:translateY(-1px)!important;
+  box-shadow:0 12px 30px rgba(20,20,19,.14)!important;
+}
+
+#downloadCopy:disabled{
+  opacity:.68!important;
+  cursor:wait!important;
+  transform:none!important;
+}
+
+html[data-theme="dark"] #downloadCopy{
+  box-shadow:0 10px 28px rgba(0,0,0,.24)!important;
+}
+
+/* html2pdf export refinements. The generator already builds semantic sections;
+   these final rules give the downloaded A4 copy a more editorial, official finish. */
+.cbc-application-pdf{
+  background:#faf9f5!important;
+  color:#141413!important;
+}
+
+.cbc-application-pdf .pdf-topline{
+  height:5px!important;
+  margin-bottom:20px!important;
+  background:linear-gradient(90deg,#d97757 0 58%,#788c5d 58% 79%,#6a9bcc 79% 100%)!important;
+  border-radius:999px!important;
+}
+
+.cbc-application-pdf .pdf-header{
+  padding-bottom:20px!important;
+  border-bottom-color:#cbc7bd!important;
+}
+
+.cbc-application-pdf .pdf-brand-name{
+  font-size:19px!important;
+  font-weight:650!important;
+  letter-spacing:-.04em!important;
+}
+
+.cbc-application-pdf .pdf-brand-sub{
+  color:#716e67!important;
+  letter-spacing:.10em!important;
+}
+
+.cbc-application-pdf .pdf-badge{
+  border-color:#d97757!important;
+  background:#f8e8e2!important;
+  color:#9e4f38!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7)!important;
+}
+
+.cbc-application-pdf .pdf-hero{
+  padding:24px 0 20px!important;
+}
+
+.cbc-application-pdf .pdf-hero h1{
+  max-width:150mm!important;
+  font-size:30px!important;
+  line-height:1.02!important;
+}
+
+.cbc-application-pdf .pdf-summary{
+  gap:9px!important;
+  margin-bottom:22px!important;
+}
+
+.cbc-application-pdf .pdf-summary-card,
+.cbc-application-pdf .pdf-field{
+  border-color:#d8d4ca!important;
+  background:#fff!important;
+  box-shadow:0 1px 0 rgba(20,20,19,.03)!important;
+}
+
+.cbc-application-pdf .pdf-summary-card{
+  padding:11px 12px!important;
+}
+
+.cbc-application-pdf .pdf-section{
+  margin-bottom:20px!important;
+}
+
+.cbc-application-pdf .pdf-section-head{
+  padding-bottom:8px!important;
+  margin-bottom:9px!important;
+  border-bottom-color:#cbc7bd!important;
+}
+
+.cbc-application-pdf .pdf-section h2{
+  font-size:17px!important;
+  letter-spacing:-.03em!important;
+}
+
+.cbc-application-pdf .pdf-field{
+  padding:10px 11px 11px!important;
+  border-radius:10px!important;
+}
+
+.cbc-application-pdf .pdf-label,
+.cbc-application-pdf .pdf-summary-label,
+.cbc-application-pdf .pdf-eyebrow{
+  letter-spacing:.09em!important;
+}
+
+.cbc-application-pdf .pdf-note{
+  margin-top:22px!important;
+  padding:12px 14px!important;
+  border:1px solid #d8d4ca!important;
+  border-left:4px solid #d97757!important;
+  border-radius:10px!important;
+  background:#f5f2eb!important;
+  color:#625f58!important;
+  break-inside:avoid!important;
+  page-break-inside:avoid!important;
+}
+
+@media(max-width:760px){
+  .success-icon{
+    width:58px!important;
+    height:58px!important;
+    margin-bottom:20px!important;
+    border-radius:18px!important;
+  }
+  .success-icon::before{
+    width:12px!important;
+    height:23px!important;
+    left:22px!important;
+    top:14px!important;
+  }
+  #downloadCopy{
+    width:100%!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .success.show .success-icon{animation:none!important}
+  #downloadCopy{transition:none!important}
+}
