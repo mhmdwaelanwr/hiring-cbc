@@ -1,0 +1,272 @@
+/*
+  Final social/navigation polish.
+  Keeps Facebook / WhatsApp / recruitment controls visually related,
+  centers content, and removes orphan-looking floating elements.
+*/
+
+:root{
+  --social-facebook:#1877f2;
+  --social-whatsapp:#25d366;
+  --social-control-h:44px;
+}
+
+/* ---------- Navigation alignment ---------- */
+.nav-links{
+  align-items:center!important;
+}
+.nav-links>a[href^="#"]{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  min-height:44px!important;
+  padding-inline:12px!important;
+}
+
+/* ---------- Shared social control language ---------- */
+.nav-facebook,.nav-whatsapp,
+.community-link.facebook,.community-link.whatsapp,
+.mobile-menu-social.facebook,.mobile-menu-social.whatsapp,
+.footer-social a[href*="facebook.com"],
+.footer-social a[href*="chat.whatsapp.com"],
+.floating-whatsapp,.dock-updates{
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease,opacity .18s ease!important;
+}
+
+.nav-facebook,.nav-whatsapp,
+.community-link.facebook,.community-link.whatsapp,
+.mobile-menu-social.facebook,.mobile-menu-social.whatsapp{
+  min-height:var(--social-control-h)!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  text-align:center!important;
+  border:1px solid var(--line-strong,var(--line))!important;
+  background:color-mix(in srgb,var(--surface) 94%,transparent)!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+}
+
+.nav-facebook:hover,.nav-whatsapp:hover,
+.community-link.facebook:hover,.community-link.whatsapp:hover,
+.mobile-menu-social.facebook:hover,.mobile-menu-social.whatsapp:hover,
+.footer-social a[href*="facebook.com"]:hover,
+.footer-social a[href*="chat.whatsapp.com"]:hover,
+.floating-whatsapp:hover,.dock-updates:hover{
+  background:var(--surface-2)!important;
+  border-color:color-mix(in srgb,var(--brand-orange,#d97757) 34%,var(--line-strong,var(--line)))!important;
+  transform:translateY(-2px)!important;
+  box-shadow:0 8px 22px rgba(20,20,19,.08)!important;
+}
+
+.nav-facebook::before,.nav-whatsapp::before,
+.community-link.facebook::before,.community-link.whatsapp::before,
+.mobile-menu-social.facebook::before,.mobile-menu-social.whatsapp::before,
+.footer-social a[href*="facebook.com"]::before,
+.footer-social a[href*="chat.whatsapp.com"]::before{
+  content:""!important;
+  display:block!important;
+  width:20px!important;
+  height:20px!important;
+  flex:0 0 20px!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+}
+
+.nav-facebook::before,.community-link.facebook::before,
+.mobile-menu-social.facebook::before,.footer-social a[href*="facebook.com"]::before{
+  background-image:url("../../icons/social/facebook.svg")!important;
+}
+.nav-whatsapp::before,.community-link.whatsapp::before,
+.mobile-menu-social.whatsapp::before,.footer-social a[href*="chat.whatsapp.com"]::before{
+  background-image:url("../../icons/social/whatsapp.svg")!important;
+}
+
+.nav-facebook svg,.nav-whatsapp svg,
+.community-link.facebook svg,.community-link.whatsapp svg,
+.mobile-menu-social.facebook svg,.mobile-menu-social.whatsapp svg,
+.footer-social a[href*="facebook.com"] svg,
+.footer-social a[href*="chat.whatsapp.com"] svg{
+  display:none!important;
+}
+
+/* Keep brand colors in the icon, not in mismatched button surfaces. */
+.nav-facebook,.nav-whatsapp,
+.community-link.facebook,.community-link.whatsapp,
+.mobile-menu-social.facebook,.mobile-menu-social.whatsapp{
+  color:var(--ink)!important;
+}
+html[data-theme="dark"] .nav-facebook,
+html[data-theme="dark"] .nav-whatsapp,
+html[data-theme="dark"] .community-link.facebook,
+html[data-theme="dark"] .community-link.whatsapp,
+html[data-theme="dark"] .mobile-menu-social.facebook,
+html[data-theme="dark"] .mobile-menu-social.whatsapp{
+  color:var(--brand-light,#faf9f5)!important;
+}
+
+/* ---------- Community social row ---------- */
+.community-actions{
+  align-items:stretch!important;
+  justify-content:center!important;
+}
+.community-link{
+  text-align:center!important;
+}
+.community-link.facebook,.community-link.whatsapp{
+  min-width:156px!important;
+}
+
+/* ---------- Footer socials ---------- */
+.footer-social{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex-wrap:wrap!important;
+  gap:9px!important;
+}
+.footer-social a[href*="facebook.com"],
+.footer-social a[href*="chat.whatsapp.com"]{
+  min-height:42px!important;
+  min-width:136px!important;
+  padding:0 15px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  border:1px solid var(--line-strong,var(--line))!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  color:var(--ink)!important;
+  text-decoration:none!important;
+}
+html[data-theme="dark"] .footer-social a[href*="facebook.com"],
+html[data-theme="dark"] .footer-social a[href*="chat.whatsapp.com"]{
+  color:var(--brand-light,#faf9f5)!important;
+}
+
+/* ---------- Recruitment WhatsApp chip ---------- */
+.floating-whatsapp{
+  right:18px!important;
+  bottom:18px!important;
+  min-height:58px!important;
+  max-width:230px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:9px 16px 9px 10px!important;
+  border:1px solid var(--line-strong,var(--line))!important;
+  border-radius:18px!important;
+  background:color-mix(in srgb,var(--surface) 94%,transparent)!important;
+  color:var(--ink)!important;
+  box-shadow:0 8px 28px rgba(20,20,19,.08)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+html[data-theme="dark"] .floating-whatsapp{color:var(--brand-light,#faf9f5)!important}
+.floating-whatsapp .wa-dot{
+  width:38px!important;
+  height:38px!important;
+  flex:0 0 38px!important;
+  border:1px solid color-mix(in srgb,var(--social-whatsapp) 30%,var(--line))!important;
+  border-radius:12px!important;
+  background:color-mix(in srgb,var(--social-whatsapp) 8%,transparent) url("../../icons/social/whatsapp.svg") center/21px 21px no-repeat!important;
+  box-shadow:none!important;
+}
+.floating-whatsapp strong{display:block!important;font-size:12px!important;line-height:1.2!important}
+.floating-whatsapp small{display:block!important;margin-top:3px!important;color:var(--muted)!important;font-size:10px!important}
+
+/* ---------- Mobile bottom dock ---------- */
+.mobile-dock{
+  border:1px solid var(--line-strong,var(--line))!important;
+  background:color-mix(in srgb,var(--surface) 95%,transparent)!important;
+  box-shadow:0 10px 32px rgba(20,20,19,.10)!important;
+  backdrop-filter:blur(15px)!important;
+  -webkit-backdrop-filter:blur(15px)!important;
+}
+.dock-apply{
+  border:1px solid transparent!important;
+  border-radius:13px!important;
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease!important;
+}
+.dock-apply:hover{
+  transform:translateY(-1px)!important;
+  filter:saturate(1.04)!important;
+  box-shadow:0 8px 20px rgba(217,119,87,.16)!important;
+}
+.dock-updates{
+  position:relative!important;
+  border:1px solid color-mix(in srgb,var(--social-whatsapp) 28%,var(--line))!important;
+  border-radius:13px!important;
+  background:color-mix(in srgb,var(--social-whatsapp) 8%,var(--surface))!important;
+  color:transparent!important;
+}
+.dock-updates svg{display:none!important}
+.dock-updates::before{
+  content:""!important;
+  display:block!important;
+  width:23px!important;
+  height:23px!important;
+  background:url("../../icons/social/whatsapp.svg") center/contain no-repeat!important;
+}
+
+/* Hide floating recruitment controls when the footer is reached. */
+body.footer-in-view .floating-whatsapp,
+body.footer-in-view .mobile-dock{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translateY(14px)!important;
+}
+
+@media(max-width:760px){
+  .floating-whatsapp{display:none!important}
+
+  .mobile-menu-nav{
+    text-align:center!important;
+  }
+  .mobile-menu-nav a{
+    justify-content:center!important;
+    text-align:center!important;
+    position:relative!important;
+  }
+  .mobile-menu-nav a::after{
+    position:absolute!important;
+    right:13px!important;
+  }
+
+  .mobile-menu-socials{
+    align-items:stretch!important;
+  }
+  .mobile-menu-social{
+    width:100%!important;
+    justify-content:center!important;
+  }
+
+  .community-actions{
+    justify-items:stretch!important;
+  }
+  .community-link.facebook,.community-link.whatsapp{
+    min-width:0!important;
+    width:100%!important;
+  }
+
+  .footer-social{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    justify-items:stretch!important;
+  }
+  .footer-social a[href*="facebook.com"],
+  .footer-social a[href*="chat.whatsapp.com"]{
+    width:100%!important;
+    min-width:0!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nav-facebook,.nav-whatsapp,.community-link,.footer-social a,
+  .floating-whatsapp,.dock-updates,.dock-apply{transition:none!important}
+}
