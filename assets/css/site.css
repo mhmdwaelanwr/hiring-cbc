@@ -70,9 +70,12 @@
 /* Success confirmation + professional PDF export presentation. */
 @import url("./components/success-polish.css?v=20261013success1");
 
-/* Final dropdown/select hardening across every application choice. */
+/* Native select baseline/fallback, especially for mobile and touch devices. */
 @import url("./components/select-fix.css?v=20261013select2");
 @import url("./components/select-runtime-fix.css?v=20261013select4");
+
+/* Stable desktop listbox portal: avoids Chromium/Linux native popup repaint bugs. */
+@import url("./components/select-enhancer.css?v=20261013selectstable2");
 
 /* Keep the generated PDF render surface inside html2canvas' capture geometry. */
 @import url("./components/pdf-render-fix.css?v=20261013pdf3");
