@@ -54,3 +54,6 @@
 
 /* Application answer quality, hints and counters. */
 @import url("./components/form-quality.css?v=20261013quality1");
+
+/* Final display typography: Claude wordmark-inspired serif identity. */
+@import url("./claude/wordmark-type.css?v=20261013type1");
