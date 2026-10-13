@@ -69,3 +69,6 @@
 
 /* Success confirmation + professional PDF export presentation. */
 @import url("./components/success-polish.css?v=20261013success1");
+
+/* Final dropdown/select hardening across every application choice. */
+@import url("./components/select-fix.css?v=20261013select1");
