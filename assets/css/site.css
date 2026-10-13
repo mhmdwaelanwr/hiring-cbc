@@ -4,44 +4,47 @@
 */
 
 /* Foundation */
-@import url("./base/styles.css?v=20261013social1");
+@import url("./base/styles.css?v=20261013theme1");
 
 /* Historical layout layers kept isolated during consolidation */
-@import url("./legacy/polish.css?v=20261013social1");
-@import url("./legacy/hotfix.css?v=20261013social1");
-@import url("./legacy/brand.css?v=20261013social1");
-@import url("./legacy/community.css?v=20261013social1");
-@import url("./legacy/revamp.css?v=20261013social1");
+@import url("./legacy/polish.css?v=20261013theme1");
+@import url("./legacy/hotfix.css?v=20261013theme1");
+@import url("./legacy/brand.css?v=20261013theme1");
+@import url("./legacy/community.css?v=20261013theme1");
+@import url("./legacy/revamp.css?v=20261013theme1");
 
 /* Claude / Anthropic visual system */
-@import url("./claude/theme.css?v=20261013social1");
-@import url("./claude/polish.css?v=20261013social1");
-@import url("./claude/typography.css?v=20261013social1");
-@import url("./claude/official.css?v=20261013social1");
+@import url("./claude/theme.css?v=20261013theme1");
+@import url("./claude/polish.css?v=20261013theme1");
+@import url("./claude/typography.css?v=20261013theme1");
+@import url("./claude/official.css?v=20261013theme1");
 
 /* Application experience */
-@import url("./claude/form.css?v=20261013social1");
-@import url("./claude/form-fix.css?v=20261013social1");
+@import url("./claude/form.css?v=20261013theme1");
+@import url("./claude/form-fix.css?v=20261013theme1");
 
 /* Components */
-@import url("./components/mobile-menu.css?v=20261013social1");
-@import url("./components/navigation.css?v=20261013social1");
-@import url("./components/form-layout-fix.css?v=20261013social1");
+@import url("./components/mobile-menu.css?v=20261013theme1");
+@import url("./components/navigation.css?v=20261013theme1");
+@import url("./components/form-layout-fix.css?v=20261013theme1");
 
 /* Uploaded Claude asset pack wins over every legacy placeholder. */
-@import url("./claude/brand-assets.css?v=20261013social1");
+@import url("./claude/brand-assets.css?v=20261013theme1");
 
 /* Final targeted visual corrections. */
-@import url("./components/visual-fixes.css?v=20261013social1");
+@import url("./components/visual-fixes.css?v=20261013theme1");
 
 /* Single source of truth for phone/tablet layout. */
-@import url("./components/mobile-hardening.css?v=20261013social1");
+@import url("./components/mobile-hardening.css?v=20261013theme1");
 
 /* Mobile header lock. */
-@import url("./components/mobile-header-fix.css?v=20261013social1");
+@import url("./components/mobile-header-fix.css?v=20261013theme1");
 
 /* Absolute final phone presentation: theme control + spacing/polish. */
-@import url("./components/mobile-final.css?v=20261013social1");
+@import url("./components/mobile-final.css?v=20261013theme1");
 
-/* Social controls and floating recruitment affordances are the final visual layer. */
-@import url("./components/social-polish.css?v=20261013social1");
+/* Social controls and floating recruitment affordances. */
+@import url("./components/social-polish.css?v=20261013theme1");
+
+/* Final theme switch presentation. */
+@import url("./components/theme-toggle.css?v=20261013theme1");
