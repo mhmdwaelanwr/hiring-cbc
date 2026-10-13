@@ -1,34 +1,43 @@
 /*
   PDF render hotfix.
-  html2canvas does not reliably capture elements positioned extremely far off-screen.
-  Keep the generated application sheet inside the render viewport while the modal
-  remains above it, so the export is captured without flashing over the UI.
+  html2pdf/html2canvas clones the source node before rasterizing it. Fixed or
+  extremely off-screen positioning can result in a valid but blank canvas.
+  Keep the temporary application sheet in normal document geometry while the
+  recruitment modal remains visually above it.
 */
 
 .cbc-application-pdf{
-  position:fixed!important;
-  left:0!important;
-  top:0!important;
+  position:relative!important;
+  left:auto!important;
+  top:auto!important;
   right:auto!important;
   bottom:auto!important;
-  z-index:0!important;
+  display:block!important;
+  width:190mm!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:1px!important;
+  z-index:auto!important;
   visibility:visible!important;
   opacity:1!important;
+  overflow:visible!important;
   pointer-events:none!important;
   transform:none!important;
   clip:auto!important;
   clip-path:none!important;
+  contain:none!important;
 }
 
-/* The recruitment modal stays above the temporary PDF render surface. */
+/* The modal hides the temporary source sheet from the applicant while it is
+   rendered, without making the source itself invisible to html2canvas. */
 .modal{
   position:fixed!important;
   z-index:10000!important;
 }
 
-/* Prevent page-level transforms/animations from contaminating html2canvas geometry. */
 .cbc-application-pdf,
 .cbc-application-pdf *{
   animation:none!important;
   transition:none!important;
+  filter:none!important;
 }
