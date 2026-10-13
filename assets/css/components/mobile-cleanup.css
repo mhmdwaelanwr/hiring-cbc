@@ -1,14 +1,4 @@
-/* Final cleanup for mobile spacing and temporary Facebook visibility. */
-
-/* Keep Facebook markup/links in the project, but hide them from the UI for now. */
-.nav-facebook,
-.hero-facebook,
-.community-link.facebook,
-.mobile-menu-social.facebook,
-.footer-social a[href*="facebook.com"],
-.social-after-submit{
-  display:none!important;
-}
+/* Final cleanup for mobile spacing. */
 
 @media (max-width:760px){
   /* Remove the oversized footer tail left by older mobile layers. */
